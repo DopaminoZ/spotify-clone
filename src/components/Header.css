@@ -1,0 +1,10 @@
+.header-logo{
+    width:100%;
+    height:92px;
+    box-shadow: 1px 1px 1px #D9DADC;
+}
+.logo{
+    width: 143px;
+    height: 44px;
+    padding: 20px;
+}
