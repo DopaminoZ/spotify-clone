@@ -1,0 +1,13 @@
+.buttons {
+
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+button {
+    width: 200px;
+    height: 60px;
+
+}
