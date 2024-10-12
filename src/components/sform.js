@@ -27,7 +27,6 @@ function Sform() {
       <div className="divider-container">
         <div className="line"></div>
         <div className="text">OR</div>
-       
         <div className="line"></div>
       </div>
       <div className="acc">
@@ -36,6 +35,13 @@ function Sform() {
          
          <h1 id="pass">Password</h1>
          <input type="password" placeholder="Password" className="input-box" />
+         <a href='' id="forg">Forget your password?</a>
+         <button id="logi" >LOG IN</button>
+         <label>
+      <input type="checkbox" id="myCheckbox" name="myCheckbox" />
+      <div id="agree">Remember me</div>
+      </label>
+
       </div>
     </div>
   );
