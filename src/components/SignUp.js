@@ -1,5 +1,5 @@
 import React from 'react'
-import './Signin.css'
+import './SignUp.css'
 import google from '../images/google.png'
 import fb from'../images/fb.png'
 import apple from '../images/apple.png'
