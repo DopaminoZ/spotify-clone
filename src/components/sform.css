@@ -10,7 +10,8 @@
 
 #b1,
 #b2,
-#b3 {
+#b3,
+#next {
     width: 450px;
     height: 48px;
     border-radius: 500px;
