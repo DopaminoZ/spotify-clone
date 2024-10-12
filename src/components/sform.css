@@ -1,3 +1,14 @@
+/* Add this to your global CSS file or at the top of sform.css */
+body {
+    background-color: white;
+    /* Set entire webpage background color to white */
+    margin: 0;
+    /* Remove default margin */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* Optional: Set a global font */
+}
+
+/* Existing .buttons and other styles remain unchanged */
 .buttons {
     display: flex;
     flex-direction: column;
@@ -5,8 +16,11 @@
     gap: 12px;
     padding-top: 30px;
     justify-content: center;
-
 }
+
+/* Add all your existing button and other styles here */
+
+
 
 #b1,
 #b2,
@@ -26,7 +40,6 @@
 
 #b1 {
     color: #D9D9D9;
-
     background-color: #1877F2;
     font-weight: bold;
     text-transform: uppercase;
@@ -54,7 +67,54 @@
 #b2 img,
 #b3 img {
     margin-right: 10px;
+}
 
+.divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
+.line {
+    width: 10%;
+    height: 2px;
+    background-color: rgb(224, 224, 224);
+    margin: 0 10px;
+}
 
+.text {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+.acc h1 {
+    font-weight: 900;
+    opacity: 100;
+    color: rgb(0, 0, 0);
+    margin-right: 310px;
+    font-size: small;
+    letter-spacing: 0.1px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: -20px;
+}
+
+#pass {
+    margin-right: 410px;
+    margin-top: 100px;
+}
+
+.input-box {
+    width: 450px;
+    height: 20px;
+    padding: 14px;
+    margin-left: -13%;
+    margin-bottom: 40%;
+    border: 1px solid #ccc;
+    /* Add border for input box */
+    border-radius: 4px;
+    /* Rounded corners for input */
 }

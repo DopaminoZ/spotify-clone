@@ -6,8 +6,8 @@ import Signin from './components/Signin.js';
 function App() {
   return (
     <div className="App">
-      <Headersignup/> 
-      <Signin/>
+      <Header></Header>
+      <Sform></Sform>
     </div>
   );
 }

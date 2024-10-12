@@ -1,58 +1,66 @@
-#container{
-    display:flex;
-    flex-direction: column;
-    gap: 0px;
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
-h1{
-    margin-top: 0px;
-    font-weight: 700;
-    letter-spacing: -2px;
-    color: white;
-    font-family:  Poppins,Roboto, Arial, Helvetica, sans-serif;
-    font-size: 48px;
+
+h1 {
+  margin-top: 0px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: white;
+  font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
+  font-size: 48px;
 }
-#email{
-    color: white;
-    position: absolute;
-    margin-left: -16%;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: Poppins,Roboto, Arial, Helvetica, sans-serif;
+
+#email {
+  color: white;
+  position: absolute;
+  margin-left: -16%;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
 }
-input{
-    position: fixed;
-    margin-top: 28px;
-    margin-left: -16%;
-    background-color: #121212;
-    width: 305px;
-    height: 30px;
-    border-width: 1px;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: rgb(131, 130, 130);
-    color: rgb(182, 182, 182);
-    font-family:  Poppins,Roboto, Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px;
+
+input {
+  position: fixed;
+  margin-top: 28px;
+  margin-left: -16%;
+  background-color: #191818;
+  width: 305px;
+  height: 30px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: rgb(131, 130, 130);
+  color: rgb(182, 182, 182);
+  font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
 }
-input::placeholder{
-    color:  rgb(182, 182, 182);
+
+input::placeholder {
+  color: rgb(182, 182, 182);
 }
-input::selection{
-    border-color: white;
+
+input::selection {
+  border-color: white;
 }
-#use{
-    position: absolute;
-    margin-top: 90px;
-    margin-left: -16%;
-    color: rgb(101, 250, 101);
-    font-size: 15px;
+
+#use {
+  position: absolute;
+  margin-top: 90px;
+  margin-left: -16%;
+  color: rgb(101, 250, 101);
+  font-size: 15px;
 }
-.buttons{
-    position: relative;
-    margin-top: 100px;
+
+.buttons {
+  position: relative;
+  margin-top: 100px;
 }
+
 .or-divider {
   display: flex;
   align-items: center;
