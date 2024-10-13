@@ -41,8 +41,10 @@ function Sform() {
       <input type="checkbox" id="myCheckbox" name="myCheckbox" />
       <div id="agree">Remember me</div>
       </label>
-
+      <div id="line2"></div>
+      <h1 id="don">Don't have an account?</h1>
       </div>
+      <button id="signup2" >Sign up for spotify</button>
     </div>
   );
 }

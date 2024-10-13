@@ -30,28 +30,33 @@ body {
 }
 
 #b1 {
-    color: #D9D9D9;
-    background-color: #1877F2;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-#b2 {
-    color: #D9D9D9;
-    background-color: #000000;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-#b3 {
-    color: #D9D9D9;
-    background-color: #ffffff;
+    background-color: #121212;
     border: 2px solid darkgrey;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    color: #D9D9D9;
+
+}
+
+#b2 {
+    background-color: #121212;
+    border: 2px solid darkgrey;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #D9D9D9;
+
+}
+
+#b3 {
+    background-color: #121212;
+    border: 2px solid darkgrey;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #D9D9D9;
+
 }
 
 #b1 img,
@@ -80,12 +85,13 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 0 10px;
     white-space: nowrap;
+    color: #ffffff;
 }
 
 .acc h1 {
     font-weight: 900;
     opacity: 100;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin-right: 310px;
     font-size: small;
     letter-spacing: 0.1px;
@@ -105,15 +111,15 @@ body {
     margin-left: -13%;
     margin-bottom: 40%;
     border: 1px solid #ccc;
-    background-color: white;
+    background-color: #121212;
     border-radius: 4px;
 }
 
 #forg {
     position: absolute;
-    right: 54.5%;
+    left: 37%;
     bottom: -35%;
-    color: #000000;
+    color: #ffffff;
 }
 
 #logi {
@@ -149,5 +155,60 @@ body {
     left: 38.5%;
     bottom: -49%;
     font-size: small;
+    color: #ffffff;
 
+}
+
+#line2 {
+    position: absolute;
+    width: 27%;
+    height: 2px;
+    background-color: rgb(224, 224, 224);
+    bottom: -65%;
+    right: 36%;
+
+}
+
+#don {
+    position: absolute;
+    bottom: -75%;
+    font-size: medium;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    right: 29%;
+
+}
+
+#signup2 {
+    position: absolute;
+    border-radius: 500px;
+    width: 121px;
+    height: 48px;
+    bottom: -100%;
+    white-space: nowrap;
+    background-color: #121212;
+    border-color: #D9D9D9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #D9D9D9;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 450px;
+}
+
+#b1:hover,
+#b2:hover,
+#b3:hover {
+    border-color: rgb(255, 255, 255);
+    /* Changes background color on hover */
+}
+
+#signup2:hover {
+
+    border-color: rgb(255, 255, 255);
+}
+
+.input-box:hover {
+
+    border-color: rgb(255, 255, 255);
 }
