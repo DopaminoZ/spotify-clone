@@ -1,6 +1,6 @@
 import React from 'react';
 import './sform.css';
-import google from '../images/google.png';
+import google from '../images/Google_Icons-09-512.png';
 import fb from '../images/fb.png';
 import apple from '../images/apple.png';
 
