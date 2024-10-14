@@ -2,7 +2,7 @@ import React from "react";
 function HomePage() {
   return (
     <div>
-      <p color="white">sfjaklnfla</p>
+      <p style={{color:"red"}}>sfjaklnfla</p>
     </div>
   );
 }

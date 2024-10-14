@@ -10,7 +10,7 @@ function Signin() {
   //Changing title
   return (
     <div id="container">
-        <div><h1>Sign up to <br/>
+        <div><h1 id="signuptitle">Sign up to <br/>
             start listening</h1></div>
         <div id="email-container"><label id="email">Email address</label>
         <input type="text" placeholder="name@domain.com"></input>
