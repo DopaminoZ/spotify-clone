@@ -1,13 +1,13 @@
-import React from 'react'
-import Header from './Header'
-import Sform from './sform'
+import React from "react";
+import Header from "./Header";
+import Sform from "./sform";
 function SignInPage() {
   return (
     <div>
-        <Header/>
-        <Sform/>
+      <Header />
+      <Sform />
     </div>
-  )
+  );
 }
 
-export default SignInPage
+export default SignInPage;
