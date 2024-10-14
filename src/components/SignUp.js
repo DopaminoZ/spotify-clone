@@ -2,7 +2,7 @@ import React from 'react'
 import './SignUp.css'
 import google from '../images/Google_Icons-09-512.png'
 import fb from'../images/facebook.png'
-import apple from '../images/apple.png'
+import apple from '../images/applelogo.png'
 function Signin() {
   return (
     <div id="container">

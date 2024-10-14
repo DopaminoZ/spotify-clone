@@ -56,7 +56,7 @@ input:hover {
 #disclaimer{
   position: absolute;
   bottom:10px;
-  left:40%;
+  left:36%;
   color:#dbdbd1;
 }
 
@@ -119,11 +119,12 @@ input:hover {
   width:35px;
 }
 #b22 img{
-  width:22px;
+  width:30px;
+  margin-right:5px;
 }
 #b11 img{
   width:30px;
-  
+ margin-left:9px; 
 }
 #next{
   width: 17vw;
