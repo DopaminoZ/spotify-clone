@@ -3,8 +3,8 @@ import './Header.css'
 import logo from '../images/spotify-white-icon.png';
 function Header() {
   return (
-    <div class="header-logo">
-        <img src={logo} class="logo"/>
+    <div className="header-logo">
+        <img src={logo} className="logo"/>
     </div>
   )
 }
