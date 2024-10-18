@@ -1,6 +1,6 @@
 import React from 'react';
 import './sform.css';
-import google from '../images/Google_Icons-09-512.png';
+import google from '../images/google.png';
 import fb from '../images/fb.png';
 import apple from '../images/apple.png';
 
@@ -31,7 +31,7 @@ function Sform() {
       </div>
       <div className="acc">
          <h1>Email address or username</h1>
-         <input type="text" placeholder="Email address or username" className="input-box" />
+         <input type="text" placeholder="Email address or username" className="input-box1" />
          
          <h1 id="pass">Password</h1>
          <input type="password" placeholder="Password" className="input-box" />
