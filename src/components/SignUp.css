@@ -6,7 +6,7 @@
 body{
   background-color: #121212;
 }
-h1 {
+#signuptitle {
   margin-top: 0px;
   font-weight: 700;
   letter-spacing: -3px;
