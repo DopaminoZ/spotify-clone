@@ -1,6 +1,6 @@
 import React from 'react'
-import './Header.css'
-import logo from '../images/spotify-white-icon.png';
+import '../css/Header.css'
+import logo from '../../assets/images/Spotify-White-Dark-Background-Logo.png';
 function Header() {
   return (
     <div className="header-logo">

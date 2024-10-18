@@ -1,8 +1,8 @@
 import React from 'react';
-import './sform.css';
-import google from '../images/google.png';
-import fb from '../images/fb.png';
-import apple from '../images/apple.png';
+import '../css/sform.css';
+import google from '../../assets/images/Google_Icons-09-512.png';
+import fb from '../../assets/images/facebook.png';
+import apple from '../../assets/images/applelogo.png';
 
 function Sform() {
   return (

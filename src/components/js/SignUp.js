@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import './SignUp.css'
-import google from '../images/Google_Icons-09-512.png'
-import fb from'../images/facebook.png'
-import apple from '../images/applelogo.png'
+import '../css/SignUp.css'
+import google from '../../assets/images/Google_Icons-09-512.png'
+import fb from'../../assets/images/facebook.png'
+import apple from '../../assets/images/applelogo.png'
 function Signin() {
   // useEffect = (() => {
   //   document.title = "Sign up - Spotify";

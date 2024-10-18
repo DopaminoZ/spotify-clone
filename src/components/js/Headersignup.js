@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../images/spotify-white-icon.png'
-import './Headersignup.css'
+import logo from '../../assets/images/spotify-white-icon.png'
+import '../css/Headersignup.css'
 function Headersignup() {
   return (
     <div className="headersignup-logo">

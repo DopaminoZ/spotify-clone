@@ -64,8 +64,15 @@ body {
     margin-right: 10px;
 }
 
+#b1 img {
+    width: 30px;
+    margin-left: 12px;
+}
+#b2 img {
+    width: 30px;
+    margin-right:22px;
+}
 #b3 img {
-
     width: 35px;
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./HomePage.module.css";
-import logo from "../images/spotify-white-icon.png";
-import home from "../images/building.png";
-import search from "../images/search.png";
-import download from "../images/download-circular-button.png";
+import styles from "../css/HomePage.module.css";
+import logo from "../../assets/images/spotify-white-icon.png";
+import home from "../../assets/images/building.png";
+import search from "../../assets/images/search.png";
+import download from "../../assets/images/download-circular-button.png";
 
 function HomePage() {
   return (
