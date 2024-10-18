@@ -15,7 +15,6 @@ body{
   font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
   font-size: 48px;
 }
-
 #email {
   color: white;
   position: relative;
@@ -24,7 +23,6 @@ body{
   font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
   margin-right:12.3vw;
 }
-
 #email-container input {
   position: relative;
   margin-top: 3px;
@@ -51,14 +49,14 @@ body{
   
   
 }
-input::placeholder {
+#email-container input::placeholder {
   color: rgb(182, 182, 182);
 }
 
-input::selection {
+#email-container input::selection {
   border-color: white;
 }
-input:hover {
+#email-container input:hover {
   border-color: white;
 }
 #disclaimer{
@@ -112,6 +110,9 @@ input:hover {
     border: 1px solid rgb(119,119,119);
     color: white;
 }
+.login-buttons:hover{
+  border-color: white;
+}
 #b33 img{
   width:35px;
 }
@@ -162,9 +163,9 @@ input:hover {
 }
 @media only screen and (max-width: 1330px) {
   .login-buttons,#next {
-    width: 300px;
+    width: 250px;
     padding: 15px 30px; 
-    font-size: 18px; 
+    font-size: 13px; 
   }
   #email-container{
     position: relative;
@@ -172,14 +173,11 @@ input:hover {
     justify-content: flex-start;
     
   }
+
   #email-container input{
-    width:300px;
+    width:250px;
   }
   #email,#use{
     margin-right: 0;
-    
   }
-
-
-  
 }
