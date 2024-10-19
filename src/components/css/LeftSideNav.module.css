@@ -1,0 +1,36 @@
+*{
+    color:#1f1f1f;
+}
+.container {
+  background: #1f1f1f;
+  width: 25%;
+  height: 90vh;
+  padding: 0.5%;
+}
+.add,
+.next {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+}
+.toplinediv {
+  display: flex;
+  justify-content: space-between;
+}
+.plusnextbtns {
+  padding: 0.25%;
+}
+.btns2ndrow {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 5px;
+}
+.search {
+  display: flex;
+  justify-content: space-between;
+}
