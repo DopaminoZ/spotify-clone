@@ -1,66 +1,84 @@
 * {
-    color: white;
-  }
-  .container {
-  }
-  .header {
-    height: 50px;
-    border-bottom: solid gray 1px;
-    padding-top: 0.5%;
+  color: white;
+}
+.header {
+  height: 50px;
+  border-bottom: solid gray 1px;
+  padding-top: 0.5%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5%;
+}
+.explorediv {
+  padding: 0.2%;
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.spotifylogo {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+.homeimg {
+  width: 20px;
+  height: 20px;
+}
+.homebtn {
+  width: 40px;
+  height: 40px;
+  background-color: #1f1f1f;
+  border-radius: 40px;
+  margin-top: 0px;
+}
+.searchbar {
+  background-color: #1f1f1f;
+  width: 400px;
+  height: 45px;
+  margin-top: 0.25%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.search {
+  background-color: #1f1f1f;
+  border: 0px;
+}
+.searchicon {
+  width: 30px;
+  height: 30px;
+  padding: 1%;
+}
+.browseicon {
+  width: 30px;
+  height: 30px;
+  padding: 1%;
+  align-items: flex-end;
+}
+.downloadicon {
+  width: 30px;
+  height: 30px;
+}
+.headersearch {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider{
     display: flex;
-    justify-content: space-between;
-  }
-  .explore {
-    padding: 0.2%;
-    display: inline-flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .spotifylogo {
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-  }
-  .homeimg {
-    width: 20px;
-    height: 20px;
-  }
-  .homebtn {
-    width: 40px;
-    height: 40px;
-    background-color: #1f1f1f;
-    border-radius: 40px;
-    margin-top: 0px;
-  }
-  .searchbar {
-    background-color: #1f1f1f;
-    width: 400px;
-    height: 45px;
-    margin-top: 0.25%;
-    border-radius: 20px;
-    display: flex;
-    justify-content: flex-start;
-  }
-  .search {
-    background-color: #1f1f1f;
-    border: 0px;
-  }
-  .searchicon {
-    width: 30px;
-    height: 30px;
+    border-right: gray 1px solid;
+    width: 350px;
+}
+.explore{
+    background-color: white;
+    color: #1f1f1f;
+    border-radius: 30px;
     padding: 1%;
-  }
-  .browseicon {
-    width: 30px;
-    height: 30px;
+    width: 170px;
+}
+.install{
+    background-color: #1f1f1f;
+    border-radius: 30px;
     padding: 1%;
-  }
-  .downloadicon {
-    width: 30px;
-    height: 30px;
-  }
-  .headersearch {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+    width: 170px;
+}

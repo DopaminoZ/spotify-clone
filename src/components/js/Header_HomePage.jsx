@@ -17,18 +17,19 @@ function Header_HomePage() {
             </div>
           </button>
           <div className={styles.searchbar}>
-            <img src={search} className={styles.searchicon} />
+            <div className={styles.divider}><img src={search} className={styles.searchicon} />
             <input
               type="text"
               placeholder="What do you want to play?"
               className={styles.search}
             />
+            </div>
             <img src={search} className={styles.browseicon} />
           </div>
         </div>
-        <div className={styles.explore}>
-          <button>Explore Premuim</button>
-          <button>
+        <div className={styles.explorediv}>
+          <button className={styles.explore}>Explore Premuim</button>
+          <button className={styles.install}>
             <img src={download} className={styles.downloadicon} /> Install App
           </button>
 
