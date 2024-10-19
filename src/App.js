@@ -5,7 +5,7 @@ import HomePage from "./components/css/HomePage.jsx";
 function App() {
   return (
     <div className="App">
-    <SignInPage />
+    <SignUpPage />
     </div>
   );
 }

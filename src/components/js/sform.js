@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/sform.css';
+import '../css/sform.module.css';
 import google from '../../assets/images/Google_Icons-09-512.png';
 import fb from '../../assets/images/facebook.png';
 import apple from '../../assets/images/applelogo.png';

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../css/Header.css'
+import '../css/Header.module.css'
 import logo from '../../assets/images/Spotify-White-Dark-Background-Logo.png';
 function Header() {
   return (
