@@ -1,5 +1,5 @@
-*{
-    color:#1f1f1f;
+* {
+  color: #1f1f1f;
 }
 .container {
   background: #1f1f1f;
@@ -33,4 +33,10 @@
 .search {
   display: flex;
   justify-content: space-between;
+}
+button > * {
+    vertical-align: middle;
+}
+.recentbtn {
+
 }
