@@ -1,14 +1,19 @@
 .header-logo {
     width: 100%;
-    height: 92px;
-    box-shadow: 1px 1px 1px #D9DADC;
+    height: 10vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-bottom: 5%;
 }
 
 .logo {
-    position: relative;
-    width: 200px;
+
+    width: 150px;
     height: 143px;
+
+
+
 }
