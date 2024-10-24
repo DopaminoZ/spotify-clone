@@ -1,7 +1,6 @@
 * {
   color: white;
   font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
-
 }
 .header {
   height: 48px;
@@ -43,6 +42,12 @@
 .search {
   background-color: #1f1f1f;
   border: 0px;
+  outline: none;
+  width: 375px;
+}
+.search::selection {
+  border: none; /* Remove border when focused */
+  box-shadow: none; /* Remove any box-shadow if present */
 }
 .searchicon {
   width: 30px;
@@ -58,8 +63,8 @@
   display: flex;
 }
 .downloadicon {
-  width: 30px;
-  height: 30px;
+  width: 16px;
+  height: 16px;
 }
 .headersearch {
   display: flex;
@@ -78,14 +83,25 @@
 }
 .explore {
   background-color: white;
-  color: #1f1f1f;
+  color: black;
   border-radius: 30px;
   padding: 1%;
   width: 143px;
+  height: 32px;
+  font-weight: 700;
+  margin-top: 10px;
 }
 .install {
-  background-color: #1f1f1f;
+  background-color: black;
+  color: white;
   border-radius: 30px;
   padding: 1%;
   width: 118px;
+  height: 32px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.installimg {
+  width: 15px;
+  height: 15px;
 }
