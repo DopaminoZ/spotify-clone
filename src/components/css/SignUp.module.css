@@ -3,10 +3,9 @@
   flex-direction: column;
   gap:25px;
   align-items: center;
-}
-body{
   background-color: #121212;
 }
+
 #signuptitle {
   margin-top: 7px;
   font-weight: 700;

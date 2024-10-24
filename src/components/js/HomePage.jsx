@@ -5,11 +5,10 @@ import BrowseComponent from "./BrowseComponent";
 import styles from "../css/HomePage.module.css";
 function HomePage() {
   return (
-    <div>
-      {" "}
+    <div id={styles.mainpage}>
       <Header_HomePage />
       <div id={styles.midsection}>
-      <LeftSideNav /><BrowseComponent/>{" "}
+      <LeftSideNav /><BrowseComponent/>
       </div>
     </div>
   );
