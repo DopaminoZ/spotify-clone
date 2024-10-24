@@ -3,7 +3,9 @@
     flex-direction: row;
     width: 100%;
     padding-top:0px;
+    padding-left: 2px;
 }
 #mainpage{
     background-color: #000000;
+    overflow: hidden;
 }

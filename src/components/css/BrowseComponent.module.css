@@ -22,17 +22,17 @@
     background-color: #121212;
     scrollbar-width: thick; 
     scrollbar-color: transparent transparent; 
+
 }
+
 #cardsContainer{
     display: flex;
     gap:25px;
     flex-wrap: wrap;
 }
-
-
 #container:hover {
     scrollbar-color: #898989 transparent;
 }
 #container::-webkit-scrollbar-button {
-    display: none !important; 
+    display: none; 
 }
