@@ -4,7 +4,6 @@
 }
 .header {
   height: 48px;
-  border-bottom: solid gray 1px;
   display: flex;
   justify-content: space-between;
   padding: 8px;
