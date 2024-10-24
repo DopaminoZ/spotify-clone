@@ -1,41 +1,41 @@
 * {
   color: white;
+  font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
+
 }
 .header {
-  height: 50px;
+  height: 48px;
   border-bottom: solid gray 1px;
-  padding-top: 0.5%;
   display: flex;
   justify-content: space-between;
-  padding: 0.5%;
+  padding: 8px;
+  background-color: black;
 }
 .explorediv {
-  padding: 0.2%;
   display: inline-flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 15px;
 }
 .spotifylogo {
-  width: 40px;
-  height: 40px;
-  margin-left: 10px;
+  width: 32px;
+  height: 32px;
+  padding: 5px 0px 0px 25px;
 }
 .homeimg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 .homebtn {
-  width: 45px;
-  height: 45px;
+  all: unset;
+  width: 46px;
+  height: 46px;
   background-color: #1f1f1f;
   border-radius: 40px;
-  margin-top: 0px;
 }
 .searchbar {
   background-color: #1f1f1f;
-  width: 400px;
-  height: 45px;
-  margin-top: 0.25%;
+  width: 465px;
+  height: 47px;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
@@ -52,8 +52,10 @@
 .browseicon {
   width: 30px;
   height: 30px;
-  padding: 1%;
   align-items: flex-end;
+}
+.searchminusbrowse {
+  display: flex;
 }
 .downloadicon {
   width: 30px;
@@ -62,23 +64,28 @@
 .headersearch {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
+  margin-left: 18%;
 }
 
 .divider {
   display: flex;
-  border-right: gray 1px solid;
-  width: 350px;
+  border-left: gray 1px solid;
+  height: 25px;
+  box-sizing: border-box;
+  margin: 10px;
+  padding-left: 6px;
 }
 .explore {
   background-color: white;
   color: #1f1f1f;
   border-radius: 30px;
   padding: 1%;
-  width: 170px;
+  width: 143px;
 }
 .install {
   background-color: #1f1f1f;
   border-radius: 30px;
   padding: 1%;
-  width: 170px;
+  width: 118px;
 }

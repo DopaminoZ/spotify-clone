@@ -6,7 +6,7 @@ import Header_HomePage from "./components/js/Header_HomePage.jsx";
 function App() {
   return (
     <div className="App">
-    <SignInPage></SignInPage>
+    <HomePage></HomePage>
     
     </div>
   );
