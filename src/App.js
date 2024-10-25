@@ -7,7 +7,7 @@ import Artist from "./components/js/Artists.js"
 function App() {
   return (
     <div className="App">
-    <Artist/>
+    <HomePage/>
     </div>
   );
 }

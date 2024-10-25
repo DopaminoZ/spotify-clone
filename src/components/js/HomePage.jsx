@@ -5,12 +5,13 @@ import LeftSideNav from "./LeftSideNav";
 import BrowseComponent from "./BrowseComponent";
 import MainpageComponent from "./MainpageComponent";
 import Playlist from "./Playlist";
+import Artists from "./Artists";
 function HomePage() {
   return (
     <div id={styles.mainpage}>
       <Header_HomePage />
       <div id={styles.midsection}>
-      <LeftSideNav /><MainpageComponent/>
+        <LeftSideNav /><Artists />
       </div>
     </div>
   );
