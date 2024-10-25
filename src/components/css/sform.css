@@ -294,6 +294,7 @@ body {
 
 }
 
+
 @media(max-width:487px) {
 
     .acc {
@@ -344,4 +345,6 @@ body {
         position: relative;
         width: 300px;
     }
+
+
 }

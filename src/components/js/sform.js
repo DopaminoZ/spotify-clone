@@ -49,6 +49,7 @@ function Sform() {
       <h1 id="don">Don't have an account?</h1>
       </div>
       <button id="signup2" >Sign up for spotify</button>
+    
       </div>
     </div>
     

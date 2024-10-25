@@ -1,0 +1,67 @@
+body {
+
+    background-color: black;
+}
+
+.art {
+
+    background: linear-gradient(to bottom, rgb(95, 94, 94), #1f1f1f);
+    position: relative;
+    left: 22vw;
+    bottom: 60vh;
+    height: 100vh;
+    width: 77.3%;
+    margin-left: 0.5%;
+    top: 0.1vw;
+    margin-top: 3.3%;
+    border-radius: 1%;
+    overflow: hidden;
+
+}
+
+.profile {
+    position: relative;
+    width: 100%;
+    height: 35%;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), #1f1f1f);
+    left: 0vw;
+    top: 0vw;
+
+    z-index: 9;
+}
+
+.image {
+    position: relative;
+    border-radius: 100%;
+    height: 80%;
+    right: 30vw;
+    top: 10%;
+}
+
+.name {
+    position: relative;
+    top: -14vw;
+    z-index: 9;
+    font-size: 500%;
+    right: 21%;
+    font-weight: bolder;
+    color: aliceblue;
+
+}
+
+.head {
+
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    top: 0vw;
+
+}
+
+.nav {
+    top: 3vw;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 9;
+}
