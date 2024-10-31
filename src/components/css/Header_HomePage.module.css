@@ -104,3 +104,41 @@
   width: 15px;
   height: 15px;
 }
+.notifications {
+  display: flex;
+  padding-top: 11px;
+}
+.notificationsimg:hover {
+}
+.notificationsimg {
+  width: 20px;
+  height: 20px;
+}
+
+@media  screen and (max-width: 1350px){
+  .headersearch {
+    position: absolute;
+    margin-left: 100px;
+    margin-right: 0px;
+  }
+}
+@media  screen and (max-width: 1020px){
+  .explore{
+    display: none;
+  }
+  .headersearch {
+    margin-left: 18%;
+  }
+}
+@media  screen and (max-width: 960px){
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .headersearch {
+    margin-left: 70px;
+  }
+  .explorediv{
+    position: flex;
+  }
+}

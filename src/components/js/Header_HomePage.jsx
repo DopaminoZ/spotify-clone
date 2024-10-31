@@ -9,7 +9,7 @@ function Header_HomePage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.logodiv}><img src={logo} alt="spotify logo" className={styles.spotifylogo} /></div>
+        <div className={styles.logodiv}><a href="_self"><img src={logo} alt="spotify logo" className={styles.spotifylogo} /></a></div>
         <div className={styles.headersearch}>
           <button className={styles.homebtn}>
             <div>
@@ -34,11 +34,9 @@ function Header_HomePage() {
           <button className={styles.install}>
             <img src={download} className={styles.downloadicon} /> Install App
           </button>
-          <button className={styles.homebtn}>
-            <div>
-              <img src={home} className={styles.homeimg} />
-            </div>
-          </button>
+          <div className={styles.notifications}>
+          <img src={home} className={styles.notificationsimg} />
+          </div>
           <button className={styles.homebtn}>
             <div>
               <img src={home} className={styles.homeimg} />
