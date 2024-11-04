@@ -153,3 +153,13 @@
     margin-right: 15px;
   }
 }
+.homebtn:hover{
+  width: 47px;
+  height: 47px;
+  cursor: pointer;
+}
+.homebtn:hover .homeimg{
+  padding-top: 1px;
+  width: 23.25px;
+  height: 23.25px;
+}
