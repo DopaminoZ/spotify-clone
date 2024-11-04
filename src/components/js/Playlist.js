@@ -16,10 +16,8 @@ function Playlist() {
         </div>
         </div>
         <div id={styles.midcontainer}>
-            
         </div>
         <div id={styles.playlistdiv}>
-
         </div>
     </div>
   )

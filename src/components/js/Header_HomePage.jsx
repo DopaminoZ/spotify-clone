@@ -4,6 +4,7 @@ import logo from "../../assets/images/spotify-white-icon.png";
 import home from "../../assets/images/building.png";
 import search from "../../assets/images/search.png";
 import download from "../../assets/images/download-circular-button.png";
+import {Link} from 'react-router-dom'
 
 function Header_HomePage() {
   return (
@@ -13,7 +14,9 @@ function Header_HomePage() {
         <div className={styles.headersearch}>
           <button className={styles.homebtn}>
             <div>
+            <Link to="/ ">
               <img src={home} className={styles.homeimg} />
+              </Link>
             </div>
           </button>
           <div className={styles.searchbar}>
@@ -25,7 +28,9 @@ function Header_HomePage() {
             />
             </div>
             <div className={styles.divider}>
+            <Link to="/browse">
             <img src={search} className={styles.browseicon} />
+            </Link>
             </div>
           </div>
         </div>
