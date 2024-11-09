@@ -3,24 +3,11 @@ import styles from "../css/MainpageComponent.module.css"
 import containerstyle from "../css/BrowseComponent.module.css"
 import MainpageCard from "./MainpageCard.js"
 import ListComponent from './ListComponent.js'
+import useFetch from './useFetch.js'
 function MainpageComponent() {
-  const [lists, setLists] = useState(null);
-  const [isPending, setIsPending] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-    fetch('http://localhost:8000/list')
-    .then(res => {
-      return res.json()
-    })
-    .then((data) => {
-      console.log(data);
-      setLists(data);
-      setIsPending(false);
-    });
-  }, 1000);
-  }, []);
 
-  
+  const { error, data:lists,isPending } = useFetch("http://localhost:8000/list");
+
   return (
     <div id={containerstyle.container} className={styles.gradient}>
         <div id={styles.buttonscontainer}>
@@ -39,6 +26,7 @@ function MainpageComponent() {
             <MainpageCard/>
         </div>
         <div id={styles.listsdiv}>
+          {error && <div style={{color: "red",fontSize:30,marginTop:50}}>{error}</div>}
           {isPending && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
           {lists && lists.map((list) => (
             <ListComponent key={list.id} list={list}/>
