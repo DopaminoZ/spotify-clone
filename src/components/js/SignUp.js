@@ -3,6 +3,7 @@ import styles from '../css/SignUp.module.css'
 import google from '../../assets/images/Google_Icons-09-512.png'
 import fb from'../../assets/images/facebook.png'
 import apple from '../../assets/images/applelogo.png'
+import {Link} from 'react-router-dom'
 function Signin() {
   // useEffect = (() => {
   //   document.title = "Sign up - Spotify";
@@ -28,7 +29,9 @@ function Signin() {
         <div className={styles.socials}><button className={styles.loginbuttons} id={styles.b22}><img src={apple}/>Sign up with Apple</button></div>
         </div>
         <div className={styles.enddivider}></div>
-        <label id={styles.already}>Already have an account? <a href="" id={styles.here}>Log in here</a>.</label>
+        
+        <label id={styles.already}>Already have an account? <Link to="/login"> <a id={styles.here}>Log in here</a></Link>.</label>
+        
         <label id={styles.disclaimer}>This site is a clone and isn't meant to break any kind of copyright or laws.<br/>But only to showcase a project.</label>
         </div>
 

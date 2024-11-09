@@ -1,8 +1,10 @@
 import React from 'react';
 import '../css/sform.css';
+import styles from "../css/sformbackground.module.css";
 import google from '../../assets/images/Google_Icons-09-512.png';
 import fb from '../../assets/images/facebook.png';
 import apple from '../../assets/images/applelogo.png';
+import {Link} from 'react-router-dom'
 
 function Sform() {
   return (
@@ -48,8 +50,9 @@ function Sform() {
       <div id="line2"></div>
       <h1 id="don">Don't have an account?</h1>
       </div>
+      <Link to="/signup">
       <button id="signup2" >Sign up for spotify</button>
-    
+      </Link>
       </div>
     </div>
     

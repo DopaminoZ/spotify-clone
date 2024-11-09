@@ -1,0 +1,88 @@
+{
+    "list": [
+        {
+            "id": 1,
+            "title":"Aurora Mix 1",
+            "albums": [
+                {
+                    "title": "Runaway",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/vzqIBO9KNKCCAwCW5eTZzYyIUqoVWpA2hpJrmP9ntqM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pMS5z/bmRjZG4uY29tL2Fy/dHdvcmtzLUFyeXVK/WmlXWERxZC0wLXQ1/MDB4NTAwLmpwZw",
+                    "id": 1
+                },
+                {
+                    "title": "The Blade",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/DiA_zy56K9MepSqJynL_S5xbRQJnrU5PeoD0FoNnreI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pMS5z/bmRjZG4uY29tL2Fy/dHdvcmtzLUVvbERC/TzZ0cEVrRi0wLXQ1/MDB4NTAwLmpwZw",
+                    "id": 2
+                },
+                {
+                    "title": "The River",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/DdsnUH7YYWEsyUGLpuauDSxqYfxZYzKuUsCRHDpIc94/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLmd1/aW0uY28udWsvaW1n/L21lZGlhL2VkNWNk/ZGM1MGU3NzJmYWU2/N2VlMjQ1ZmYzYmVi/MWU2N2VhMDllN2Ev/MF8wXzMwMDBfMzAw/MC9tYXN0ZXIvMzAw/MC5qcGc_d2lkdGg9/NDQ1JmRwcj0xJnM9/bm9uZSZjcm9wPW5v/bmU",
+                    "id": 3
+                },
+                {
+                    "title": "Cure for me",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/paSq63uNcH2z4y29H602pJIoDbvoROU2W5CT-btKOAA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLmRp/c2NvZ3MuY29tL0RU/cTUzVS1CMnZzM2dx/dkxMZnN0QnZnZGdO/b0x2OXdNVGJBemZk/ZU9MOEUvcnM6Zml0/L2c6c20vcTo0MC9o/OjMwMC93OjMwMC9j/ek02THk5a2FYTmpi/MmR6L0xXUmhkR0Zp/WVhObExXbHQvWVdk/bGN5OVNMVEU1TkRF/dy9PVGcxTFRFMk1q/VTJOelF5L05USXRO/RGswTnk1cWNHVm4u/anBlZw",                    
+                    "id": 4
+                },
+                {
+                    "title": "The Seed",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/DdsnUH7YYWEsyUGLpuauDSxqYfxZYzKuUsCRHDpIc94/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLmd1/aW0uY28udWsvaW1n/L21lZGlhL2VkNWNk/ZGM1MGU3NzJmYWU2/N2VlMjQ1ZmYzYmVi/MWU2N2VhMDllN2Ev/MF8wXzMwMDBfMzAw/MC9tYXN0ZXIvMzAw/MC5qcGc_d2lkdGg9/NDQ1JmRwcj0xJnM9/bm9uZSZjcm9wPW5v/bmU",
+                    "id": 5
+                },
+                {
+                    "title": "Winter Bird",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/Joxkn96cZrIds4F6f5MHiFsy0cWg0FE8vDkUzL9WJjE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLmRp/c2NvZ3MuY29tL2NU/MERvQlJNYjkzWnJY/NmZ4ZEFwaXRqWXV6/bVRZelJHaEhacHh3/WGdvNjAvcnM6Zml0/L2c6c20vcTo0MC9o/OjMwMC93OjMwMC9j/ek02THk5a2FYTmpi/MmR6L0xXUmhkR0Zp/WVhObExXbHQvWVdk/bGN5OVNMVGMzTkRZ/NS9PRE10TVRRME56/azBNemcyL09DMDJN/VFF4TG1wd1pXYy5q/cGVn",
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title":"Aurora Mix 2",
+            "albums": [
+                {
+                    "title": "Butterflies",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/Rrjd3jMWB_NfXiKDIYkPHHEnsMYl9TxL0UL8eF0AoYY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pMS5z/bmRjZG4uY29tL2Fy/dHdvcmtzLWQxbVVI/T0E0ZWVRZS0wLXQ1/MDB4NTAwLmpwZw",
+                    "id": 1
+                },
+                {
+                    "title": "The Essence",
+                    "artist": "Aurora",
+                    "image":"https://imgs.search.brave.com/DiA_zy56K9MepSqJynL_S5xbRQJnrU5PeoD0FoNnreI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pMS5z/bmRjZG4uY29tL2Fy/dHdvcmtzLUVvbERC/TzZ0cEVrRi0wLXQ1/MDB4NTAwLmpwZw",
+                    "id": 2
+                },
+                {
+                    "title": "Running with the wolves",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/vzqIBO9KNKCCAwCW5eTZzYyIUqoVWpA2hpJrmP9ntqM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pMS5z/bmRjZG4uY29tL2Fy/dHdvcmtzLUFyeXVK/WmlXWERxZC0wLXQ1/MDB4NTAwLmpwZw",
+                    "id": 3
+                },
+                {
+                    "title": "Your Blood",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/DdsnUH7YYWEsyUGLpuauDSxqYfxZYzKuUsCRHDpIc94/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLmd1/aW0uY28udWsvaW1n/L21lZGlhL2VkNWNk/ZGM1MGU3NzJmYWU2/N2VlMjQ1ZmYzYmVi/MWU2N2VhMDllN2Ev/MF8wXzMwMDBfMzAw/MC9tYXN0ZXIvMzAw/MC5qcGc_d2lkdGg9/NDQ1JmRwcj0xJnM9/bm9uZSZjcm9wPW5v/bmU",
+                    "id": 4
+                },
+                {
+                    "title": "Starvation",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/DiA_zy56K9MepSqJynL_S5xbRQJnrU5PeoD0FoNnreI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pMS5z/bmRjZG4uY29tL2Fy/dHdvcmtzLUVvbERC/TzZ0cEVrRi0wLXQ1/MDB4NTAwLmpwZw",
+                    "id": 5
+                },
+                {
+                    "title": "Awakening",
+                    "artist": "Aurora",
+                    "image": "https://imgs.search.brave.com/nz-zFqbGW3e8rBKy2phyo2sZgfGBHehKw8THkwFRAnA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9sYXN0/Zm0uZnJlZXRscy5m/YXN0bHkubmV0L2kv/dS81MDB4NTAwLzBk/NmMxYzkwZDMxZTdl/ZDMzYjIxNmFiMGNj/ZWE2MzI3LmpwZw",
+                    "id": 6
+                }
+            ]
+        }
+    ]
+}

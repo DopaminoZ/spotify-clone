@@ -14,7 +14,7 @@ function Header_HomePage() {
         <div className={styles.headersearch}>
           <button className={styles.homebtn}>
             <div>
-            <Link to="/ ">
+            <Link to="/">
               <img src={home} className={styles.homeimg} />
               </Link>
             </div>
@@ -34,7 +34,8 @@ function Header_HomePage() {
             </div>
           </div>
         </div>
-        <div className={styles.explorediv}>
+        {/* El kalam da s7 bs hn5ly el default en el user guest mesh logged in */}
+        <div className={styles.explorediv} id={styles.usermode}>
           <button className={styles.explore}>Explore Premuim</button>
           <button className={styles.install}>
             <img src={download} className={styles.downloadicon} /> Install App
@@ -47,6 +48,14 @@ function Header_HomePage() {
               <img src={home} className={styles.homeimg} />
             </div>
           </button>
+        </div>
+        <div className={styles.explorediv} id={styles.guestmode}>
+          <Link to="/signup">
+          <button className={styles.install}>Sign Up</button>
+          </Link>
+          <Link to="/login">
+          <button className={styles.explore}>Log In</button>
+          </Link>
         </div>
       </div>
     </div>
