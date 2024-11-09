@@ -5,7 +5,9 @@ import MainpageCard from "./MainpageCard.js"
 import ListComponent from './ListComponent.js'
 function MainpageComponent() {
   const [lists, setLists] = useState(null);
+  const [isPending, setIsPending] = useState(true);
   useEffect(() => {
+    setTimeout(() => {
     fetch('http://localhost:8000/list')
     .then(res => {
       return res.json()
@@ -13,7 +15,9 @@ function MainpageComponent() {
     .then((data) => {
       console.log(data);
       setLists(data);
+      setIsPending(false);
     });
+  }, 1000);
   }, []);
 
   
@@ -35,6 +39,7 @@ function MainpageComponent() {
             <MainpageCard/>
         </div>
         <div id={styles.listsdiv}>
+          {isPending && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
           {lists && lists.map((list) => (
             <ListComponent key={list.id} list={list}/>
           ))};
