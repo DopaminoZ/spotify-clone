@@ -11,24 +11,32 @@ function MainpageComponent() {
   const { error, data:lists,isPending } = useFetch("http://localhost:8000/list");
   const { errormain, data:maincards,isPendingmain} = useFetch("http://localhost:8000/mainCards")
   const [displayList, setList] = useState([]);
+  const [selection, setSelection] = useState("all");
+
   function getSongs(){
-      setList(maincards)
       setList(maincards.filter((card) => card.type =="song"))
   }
   function getAll(){
       setList(maincards)
   }
   function getPodcasts(){
-      setList(maincards)
       setList(maincards.filter((card) => card.type =="podcast"))
   }
   useEffect(() => {
     if (maincards) {
-      setList(maincards);
+      console.log("Maincards loaded:", maincards);
+      getAll();
     }
   }, [maincards]);
+  
+  useEffect(() => {
+    console.log("Display list updated:", displayList);
+  }, [displayList]);
+  
+  
+
   return (
-    <div id={containerstyle.container} className={styles.gradient} onLoad={getAll}>
+    <div id={containerstyle.container} className={styles.gradient} >
         <div id={styles.buttonscontainer}>
             <button className={styles.buttonshead} onClick={getAll}>All</button>
             <button className={styles.buttonshead} onClick={getSongs}>Music</button>
@@ -46,7 +54,7 @@ function MainpageComponent() {
           {isPending && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
           {lists && lists.map((list) => (
             <ListComponent key={list.id} list={list}/>
-          ))};
+          ))}
         </div>
     </div>
   )

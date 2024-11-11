@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from "../css/ListCard.module.css"
-import image from "../../assets/images/elbasha.png"
 function ListCard({album}) {
   return (
     <div id={styles.container}>

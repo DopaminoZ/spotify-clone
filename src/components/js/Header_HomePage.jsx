@@ -52,10 +52,10 @@ function Header_HomePage() {
         </div>
         <div className={styles.explorediv} id={styles.guestmode}>
           <Link to="/signup">
-          <button className={styles.install}>Sign Up</button>
+          <button className={styles.signup}>Sign up</button>
           </Link>
           <Link to="/login">
-          <button className={styles.explore}>Log In</button>
+          <button className={styles.login}>Log in</button>
           </Link>
         </div>
       </div>
