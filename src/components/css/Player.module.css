@@ -1,0 +1,67 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: 72px;
+    padding:2px;
+    background-color: black;
+}
+.left{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 72px;
+    gap: 15px;
+    padding: 5px;
+}
+.coverphoto{
+    width:61px;
+    height :56px;
+    margin-left: 20px;
+}
+.names {
+    flex-direction: column;
+    margin-top: -5px;
+}
+.names p {
+    color:aliceblue;
+}
+.addbtn{
+    all:unset;
+    width: 32px;
+    height: 32px;
+    background-color: #232323;
+    border-radius: 16px;
+    margin-top: 15px;
+}
+.addbtnphoto{
+    height: 16px;
+    width: 16px;
+}
+.controls{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap:12px;
+    width: 220px;
+}
+.controls button{
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+}
+.playbackbar{
+    width: 722px;
+    height: 17px;
+}
+.playbackbar span{
+    color:aliceblue
+}
+.progbar{
+    width:626px;
+    background-color: aliceblue;
+}
+.middle{
+    justify-items: center;
+}
