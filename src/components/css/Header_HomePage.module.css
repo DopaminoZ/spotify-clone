@@ -38,15 +38,28 @@
   display: flex;
   justify-content: space-between;
 }
+.searchicon {
+  margin-top: 4px;
+  margin-left: 4px;
+}
 .search {
   background-color: #1f1f1f;
   border: 0px;
   outline: none;
   width: 375px;
+  caret-color: transparent;
+  color:#b3b3b3;
+  font-size: 14.5px;
+}
+.search::placeholder {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: #b3b3b3;
 }
 .search::selection {
   border: none; /* Remove border when focused */
   box-shadow: none; /* Remove any box-shadow if present */
+  caret-color: transparent;
 }
 .searchicon {
   width: 30px;
@@ -114,58 +127,58 @@
   height: 20px;
 }
 
-@media  screen and (max-width: 1350px) and (min-width:1021px){
+@media screen and (max-width: 1350px) and (min-width: 1021px) {
   .headersearch {
     position: absolute;
     margin-left: 100px;
     margin-right: 0px;
   }
 }
-@media  screen and (max-width: 1020px) {
-  .explore{
+@media screen and (max-width: 1020px) {
+  .explore {
     display: none;
   }
   .headersearch {
     margin-left: 18%;
   }
 }
-@media  screen and (max-width: 960px) and (min-width :829px){
-  .header{
+@media screen and (max-width: 960px) and (min-width: 829px) {
+  .header {
     display: flex;
     justify-content: space-between;
   }
-  .explorediv{
+  .explorediv {
     position: flex;
   }
-  .headersearch{
+  .headersearch {
     position: absolute;
-    left:-70px;
+    left: -70px;
   }
 }
-@media  screen and (max-width : 829px){
-  .header{
+@media screen and (max-width: 829px) {
+  .header {
     display: flex;
     justify-content: space-between;
   }
-  .headersearch{
+  .headersearch {
     display: flex;
     margin-left: 20px;
     margin-right: 15px;
   }
 }
-.homebtn:hover{
+.homebtn:hover {
   width: 47px;
   height: 47px;
   cursor: pointer;
 }
-.homebtn:hover .homeimg{
+.homebtn:hover .homeimg {
   padding-top: 1px;
   width: 23.25px;
   height: 23.25px;
 }
-#usermode{
-  display:none;
+#usermode {
+  display: none;
 }
-#guestmode{
-  display:show;
+#guestmode {
+  display: show;
 }
