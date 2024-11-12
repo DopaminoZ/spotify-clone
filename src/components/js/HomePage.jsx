@@ -23,9 +23,10 @@ function HomePage() {
             <BrowseComponent />
           </Route>
         </Switch>
-        
       </div>
+      <div id={styles.footer}>
       <Player/>
+      </div>
     </div>
   );
 }

@@ -12,13 +12,14 @@
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
+    height:724px;
     width: 1460px;
-    height: 785px;
     margin: 0 10px;
     align-items: flex-start;
     padding-left: 27px;
     padding-right: 0px;
     padding-top: 41px;
+    padding-bottom: 41px;
     background-color: #121212;
     scrollbar-width: thick;
     scrollbar-color: transparent transparent;

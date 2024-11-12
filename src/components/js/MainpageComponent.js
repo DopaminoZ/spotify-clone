@@ -11,7 +11,6 @@ function MainpageComponent() {
   const { error, data:lists,isPending } = useFetch("http://localhost:8000/list");
   const { errormain, data:maincards,isPendingmain} = useFetch("http://localhost:8000/mainCards")
   const [displayList, setList] = useState([]);
-  const [selection, setSelection] = useState("all");
 
   function getSongs(){
       setList(maincards.filter((card) => card.type =="song"))
