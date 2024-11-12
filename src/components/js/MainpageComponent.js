@@ -23,13 +23,13 @@ function MainpageComponent() {
   }
   useEffect(() => {
     if (maincards) {
-      console.log("Maincards loaded:", maincards);
+      // console.log("Maincards loaded:", maincards);
       getAll();
     }
   }, [maincards]);
   
   useEffect(() => {
-    console.log("Display list updated:", displayList);
+    // console.log("Display list updated:", displayList);
   }, [displayList]);
   
   
@@ -42,7 +42,7 @@ function MainpageComponent() {
             <button className={styles.buttonshead} onClick={getPodcasts}>Podcasts</button>
         </div>
         <div id={styles.playlists}>
-        {errormain && <div style={{color: "red",fontSize:30,marginTop:50}}>{error}</div>}
+        {errormain && <div style={{color: "red",fontSize:30,marginTop:50}}>{errormain }</div>}
         {isPendingmain && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
         {displayList && displayList.map((card) =>(
               <MainpageCard card={card} key={card.id}/>
