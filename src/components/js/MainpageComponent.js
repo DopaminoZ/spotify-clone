@@ -11,6 +11,7 @@ function MainpageComponent() {
   const { error, data:lists,isPending } = useFetch("http://localhost:8000/list");
   const { errormain, data:maincards,isPendingmain} = useFetch("http://localhost:8000/mainCards")
   const [displayList, setList] = useState([]);
+  const isActive = (path) => window.location.pathname === path;
 
   function getSongs(){
       setList(maincards.filter((card) => card.type =="song"))
@@ -37,41 +38,15 @@ function MainpageComponent() {
   return (
     <div id={containerstyle.container} className={styles.gradient} >
         <div id={styles.buttonscontainer}>
-            <Switch>
-            <Route exact path="/">
             <Link to="/">
-            <button className={styles.buttonsheadselected} onClick={getAll}>All</button>
+            <button className={isActive("/") ? styles.buttonsheadselected : styles.buttonshead} onClick={getAll}>All</button>
             </Link>
             <Link to="/list=songs">
-            <button className={styles.buttonshead} onClick={getSongs}>Music</button>
+            <button className={isActive("/list=songs") ? styles.buttonsheadselected : styles.buttonshead} onClick={getSongs}>Music</button>
             </Link>
             <Link to="/list=podcasts">
-            <button className={styles.buttonshead} onClick={getPodcasts}>Podcasts</button>
+            <button className={isActive("/list=podcasts") ? styles.buttonsheadselected : styles.buttonshead} onClick={getPodcasts}>Podcasts</button>
             </Link>
-            </Route>
-            <Route path="/list=songs">
-            <Link to="/">
-            <button className={styles.buttonshead} onClick={getAll}>All</button>
-            </Link>
-            <Link to="/list=songs">
-            <button className={styles.buttonsheadselected} onClick={getSongs}>Music</button>
-            </Link>
-            <Link to="/list=podcasts">
-            <button className={styles.buttonshead} onClick={getPodcasts}>Podcasts</button>
-            </Link>
-            </Route>
-            <Route path="/list=podcasts">
-            <Link to="/">
-            <button className={styles.buttonshead} onClick={getAll}>All</button>
-            </Link>
-            <Link to="/list=songs">
-            <button className={styles.buttonshead} onClick={getSongs}>Music</button>
-            </Link>
-            <Link to="/list=podcasts">
-            <button className={styles.buttonsheadselected} onClick={getPodcasts}>Podcasts</button>
-            </Link>
-            </Route>
-            </Switch>
         </div>
         <div id={styles.playlists}>
         {errormain && <div style={{color: "red",fontSize:30,marginTop:50}}>{errormain }</div>}
