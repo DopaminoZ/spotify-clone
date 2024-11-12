@@ -37,9 +37,41 @@ function MainpageComponent() {
   return (
     <div id={containerstyle.container} className={styles.gradient} >
         <div id={styles.buttonscontainer}>
-            <button className={styles.buttonshead} onClick={getAll}>All</button>
+            <Switch>
+            <Route exact path="/">
+            <Link to="/">
+            <button className={styles.buttonsheadselected} onClick={getAll}>All</button>
+            </Link>
+            <Link to="/list=songs">
             <button className={styles.buttonshead} onClick={getSongs}>Music</button>
+            </Link>
+            <Link to="/list=podcasts">
             <button className={styles.buttonshead} onClick={getPodcasts}>Podcasts</button>
+            </Link>
+            </Route>
+            <Route path="/list=songs">
+            <Link to="/">
+            <button className={styles.buttonshead} onClick={getAll}>All</button>
+            </Link>
+            <Link to="/list=songs">
+            <button className={styles.buttonsheadselected} onClick={getSongs}>Music</button>
+            </Link>
+            <Link to="/list=podcasts">
+            <button className={styles.buttonshead} onClick={getPodcasts}>Podcasts</button>
+            </Link>
+            </Route>
+            <Route path="/list=podcasts">
+            <Link to="/">
+            <button className={styles.buttonshead} onClick={getAll}>All</button>
+            </Link>
+            <Link to="/list=songs">
+            <button className={styles.buttonshead} onClick={getSongs}>Music</button>
+            </Link>
+            <Link to="/list=podcasts">
+            <button className={styles.buttonsheadselected} onClick={getPodcasts}>Podcasts</button>
+            </Link>
+            </Route>
+            </Switch>
         </div>
         <div id={styles.playlists}>
         {errormain && <div style={{color: "red",fontSize:30,marginTop:50}}>{errormain }</div>}

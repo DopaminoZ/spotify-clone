@@ -16,11 +16,11 @@ function HomePage() {
       <div id={styles.midsection}>
         <LeftSideNav />
         <Switch>
-          <Route exact path="/">
-            <MainpageComponent />
-          </Route>
           <Route path="/browse">
             <BrowseComponent />
+          </Route>
+          <Route path="/">
+            <MainpageComponent />
           </Route>
         </Switch>
       </div>
