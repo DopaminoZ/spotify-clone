@@ -2,10 +2,12 @@ import React from "react";
 import styles from "../css/Header_HomePage.module.css";
 import logo from "../../assets/images/spotify-white-icon.png";
 import home from "../../assets/images/building.png";
+import homeactive from "../../assets/images/home-active.png";
 import search from "../../assets/images/search.png";
 import download from "../../assets/images/download-circular-button.png";
 import browse from "../../assets/images/browse-unactive.png";
-import {Link} from 'react-router-dom'
+import browseactive from "../../assets/images/browse-active.png";
+import {Link,Route, Switch} from 'react-router-dom'
 
 function Header_HomePage() {
   return (
@@ -15,9 +17,16 @@ function Header_HomePage() {
         <div className={styles.headersearch}>
           <button className={styles.homebtn}>
             <div>
-            <Link to="/">
-              <img src={home} className={styles.homeimg} />
-              </Link>
+              <Switch>
+                <Route path="/browse">
+                <Link to="/">
+                  <img src={home} className={styles.homeimg} />
+                </Link>
+                </Route>
+                <Route path="/">
+                  <img src={homeactive} className={styles.homeimg} />
+                </Route>
+              </Switch>
             </div>
           </button>
           <div className={styles.searchbar}>
@@ -29,9 +38,16 @@ function Header_HomePage() {
             />
             </div>
             <div className={styles.divider}>
-            <Link to="/browse">
-            <img src={browse} className={styles.browseicon} />
-            </Link>
+            <Switch>
+                <Route path="/browse">
+                  <img src={browseactive} className={styles.browseicon} />
+                </Route>
+                <Route path="/">
+                <Link to="/browse">
+                  <img src={browse} className={styles.browseicon} />
+                </Link>
+                </Route>
+              </Switch>
             </div>
           </div>
         </div>
