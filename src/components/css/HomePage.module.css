@@ -1,3 +1,6 @@
+*{
+  transition: 'all 0.5s ease';
+}
 #midsection {
   display: flex;
   flex-direction: row;
@@ -15,4 +18,9 @@
 #footer {
   height: 88px;
   position: relative;
+}
+.mainpage{
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
 }
