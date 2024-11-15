@@ -1,7 +1,26 @@
+import {useState} from "react"
 import styles from "../css/Player.module.css";
 import add from "../../assets/images/add.png";
 import cover from "../../assets/images/Aurora.png";
 const Player = () => {
+  const [durationstart,setDurationstart] = useState(0)
+  const [durationend,setDurationend] = useState(180) //3mins
+  function parseTime(x){
+    let minutes = Math.floor(x / 60);
+    let seconds = x - minutes * 60;
+    if(minutes < 10 && seconds < 10){
+      return `0${minutes}:0${seconds}`
+    }
+    else if (minutes < 10){
+      return `0${minutes}:${seconds}`
+    }
+    else if (seconds < 10){
+      return `${minutes}:0${seconds}`
+    }
+    else{
+      return `${minutes}:${seconds}`
+    }
+  }
   return (
     <div>
       <div className={styles.container}>
@@ -34,16 +53,18 @@ const Player = () => {
             </button>
           </div>
           <div className={styles.playbackbar}>
-            <span className={styles.currenttime}>00:00</span>
+            <span className={styles.currenttime}>{parseTime(durationstart)}</span>
             <input
               type="range"
               min="0"
-              max="100"
+              max={durationend}
               aria-label="range"
               className={styles.progbar}
               step="1"
+              value={durationstart}
+              onChange={(e) => setDurationstart(e.target.value)}
             />
-            <span className={styles.totaltime}>3:33</span>
+            <span className={styles.totaltime}>{parseTime(durationend)}</span>
           </div>
         </div>
         <div className={styles.right}>
