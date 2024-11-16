@@ -1,5 +1,10 @@
 .container{
-    width: 500px;
+    width: 22.7vw;
     background-color: #1f1f1f;
+    border-radius: 10px;
+    max-height: 84vh;
     
+}
+.container img{
+    max-width: 200px;
 }

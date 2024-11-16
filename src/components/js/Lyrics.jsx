@@ -88,7 +88,7 @@ const Lyrics = () => {
           <button>Open queue</button>
         </div>
         <div>
-          <img src={dover} alt="" />
+          <img src={cover} alt="" />
           <div>
             <p>Kill Bill</p>
             <p>SZA</p>

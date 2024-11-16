@@ -6,7 +6,7 @@ import ListComponent from './ListComponent.js'
 import useFetch from './useFetch.js'
 import { BrowserRouter as Router,Route,Link,Switch } from 'react-router-dom'
 
-function MainpageComponent() {
+function MainpageComponent({widthz}) {
 
   const { error, data:lists,isPending } = useFetch("http://localhost:8000/list");
   const { errormain, data:maincards,isPendingmain} = useFetch("http://localhost:8000/mainCards")
@@ -36,7 +36,7 @@ function MainpageComponent() {
   
 
   return (
-    <div id={containerstyle.container} className={styles.gradient} >
+    <div id={containerstyle.container} className={styles.gradient} style={{width: widthz}}>
         <div id={styles.buttonscontainer}>
             <Link to="/">
             <button className={isActive("/") ? styles.buttonsheadselected : styles.buttonshead} onClick={getAll}>All</button>
