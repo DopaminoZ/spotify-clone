@@ -51,7 +51,7 @@ function HomePage() {
       </div>
 
       <div id={styles.footer}>
-      <button onClick={handleResizeAndShow}>show</button>
+      <button id={styles.testshow} onClick={handleResizeAndShow}>show</button>
         <Player />
         
       </div>
