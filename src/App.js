@@ -2,8 +2,6 @@ import "./App.css";
 import SignInPage from "./components/js/SignInPage.js";
 import SignUpPage from "./components/js/SignUpPage.js";
 import HomePage from "./components/js/HomePage.jsx";
-import Artist from "./components/js/Artists.js";
-import Player from "./components/js/Player.jsx";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 function App() {

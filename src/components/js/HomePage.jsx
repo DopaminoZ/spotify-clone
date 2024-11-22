@@ -4,6 +4,7 @@ import Header_HomePage from "./Header_HomePage";
 import LeftSideNav from "./LeftSideNav";
 import BrowseComponent from "./BrowseComponent";
 import MainpageComponent from "./MainpageComponent";
+import InstallApp from "./InstallApp";
 import Playlist from "./Playlist";
 import Artists from "./Artists";
 import Lyrics from "./Lyrics";
@@ -42,7 +43,16 @@ function HomePage() {
           <Route path="/browse">
             <BrowseComponent />
           </Route>
-          <Route path="/">
+          <Route path="/download">
+            <InstallApp/>
+          </Route>
+          <Route path="/artist">
+            <Artists/>
+          </Route>
+          <Route path="/playlist">
+            <Playlist/>
+          </Route>
+          <Route exact path="/">
             <MainpageComponent widthz={`${firstDivSize}vw`}/>
           </Route>
           </div>

@@ -26,6 +26,6 @@
 }
 #testshow{
   position: fixed;
-  bottom: 40px;
-  display: hidden;
+  bottom: 10px;
+  left: 350px;
 }
