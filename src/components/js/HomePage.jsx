@@ -41,7 +41,16 @@ function HomePage() {
             <Route path="/browse">
               <BrowseComponent />
             </Route>
-            <Route path="/">
+            <Route path="/download">
+              <InstallApp />
+            </Route>
+            <Route path="/artist">
+              <Artists />
+            </Route>
+            <Route path="/playlist">
+              <Playlist />
+            </Route>
+            <Route exact path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />
             </Route>
           </div>
