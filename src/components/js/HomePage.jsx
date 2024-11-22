@@ -4,6 +4,7 @@ import Header_HomePage from "./Header_HomePage";
 import LeftSideNav from "./LeftSideNav";
 import BrowseComponent from "./BrowseComponent";
 import MainpageComponent from "./MainpageComponent";
+import InstallApp from "./InstallApp";
 import Playlist from "./Playlist";
 import Artists from "./Artists";
 import Lyrics from "./Lyrics";

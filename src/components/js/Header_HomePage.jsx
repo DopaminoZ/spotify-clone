@@ -13,7 +13,9 @@ function Header_HomePage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.logodiv}><a href="_self"><img src={logo} alt="spotify logo" className={styles.spotifylogo} /></a></div>
+        <Link to="/">
+        <div className={styles.logodiv}><img src={logo} alt="spotify logo" className={styles.spotifylogo} /></div>
+        </Link>
         <div className={styles.headersearch}>
           <button className={styles.homebtn}>
             <div>

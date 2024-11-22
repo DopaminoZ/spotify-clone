@@ -4,10 +4,12 @@
 }
 .container {
   background: #121212;
-  width: 40vh;
+  min-width: 370px;
+  max-width: 370px;
   padding: 1.35%;
   border-radius: 10px;
   height:754px;
+  margin-left:4px;
 }
 .add,
 .next,.searchbtn{
