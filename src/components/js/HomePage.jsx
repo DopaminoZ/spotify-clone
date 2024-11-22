@@ -17,20 +17,18 @@ function HomePage() {
 
   const handleResizeAndShow = () => {
     // Resize the first div and show the second div
-    if (firstDivSize == 75.5){
+    if (firstDivSize == 75.5) {
       setFirstDivSize(53.2);
       setShowSecondDiv(true);
-    }
-    else{
-    setFirstDivSize(75.5);
-    setShowSecondDiv(false);
+    } else {
+      setFirstDivSize(75.5);
+      setShowSecondDiv(false);
     }
   };
   useEffect(() => {
     console.log(firstDivSize);
     console.log(showSecondDiv);
-  },[firstDivSize,showSecondDiv]); 
-
+  }, [firstDivSize, showSecondDiv]);
 
   return (
     <div id={styles.mainpage}>
@@ -39,21 +37,20 @@ function HomePage() {
         <LeftSideNav />
         <Switch>
           <div classname={styles.mainpage}>
-          <Route path="/browse">
-            <BrowseComponent />
-          </Route>
-          <Route path="/">
-            <MainpageComponent widthz={`${firstDivSize}vw`}/>
-          </Route>
+            <Route path="/browse">
+              <BrowseComponent />
+            </Route>
+            <Route path="/">
+              <MainpageComponent widthz={`${firstDivSize}vw`} />
+            </Route>
           </div>
         </Switch>
         {showSecondDiv && <Lyrics />}
       </div>
 
       <div id={styles.footer}>
-      <button onClick={handleResizeAndShow}>show</button>
+        {/* <button onClick={handleResizeAndShow}>show</button> */}
         <Player />
-        
       </div>
     </div>
   );
