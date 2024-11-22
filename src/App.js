@@ -1,5 +1,5 @@
 import "./App.css";
-import SignInPage from "./components/js/SignInPage.js";
+import LogInPage from "./components/js/LogInPage.js";
 import SignUpPage from "./components/js/SignUpPage.js";
 import HomePage from "./components/js/HomePage.jsx";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
@@ -13,7 +13,7 @@ function App() {
             <SignUpPage />
           </Route>
           <Route path="/login">
-            <SignInPage />
+            <LogInPage />
           </Route>
           <Route path="/">
             <HomePage />
