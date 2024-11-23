@@ -2,7 +2,9 @@
   text-align: center;
   overflow: hidden;
 }
-
+*{
+  font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

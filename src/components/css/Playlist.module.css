@@ -3,3 +3,74 @@
     background-size: 100% 50%;
     background-repeat: no-repeat;
 }
+#uppercontainer{
+    position: relative;
+    margin-top: -21px;
+    margin-left: -5px;
+    padding:0;
+    display: flex;
+}
+#playlistdetails{
+    align-items: flex-start;
+    margin-left: 24px;
+    margin-top:20px;
+    display: flex;
+    flex-direction: column;
+}
+#playlisttype{
+    font-size: 14px;
+    font-weight:400;
+    color:white;
+}
+#playlisttitle{
+    color:white;
+    font-size: 96px;
+    margin-top: -14px;
+    font-weight: 800;
+}
+#playlistdesc{
+    font-size: 14px;
+    color:white;
+    font-weight:400;
+    margin-top:-69px;
+}
+#ownerdiv{
+    display: flex;
+    flex-direction: row;
+}
+#playlistimg{
+    position: relative;
+    margin-top: 0px;
+    height:232px;
+    border-radius: 5px;
+}
+#ownerimage{
+    height: 30px;
+    margin-top: -5px;
+    margin-left:-5px;
+    border-radius: 50px;
+}
+#ownerdetails{
+    margin-top: 1px;
+    margin-left: 3px;
+    font-size:14px;
+    color:white;
+}
+.ownerlink{
+    font-weight: 700;
+}
+.ownerlink:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#lowercontainer{
+    position: fixed;
+    display: block;
+    background-color: rgba(0,0,0,0.2);
+    height:529px;
+    width:1476px;
+    margin-top:235px;
+    margin-left:-27px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

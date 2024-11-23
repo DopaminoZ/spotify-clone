@@ -8,16 +8,19 @@ function Playlist() {
         <div id={styles.uppercontainer}>
         <img id={styles.playlistimg} src={hanz}></img>
         <div id={styles.playlistdetails}>
-            <p id={styles.playlisttype}></p>
-            <h1 id={styles.albumtitle}></h1>
-            <div id={styles.artistdiv}>
-            <img id={styles.artistimage}></img> <p id={styles.artistname}></p> <p>•</p> <p id={styles.year}>year</p> <p>•</p> <p id={styles.details}>details</p>
+            <p id={styles.playlisttype}>Playlist</p>
+            <h1 id={styles.playlisttitle}>Classical Bangers</h1>
+            <p id={styles.playlistdesc}>Best classical music to study, chill, and relax. From Mozart, Vivaldi, Beethoven, Chopin, Debussy, Satie, Tchaikovsky, to Christmas Classics. Peaceful piano to Orchestras from Baroque to...</p>
+            <div id={styles.ownerdiv}>
+            <img id={styles.ownerimage} src={hanz}></img> <p id={styles.ownerdetails} className={styles.ownerlink}>Classical Bangers</p><p id={styles.ownerdetails}> • 777,874 saves • 384 songs, about 21 hr</p>
             </div>
         </div>
         </div>
+        <div id={styles.lowercontainer}>
         <div id={styles.midcontainer}>
         </div>
         <div id={styles.playlistdiv}>
+        </div>
         </div>
     </div>
   )
