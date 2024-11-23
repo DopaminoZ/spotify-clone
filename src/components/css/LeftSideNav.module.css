@@ -8,9 +8,10 @@
   max-width: 370px;
   padding: 1.35%;
   border-radius: 10px;
-  height: 740px;
+  height: 750px;
   margin-left: 4px;
   overflow: hidden;
+
 }
 .add,
 .next,
@@ -91,6 +92,7 @@ button > * {
   width: 390px;
   max-height: 100%;
   overflow: scroll;
+  overflow-x: hidden;
   scrollbar-width: thick;
   scrollbar-color: transparent transparent;
 }

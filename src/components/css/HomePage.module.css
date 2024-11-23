@@ -7,8 +7,7 @@
   width: 100%;
   padding-top: 0px;
   padding-left: 2px;
-  max-height: 84vh;
-  position: relative;
+  max-height: 84.3vh;
 }
 #mainpage {
   background-color: #000000;
@@ -16,8 +15,8 @@
   flex-direction: column;
 }
 #footer {
-  height: 88px;
-  position: relative;
+  height: 85px;
+  z-index: 1;
 }
 .mainpage{
   display: flex;
