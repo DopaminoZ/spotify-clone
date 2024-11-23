@@ -4,6 +4,7 @@ import add from "../../assets/images/add.png";
 import next from "../../assets/images/next.png";
 import searchb from "../../assets/images/search.png";
 import library from "../../assets/images/library.png";
+import cover from "../../assets/images/Aurora.png";
 function LeftSideNav() {
   return (
     <div className={styles.container}>
@@ -39,6 +40,57 @@ function LeftSideNav() {
           Recents
           <img src={next} alt="" className={styles.icon} />
         </button>
+      </div>
+      <div className={styles.playlists}>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
+        <div className={styles.listcomponent}>
+          <img src={cover} alt="" className={styles.coverphoto} />
+          <div className={styles.listcomponenttext}>
+            <h3>Z3ln</h3>
+            <p>playlist . Attia</p>
+          </div>
+        </div>
       </div>
     </div>
   );

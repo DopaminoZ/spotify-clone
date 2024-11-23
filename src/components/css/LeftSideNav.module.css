@@ -8,11 +8,12 @@
   max-width: 370px;
   padding: 1.35%;
   border-radius: 10px;
-  height:754px;
-  margin-left:4px;
+  height: 754px;
+  margin-left: 4px;
 }
 .add,
-.next,.searchbtn{
+.next,
+.searchbtn {
   all: unset;
   width: 32px;
   height: 32px;
@@ -20,11 +21,13 @@
   border-radius: 50%;
 }
 .add:hover,
-.next:hover,.searchbtn:hover,.playlistsbtn:hover{
+.next:hover,
+.searchbtn:hover,
+.playlistsbtn:hover {
   background-color: #282828;
   cursor: pointer;
 }
-.playlistsbtn:hover{
+.playlistsbtn:hover {
   background-color: #393939;
   cursor: pointer;
 }
@@ -46,10 +49,10 @@
   gap: 10px;
   margin-top: 15px;
 }
-.playlistsbtn{
-  all:unset;
-  background-color: #2A2A2A;
-  color: #F7F7F7;
+.playlistsbtn {
+  all: unset;
+  background-color: #2a2a2a;
+  color: #f7f7f7;
   width: 75px;
   height: 32px;
   font-size: 14px;
@@ -62,7 +65,7 @@
   justify-content: space-between;
   width: 100%;
 }
-.recentsbtn{
+.recentsbtn {
   all: unset;
   color: #b3b3b3;
   font-size: 14px;
@@ -83,3 +86,36 @@ button > * {
   margin-right: 5px;
 }
 
+.coverphoto {
+  width: 80px;
+  height: 80px;
+}
+
+.listcomponent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 30px;
+  border-radius: 5px;
+  padding :10px 15px
+ }
+.listcomponenttext h3{
+  color: white;
+  margin-bottom: -5px;
+  margin-left: -50px;
+}
+.listcomponenttext p{
+  color: #b3b3b3;
+}
+.listcomponenttext {
+  display: flex;
+  flex-direction: column;
+  justify-content:  space-around;
+  margin-left: -15px;
+  margin-top: -0px;
+  gap: 0;
+}
+.listcomponent:hover{
+    background-color: #393939;
+    cursor: pointer;
+}
