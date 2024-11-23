@@ -84,13 +84,6 @@ function LeftSideNav() {
             <p>playlist . Attia</p>
           </div>
         </div>
-        <div className={styles.listcomponent}>
-          <img src={cover} alt="" className={styles.coverphoto} />
-          <div className={styles.listcomponenttext}>
-            <h3>Z3ln</h3>
-            <p>playlist . Attia</p>
-          </div>
-        </div>
       </div>
     </div>
   );

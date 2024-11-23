@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 
 function LogInPage() {
   return (
+    <div id={styles.background}>
     <div id={styles.container}>
-      
         <img src={logo} className={styles.logo}></img>  
         <h1 className={styles.logintext}>Log in to Spotify</h1>
         <div className={styles.buttonscontainer}>
@@ -30,27 +30,17 @@ function LogInPage() {
           <input type="text"  placeholder="Password"className={styles.box} id={styles.passbox}></input>
         
         </div>
-
           <buttons className={styles.login}>Log In</buttons>
 
           <a href="/"className={styles.forget}>Forgot your password?</a>
-
-
         <div className={styles.signup}>
           <h1 id={styles.dont}>Don't have an account?</h1>
           <Link to="/signup">
           <h1 className={styles.sign}>Sign up for Spotify</h1>
           </Link>
-
-
-        
         </div>
-        
-      
-        
-       
       </div>
-    
+      </div>
   );
 }
 
