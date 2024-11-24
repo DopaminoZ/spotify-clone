@@ -8,8 +8,8 @@
   max-width: 370px;
   padding: 1.35%;
   border-radius: 10px;
-  height: 750px;
-  margin-left: 4px;
+  height: 754px;
+  margin-left: 6px;
   overflow: hidden;
 
 }
@@ -83,18 +83,22 @@ button > * {
   vertical-align: middle;
   width: 142px;
   height: 40px;
+  margin-left: -11px;
+  margin-top: -7px;
 }
 .libraryimage {
-  margin-right: 5px;
+  margin-left: 0px;
+  margin-bottom: 2px;
 }
 .playlists {
   height: 660px;
-  width: 390px;
+  width: 400px;
   max-height: 100%;
   overflow: scroll;
   overflow-x: hidden;
   scrollbar-width: thick;
   scrollbar-color: transparent transparent;
+  margin-left: -15px;
 }
 .playlists:hover {
   scrollbar-color: #898989 transparent;
