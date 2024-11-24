@@ -1,7 +1,9 @@
-.gradient{
+.gradient {
     background-image: linear-gradient(#91B4BB, #121212);
     background-size: 100% 50%;
     background-repeat: no-repeat;
+    padding-bottom: 0 !important;
+    height: 765px !important;
 }
 #uppercontainer{
     position: relative;
@@ -64,12 +66,11 @@
     cursor: pointer;
 }
 #lowercontainer{
-    
     margin-top: 15px;
     background-color: rgba(0,0,0,0.2);
     width: 1500px;
     margin-left: -27px;
-    height: 100%;
+    height: fit-content; 
 }
 #midcontainer{
     display: flex;
@@ -162,4 +163,11 @@
 #songsList{
     display: flex;
     flex-direction: column;
+}
+#backgroundco{
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    padding-left: 27px;
+    margin-left: -27px;
+    padding-bottom: 27px;
 }

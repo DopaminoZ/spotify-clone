@@ -7,6 +7,7 @@ import add from "../../assets/images/add.png"
 import addactive from "../../assets/images/add-active.png"
 import clock from "../../assets/images/clock.png"
 import PlaylistSong from './PlaylistSong'
+import FooterContent from './FooterContent'
 function Playlist() {
   return (
     <div id={containerstyle.container} className={styles.gradient}>
@@ -47,7 +48,11 @@ function Playlist() {
               <PlaylistSong/>
               <PlaylistSong/>
           </div>
+          
         </div>
+        </div>
+        <div id={styles.backgroundco}>
+        <FooterContent/>
         </div>
     </div>
   )
