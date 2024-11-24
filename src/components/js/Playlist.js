@@ -2,6 +2,11 @@ import React from 'react'
 import styles from "../css/Playlist.module.css"
 import containerstyle from "../css/BrowseComponent.module.css"
 import hanz from "../../assets/images/elbasha.png"
+import playbutton from "../../assets/images/play.png"
+import add from "../../assets/images/add.png"
+import addactive from "../../assets/images/add-active.png"
+import clock from "../../assets/images/clock.png"
+import PlaylistSong from './PlaylistSong'
 function Playlist() {
   return (
     <div id={containerstyle.container} className={styles.gradient}>
@@ -18,8 +23,30 @@ function Playlist() {
         </div>
         <div id={styles.lowercontainer}>
         <div id={styles.midcontainer}>
+          <button id={styles.playbutton} className ={styles.reactbutton}><img src={playbutton}/></button>
+          <button id={styles.addtolibrary} className={styles.reactbutton}><img src={add} className={styles.base}/> <img src={addactive} className={styles.hover}/></button>
         </div>
         <div id={styles.playlistdiv}>
+          <div id={styles.playlistdata}>
+          <p id={styles.hash}>#</p><p id={styles.title}>Title</p><p id={styles.album}>Album</p><p id={styles.date}>Date added</p><img src={clock} />
+          </div>
+          <div id={styles.divider}></div>
+          <div id={styles.songsList}>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+              <PlaylistSong/>
+          </div>
         </div>
         </div>
     </div>

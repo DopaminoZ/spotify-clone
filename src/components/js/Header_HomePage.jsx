@@ -17,20 +17,25 @@ function Header_HomePage() {
         <div className={styles.logodiv}><img src={logo} alt="spotify logo" className={styles.spotifylogo} /></div>
         </Link>
         <div className={styles.headersearch}>
-          <button className={styles.homebtn}>
-            <div>
+          
               <Switch>
                 <Route path="/browse">
                 <Link to="/">
-                  <img src={home} className={styles.homeimg} />
+                <button className={styles.homebtn}>
+                  <div>
+                <img src={home} className={styles.homeimg} />
+                  </div>
+                </button>     
                 </Link>
                 </Route>
                 <Route path="/">
-                  <img src={homeactive} className={styles.homeimg} />
+                  <button className={styles.homebtn}>
+                  <div>
+                        <img src={homeactive} className={styles.homeimg} />
+                  </div>
+                </button>
                 </Route>
-              </Switch>
-            </div>
-          </button>
+                </Switch>
           <div className={styles.searchbar}>
             <div className={styles.searchminusbrowse}><img src={search} className={styles.searchicon} />
             <input
