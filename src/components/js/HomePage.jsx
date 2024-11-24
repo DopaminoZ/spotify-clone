@@ -50,7 +50,7 @@ function HomePage() {
             <Route path="/playlist">
               <Playlist />
             </Route>
-            <Route exact path="/">
+            <Route path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />
             </Route>
           </div>
