@@ -36,8 +36,8 @@ function HomePage() {
       <Header_HomePage />
       <div id={styles.midsection}>
         <LeftSideNav />
-        <Switch>
           <div classname={styles.mainpage}>
+          <Switch>
             <Route path="/browse">
               <BrowseComponent />
             </Route>
@@ -53,8 +53,8 @@ function HomePage() {
             <Route path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />
             </Route>
+            </Switch>
           </div>
-        </Switch>
         {showSecondDiv && <Lyrics />}
       </div>
 
