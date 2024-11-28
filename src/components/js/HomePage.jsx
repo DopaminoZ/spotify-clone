@@ -7,7 +7,7 @@ import MainpageComponent from "./MainpageComponent";
 import InstallApp from "./InstallApp";
 import Playlist from "./Playlist";
 import Artists from "./Artists";
-import Lyrics from "./Lyrics";
+import Lyrics from "./NowPlaying";
 import Player from "./Player";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { useState } from "react";
@@ -60,7 +60,7 @@ function HomePage() {
 
       <div id={styles.footer}>
         {/* <button onClick={handleResizeAndShow}>show</button> */}
-        <Player />
+        <Player var1 ={firstDivSize} vars={showSecondDiv}Showdiv={handleResizeAndShow}/>
       </div>
     </div>
   );

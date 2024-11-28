@@ -15,7 +15,7 @@ import volume from "../../assets/images/volume-high.png";
 import miniplayer from "../../assets/images/miniplayer.png";
 import fullscreen from "../../assets/images/expand.png";
 
-const Player = () => {
+const Player = ({ Showdiv }) => {
   const [durationstart, setDurationstart] = useState(0);
   const [durationend, setDurationend] = useState(180); //3mins
   function parseTime(x) {
@@ -80,7 +80,7 @@ const Player = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <button className={styles.nowplaying}>
+          <button className={styles.nowplaying} onClick={() => Showdiv()}>
             <img src={nowplaying} alt="" className={styles.nowplayingimg} />
           </button>
           <button className={styles.lyrics}>
