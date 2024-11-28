@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react'
 import styles from '../css/SignUp.module.css'
+import logo from '../../assets/images/spotify-white-icon.png'
 import google from '../../assets/images/Google_Icons-09-512.png'
 import fb from'../../assets/images/facebook.png'
 import apple from '../../assets/images/applelogo.png'
 import {Link} from 'react-router-dom'
-function Signin() {
+function SignUp() {
   // useEffect = (() => {
   //   document.title = "Sign up - Spotify";
-  // },[]);
-  //Changing title
+  // });
+
   return (
     <div id={styles.container}>
+        <div className={styles.headersignuplogo}>
+        <img src={logo} className={styles.signuplogo}/>
+        </div>
         <div><h1 id={styles.signuptitle}>Sign up to <br/>
             start listening</h1></div>
         <div id={styles.emailcontainer}><label id={styles.email}>Email address</label>
@@ -29,9 +33,7 @@ function Signin() {
         <div className={styles.socials}><button className={styles.loginbuttons} id={styles.b22}><img src={apple}/>Sign up with Apple</button></div>
         </div>
         <div className={styles.enddivider}></div>
-        
         <label id={styles.already}>Already have an account? <Link to="/login"> <a id={styles.here}>Log in here</a></Link>.</label>
-        
         <label id={styles.disclaimer}>This site is a clone and isn't meant to break any kind of copyright or laws.<br/>But only to showcase a project.</label>
         </div>
 
@@ -39,4 +41,4 @@ function Signin() {
   )
 }
 
-export default Signin
+export default SignUp
