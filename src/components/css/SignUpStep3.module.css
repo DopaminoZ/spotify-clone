@@ -68,80 +68,40 @@
     font-weight: 600;
     margin: 0;
 }
-#inputdiv{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-left: -20px;
-    margin-top: 30px;
-}
-#inputdiv label{
-    align-self: flex-start;
-    font-weight: 700;
-    font-size: 14px;
-    color: white;
-    padding-bottom: 5px;
-}
-#inputdiv input {
-    border: none;
-    background-color: #121212;
-    width: 265px;
-    color: white;
-    border-color: rgba(0,0,0,0);
-    outline: none;
-}
-#eyediv{
-    width: 15px;
-    height: 15px;
-}
-#passbox:focus-within, #passbox:hover {
-    border-color: white;
-}
-#passbox{
+.checkbox{
     display: flex;
     flex-direction: row;
-    position: relative;
-    margin-top: 3px;
-    width: 305px;
-    height: 30px;
-    border-width: 1px;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: rgb(131, 130, 130);
-    color: rgb(182, 182, 182);
-    justify-content: space-between;
-    font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 8px;
-}
-#passbox svg{
-    width:25px;
-    height:25px;
-    cursor:pointer;
-}
-
-#eyedisable:hover path,#eyedisable:hover path{
-    fill:white;
-}
-#requirements{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
     align-items: flex-start;
-    margin-top: 20px;
+    align-self: center;
+    text-align: left;
+    width: 320px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
 }
-#requirements p{
-    margin:0;
-    padding-top: 10px;
+.chk{
+    align-self: flex-start;
+}
+.checkbox p{
+    margin-top: 0px;
+    margin-left: 15px;
+    color: #ffffff;
+}
+.lasttexts{
+    width: 320px;
+    align-self: center;
+    text-align: left;
     color: white;
-    font-size: 14px;
+    margin-left: -15px;
+    font-size: 13px;
 }
-#req{
-    font-weight: 700;
-}
-#requirements svg{
-    width: 10px;
+.links{
+    color:#1ED760;
+    text-decoration: underline;
+    margin: 0;
+    cursor: pointer;
+    font-size: 13px;
 }
 .socials{
     display: flex;
@@ -171,7 +131,7 @@
 #disclaimer{
     align-self: center;
     position: relative;
-    margin-top:420px;
+    margin-top:290px;
     color:#B3B3B3;
     max-width: 310px;
 }
