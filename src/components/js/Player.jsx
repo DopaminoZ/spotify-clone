@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "../css/Player.module.css";
 import add from "../../assets/images/add.png";
 import cover from "../../assets/images/lana.jpeg";
@@ -31,6 +32,13 @@ const Player = ({ Showdiv }) => {
       return `${minutes}:${seconds}`;
     }
   }
+  let [lyricsstate, setlyricsstate] = useState(true);
+  function handleLyrics() {
+    if (lyricsstate === false) setlyricsstate(true);
+    else if (lyricsstate === true) setlyricsstate(false);
+    console.log(lyricsstate);
+  }
+
   return (
     <div>
       <div className={styles.container}>
@@ -83,9 +91,11 @@ const Player = ({ Showdiv }) => {
           <button className={styles.nowplaying} onClick={() => Showdiv()}>
             <img src={nowplaying} alt="" className={styles.nowplayingimg} />
           </button>
-          <button className={styles.lyrics}>
-            <img src={mic} alt="" className={styles.micimg} />
-          </button>
+          <Link to={lyricsstate ? "/Lyrics" : "/"}>
+            <button className={styles.lyrics} onClick={() => handleLyrics()}>
+              <img src={mic} alt="" className={styles.micimg} />
+            </button>
+          </Link>
           <button className={styles.queue}>
             <img src={queue} alt="" className={styles.queueimg} />
           </button>

@@ -7,7 +7,9 @@ import MainpageComponent from "./MainpageComponent";
 import InstallApp from "./InstallApp";
 import Playlist from "./Playlist";
 import Artists from "./Artists";
+import Premium from "./ExplorePremium";
 import Nowplaying from "./NowPlaying";
+import Lyrics from "./Lyrics";
 import Player from "./Player";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { useState } from "react";
@@ -48,6 +50,12 @@ function HomePage() {
             </Route>
             <Route path="/playlist">
               <Playlist widthz={`${firstDivSize}vw`} />
+            </Route>
+            <Route path="/ExplorePremium">
+              <Premium />
+            </Route>
+            <Route path="/Lyrics">
+              <Lyrics />
             </Route>
             <Route path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />
