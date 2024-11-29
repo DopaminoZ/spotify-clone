@@ -7,17 +7,16 @@ import MainpageComponent from "./MainpageComponent";
 import InstallApp from "./InstallApp";
 import Playlist from "./Playlist";
 import Artists from "./Artists";
-import Lyrics from "./NowPlaying";
+import Nowplaying from "./NowPlaying";
 import Player from "./Player";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 
 function HomePage() {
-  const [firstDivSize, setFirstDivSize] = useState(75.5); // Controls the size of the first div
-  const [showSecondDiv, setShowSecondDiv] = useState(false); // Controls whether the second div is shown
+  const [firstDivSize, setFirstDivSize] = useState(75.5);
+  const [showSecondDiv, setShowSecondDiv] = useState(false);
 
   const handleResizeAndShow = () => {
-    // Resize the first div and show the second div
     if (firstDivSize == 75.5) {
       setFirstDivSize(53.2);
       setShowSecondDiv(true);
@@ -55,11 +54,10 @@ function HomePage() {
             </Route>
           </Switch>
         </div>
-        {showSecondDiv && <Lyrics />}
+        {showSecondDiv && <Nowplaying Showdiv={handleResizeAndShow} />}
       </div>
 
       <div id={styles.footer}>
-        {/* <button onClick={handleResizeAndShow}>show</button> */}
         <Player
           var1={firstDivSize}
           vars={showSecondDiv}

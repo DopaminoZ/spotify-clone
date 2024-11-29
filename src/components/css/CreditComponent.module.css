@@ -1,13 +1,5 @@
 
-  .showallbtn {
-    font-size: 14px;
-    font-weight: 700;
-  }
-  .showallbtn:hover {
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 14.5px;
-  }
+
 
   .creditscomponent {
     justify-self: left;

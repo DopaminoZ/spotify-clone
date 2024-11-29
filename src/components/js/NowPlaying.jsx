@@ -9,7 +9,7 @@ import Song from "./UpnextSong";
 import Tour from "./OntourComponent";
 import Credit from "./CreditsComponent";
 
-const Lyrics = () => {
+const Lyrics = ({ Showdiv }) => {
   // first p is playlist name if the song is from playlist if its from search it becomes song name
   // copy song link button only appears when the mouse is inside the lyrics component
   return (
@@ -20,7 +20,7 @@ const Lyrics = () => {
           <button className={styles.dotsbtn}>
             <img src={dots} alt="Close button" className={styles.dotsicon} />
           </button>
-          <button className={styles.closebtn}>
+          <button className={styles.closebtn} onClick={() => Showdiv()}>
             <img src={close} alt="Details" className={styles.closeicon} />
           </button>
         </div>
@@ -64,7 +64,7 @@ const Lyrics = () => {
             <Credit />
             <button>Follow</button>
           </div>
-          <div >
+          <div>
             <Credit />
             <Credit />
           </div>
