@@ -27,7 +27,7 @@ function MainpageComponent({widthz}) {
       // console.log("Maincards loaded:", maincards);
       getAll();
     }
-  }, [maincards]);
+  }, [maincards]); 
   
   useEffect(() => {
     // console.log("Display list updated:", displayList);

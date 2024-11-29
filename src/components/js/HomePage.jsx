@@ -36,7 +36,7 @@ function HomePage() {
       <Header_HomePage />
       <div id={styles.midsection}>
         <LeftSideNav />
-          <div classname={styles.mainpage}>
+        <div classname={styles.mainpage}>
           <Switch>
             <Route path="/browse">
               <BrowseComponent />
@@ -48,19 +48,23 @@ function HomePage() {
               <Artists />
             </Route>
             <Route path="/playlist">
-              <Playlist />
+              <Playlist widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />
             </Route>
-            </Switch>
-          </div>
+          </Switch>
+        </div>
         {showSecondDiv && <Lyrics />}
       </div>
 
       <div id={styles.footer}>
         {/* <button onClick={handleResizeAndShow}>show</button> */}
-        <Player var1 ={firstDivSize} vars={showSecondDiv}Showdiv={handleResizeAndShow}/>
+        <Player
+          var1={firstDivSize}
+          vars={showSecondDiv}
+          Showdiv={handleResizeAndShow}
+        />
       </div>
     </div>
   );

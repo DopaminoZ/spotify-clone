@@ -1,0 +1,32 @@
+import React from "react";
+import styles from "../css/UpnextSong.module.css";
+import hanz from "../../assets/images/elbasha.png";
+function PlaylistSong() {
+  return (
+    <div id={styles.container}>
+      <svg
+        id={styles.play}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+      >
+        <path
+          fill="#ffffff"
+          d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+        />
+      </svg>
+      <div id={styles.titlepack}>
+        <img src={hanz} />
+        <div id={styles.data}>
+          <p id={styles.title} className={styles.hover}>
+            Requiem II. Dies irae
+          </p>
+          <p id={styles.artist} className={styles.hover}>
+            Erik Satie
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PlaylistSong;

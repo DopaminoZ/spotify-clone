@@ -10,5 +10,5 @@ function ListCard({album}) {
     </div>
   )
 }
-
+ 
 export default ListCard
