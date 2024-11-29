@@ -40,22 +40,22 @@ function HomePage() {
         <div classname={styles.mainpage}>
           <Switch>
             <Route path="/browse">
-              <BrowseComponent />
+              <BrowseComponent widthz={`${firstDivSize}vw`}/>
             </Route>
             <Route path="/download">
-              <InstallApp />
+              <InstallApp widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/artist">
-              <Artists />
+              <Artists widthz={`${firstDivSize}vw`}/>
             </Route>
             <Route path="/playlist">
               <Playlist widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/ExplorePremium">
-              <Premium />
+              <Premium widthz={`${firstDivSize}vw`}/>
             </Route>
             <Route path="/Lyrics">
-              <Lyrics />
+              <Lyrics widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />

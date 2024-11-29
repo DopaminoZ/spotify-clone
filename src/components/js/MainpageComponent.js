@@ -52,7 +52,7 @@ function MainpageComponent({widthz}) {
         {errormain && <div style={{color: "red",fontSize:30,marginTop:50}}>{errormain }</div>}
         {isPendingmain && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
         {displayList && displayList.map((card) =>(
-              <MainpageCard card={card} key={card.id}/>
+              <MainpageCard card={card} key={card.id} width={widthz}/>
           ))}
         </div>
         <div id={styles.listsdiv}>
