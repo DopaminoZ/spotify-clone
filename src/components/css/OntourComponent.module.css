@@ -1,0 +1,51 @@
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px 5px;
+  height: 65px;
+  border-radius: 10px;
+}
+.ontourtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.ontourtitle button {
+  height: 25px;
+}
+.ontourtitletxt {
+  font-weight: 700;
+}
+.ontourcomponent p {
+  justify-self: left;
+  margin-top: -10px;
+}
+.ontourcomponent {
+  margin-top: 10px;
+}
+.container:hover {
+  background-color: #2c2c2c;
+}
+.container:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.dateicon {
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  justify-content: space-between;
+  border-radius: 10px;
+  width: 55px;
+  height: 55px;
+  padding: 5px;
+}
+.month {
+  font-size: small;
+}
+.day {
+  font-size: larger;
+  margin-top: -6px;
+}

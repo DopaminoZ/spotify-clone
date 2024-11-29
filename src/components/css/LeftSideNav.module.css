@@ -69,8 +69,15 @@
 }
 .recentsbtn {
   all: unset;
+  display: flex;
   color: #b3b3b3;
   font-size: 14px;
+  gap : 5px;
+}
+.recentsbtn:hover{
+  color:white;
+  font-size: 15px;
+  cursor:pointer
 }
 button > * {
   vertical-align: middle;
@@ -108,32 +115,3 @@ button > * {
   height: 50px;
 }
 
-.listcomponent {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 30px;
-  border-radius: 5px;
-  padding: 10px 15px;
-  height: 60px;
-}
-.listcomponenttext h3 {
-  color: white;
-  margin-bottom: -5px;
-  margin-left: -50px;
-}
-.listcomponenttext p {
-  color: #b3b3b3;
-}
-.listcomponenttext {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: -15px;
-  margin-top: -17px;
-  gap: 0;
-}
-.listcomponent:hover {
-  background-color: #393939;
-  cursor: pointer;
-}
