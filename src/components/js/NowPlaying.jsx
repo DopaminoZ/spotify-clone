@@ -6,6 +6,8 @@ import close from "../../assets/images/close.png";
 import cover2 from "../../assets/images/lana.jpeg";
 import about from "../../assets/images/lana2.jpeg";
 import Song from "./UpnextSong";
+import Tour from "./OntourComponent";
+import Credit from "./CreditsComponent";
 
 const Lyrics = () => {
   // first p is playlist name if the song is from playlist if its from search it becomes song name
@@ -59,19 +61,12 @@ const Lyrics = () => {
             <p className={styles.showallbtn}>Show all</p>
           </div>
           <div className={styles.firstcredit}>
-            <div className={styles.creditscomponent}>
-              <p>Lana Del Rey</p>
-              <p>Main Artitst,Composer</p>
-            </div>
+            <Credit />
             <button>Follow</button>
           </div>
-          <div className={styles.creditscomponent}>
-            <p>Daniel Heath</p>
-            <p>Composer</p>
-          </div>
-          <div className={styles.creditscomponent}>
-            <p>Dan Auerbach</p>
-            <p>Producer</p>
+          <div >
+            <Credit />
+            <Credit />
           </div>
         </div>
         <div className={styles.ontour}>
@@ -79,17 +74,8 @@ const Lyrics = () => {
             <p className={styles.ontourtitletxt}>On tour</p>
             <p className={styles.showallbtn}>Show all</p>
           </div>
-          <div className={styles.ontourcomponentdiv}>
-            <div className={styles.dateicon}>
-              <p className={styles.month}>Dec</p>
-              <p className={styles.day}>6</p>
-            </div>
-            <div className={styles.ontourcomponent}>
-              <p>Sao Paulo</p>
-              <p>Aurora</p>
-              <p>Sat 7:00 PM • Place</p>
-            </div>
-          </div>
+          <Tour />
+          <Tour />
         </div>
         <div className={styles.upnext}>
           <div className={styles.upnextfirst}>
