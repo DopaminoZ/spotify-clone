@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../css/Player.module.css";
 import add from "../../assets/images/add.png";
-import cover from "../../assets/images/Aurora.png";
+import cover from "../../assets/images/lana.jpeg";
 import play from "../../assets/images/play.png";
 import nextsong from "../../assets/images/next_song.png";
 import prevsong from "../../assets/images/prev_song.png";
@@ -37,8 +37,8 @@ const Player = ({ Showdiv }) => {
         <div className={styles.left}>
           <img src={cover} alt="Cover Photo" className={styles.coverphoto} />
           <div className={styles.names}>
-            <p id={styles.trackname}>Cure for me</p>
-            <p>AURORA</p>
+            <p id={styles.trackname}>Ultraviolence</p>
+            <p className={styles.artistname}>Lana Del Rey</p>
           </div>
           <button className={styles.addbtn}>
             <img src={add} alt="add to liked" className={styles.addbtnphoto} />
