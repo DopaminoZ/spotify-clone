@@ -73,7 +73,7 @@ function SignUp2( { formData, onFormDataChange, history } ) {
         onChange={(e) => onFormDataChange('day', e.target.value)} ></input> 
             <select placeholder='mm' id={styles.mm} value={formData.dob.month}
         onChange={(e) => onFormDataChange('month', e.target.value)}>
-              <option disabled selected hidden >Month</option>
+              <option selected hidden >Month</option>
               <option value='1'>January</option>
               <option value='2'>Feburary</option>
               <option value='3'>March</option>

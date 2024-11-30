@@ -82,7 +82,7 @@ function SignUp() {
         <div id={styles.emailcontainer}><label id={styles.email}>Email address</label>
         <input type="text" placeholder="name@domain.com" value={formData.email}
                   onChange={(e) => handleFormDataChange('email', e.target.value)} ></input>
-        { !isEmailValid && formData.email && <p style={{alignSelf: 'flex-start', paddingTop:20, color: "#f3727f"}} >Invalid email.</p> }
+        { !isEmailValid && formData.email && <p style={{fontSize:14, textAlign:'left',alignSelf: 'flex-start', paddingTop:0, paddingBottom: 0, color: "#f3727f"}} >This email is invalid. Make sure it’s written like example@email.com</p> }
         <label><a href="" id={styles.use}>Use phone number instead.</a></label></div>
         <div className ={styles.buttons}>
 

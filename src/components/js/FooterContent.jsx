@@ -3,11 +3,11 @@ import styles from '../css/FooterContent.module.css'
 import twitter from '../../assets/images/twitter.png'
 import fb from '../../assets/images/facebookfooter.png'
 import insta from '../../assets/images/instagram.png'
-function FooterContent() {
+function FooterContent({wid}) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} >
         <div id={styles.upper}>
-            <div id={styles.lists}>
+            <div id={styles.lists} style={{gap: wid == '53.2vw' ? 20 : 165}}>
             <div className={styles.list}>
                 <p className={styles.title}>Company</p>
                 <p className={styles.content}>About</p>

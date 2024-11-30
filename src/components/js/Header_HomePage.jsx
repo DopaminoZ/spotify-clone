@@ -19,7 +19,14 @@ function Header_HomePage() {
         <div className={styles.headersearch}>
           
               <Switch>
-                <Route path="/browse">
+                <Route exact path="/">
+                  <button className={styles.homebtn}>
+                  <div>
+                        <img src={homeactive} className={styles.homeimg} />
+                  </div>
+                </button>
+                </Route>
+                <Route path="/">
                 <Link to="/">
                 <button className={styles.homebtn}>
                   <div>
@@ -27,13 +34,6 @@ function Header_HomePage() {
                   </div>
                 </button>     
                 </Link>
-                </Route>
-                <Route path="/">
-                  <button className={styles.homebtn}>
-                  <div>
-                        <img src={homeactive} className={styles.homeimg} />
-                  </div>
-                </button>
                 </Route>
                 </Switch>
           <div className={styles.searchbar}>

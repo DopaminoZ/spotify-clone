@@ -15,7 +15,6 @@
     background-color: #121212;
     scrollbar-width: thick;
     scrollbar-color: transparent transparent;
-    contain: layout; /* Ensure container queries work */
 }
 
 #cardsContainer {
@@ -32,17 +31,3 @@
     display: none;
 }
 
-/* Container Query */
-@container (min-width: 10vw) { /* Adjust condition as needed */
-    #container {
-        width: 10px; /* This will be applied when the container is at least 300px wide */
-        background-color: aliceblue;
-    }
-}
-
-@container (max-width: 80vw) { /* Another example for max-width condition */
-    #container {
-        width: 10px; /* This will be applied when the container is no wider than 600px */
-        background-color: aliceblue;
-    }
-}

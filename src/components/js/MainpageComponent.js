@@ -59,7 +59,7 @@ function MainpageComponent({widthz}) {
           {error && <div style={{color: "red",fontSize:30,marginTop:50}}>{error}</div>}
           {isPending && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
           {lists && lists.map((list) => (
-            <ListComponent key={list.id} list={list}/>
+             <ListComponent key={list.id} list={list} widt={widthz}/>
           ))}
         </div>
     </div>
