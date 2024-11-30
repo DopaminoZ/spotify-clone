@@ -109,7 +109,7 @@ function SignUp2( { formData, onFormDataChange, history } ) {
             </label> 
             </div>
         </div>
-        <div className={styles.socials}><button id={styles.next} onClick={goNext}>Next</button></div> 
+        <div className={styles.socials}><button type="button" id={styles.next} onClick={goNext}>Next</button></div> 
         <label id={styles.disclaimer}>This site is a clone and isn't meant to break any kind of copyright or laws.<br/>But only to showcase a project.</label>
     </div>
   )

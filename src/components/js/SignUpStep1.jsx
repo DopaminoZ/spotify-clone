@@ -80,7 +80,7 @@ function SignUp2( { formData, onFormDataChange, history } ) {
           <p>{isPasswordValid2 ? <CheckDone className={styles.checks}/> : <CheckUndone className={styles.checks}/> }&nbsp;&nbsp;&nbsp;&nbsp;1 number or special character (example: # ? ! &)</p>
           <p>{isPasswordValid3 ? <CheckDone className={styles.checks}/> : <CheckUndone className={styles.checks}/> }&nbsp;&nbsp;&nbsp;&nbsp;10 characters</p>
         </div>
-        <div className={styles.socials}><button onClick={goNext} id={styles.next}>Next</button></div> 
+        <div className={styles.socials}><button type="button" onClick={goNext} id={styles.next}>Next</button></div> 
         <label id={styles.disclaimer}>This site is a clone and isn't meant to break any kind of copyright or laws.<br/>But only to showcase a project.</label>
     </div>
   )

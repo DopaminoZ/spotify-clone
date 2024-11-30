@@ -86,7 +86,7 @@ function SignUp() {
         <label><a href="" id={styles.use}>Use phone number instead.</a></label></div>
         <div className ={styles.buttons}>
 
-        <div className={styles.socials}><button onClick={goNext} id={styles.next}>Next</button></div> 
+        <div className={styles.socials}><button type="button" onClick={goNext} id={styles.next}>Next</button></div> 
 
         <div className={styles.dividercontainer}>
         <div className={styles.line}></div>
