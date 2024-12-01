@@ -10,6 +10,7 @@ import {ReactComponent as Eyeopen} from '../../assets/images/eyeopen.svg'
 
 
 function LogInPage() {
+  const ex = <svg xmlns="http://www.w3.org/2000/svg" style={{width:15, height:15, marginTop:10}} viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" fill= "#ffffff"/></svg>
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [formData, setFormData] = useState({
@@ -64,7 +65,8 @@ console.log(isEmailValid);
         <img src={logo} className={styles.logo}></img>  
         <h1 className={styles.logintext}>Log in to Spotify</h1>
         {(!isEmailValid && formData.email || formData.password.length<10) &&  <div className={styles.notvalid} style={{backgroundColor:"#e9142a",textAlign:"left",width:650,marginBottom:20}}>
-          <h1 style={{fontSize:14,marginLeft:60,fontWeight:100}}>Incorrect username or password</h1>
+          
+          <h1 style={{fontSize:14,marginLeft:60,fontWeight:100}}> {ex} Incorrect username or password</h1>
 
         </div>
 

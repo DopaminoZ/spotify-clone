@@ -13,6 +13,7 @@ function SignUp() {
   // useEffect = (() => {
   //   document.title = "Sign up - Spotify";
   // });
+  const ex = <svg xmlns="http://www.w3.org/2000/svg" style={{width:15, height:15, marginTop:10}} viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" fill= "#f3727f"/></svg>
   const history = useHistory();
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [formData, setFormData] = useState({
@@ -82,7 +83,7 @@ function SignUp() {
         <div id={styles.emailcontainer}><label id={styles.email}>Email address</label>
         <input type="text" placeholder="name@domain.com" value={formData.email}
                   onChange={(e) => handleFormDataChange('email', e.target.value)} ></input>
-        { !isEmailValid && formData.email && <p style={{fontSize:14, textAlign:'left',alignSelf: 'flex-start', paddingTop:0, paddingBottom: 0, color: "#f3727f"}} >This email is invalid. Make sure it’s written like example@email.com</p> }
+        { !isEmailValid && formData.email && ( <div style={{fontSize:14, textAlign:'left',alignSelf: 'flex-start', paddingTop:0, paddingBottom: 0, color: "#f3727f"}} > {ex} This email is invalid. Make sure it’s written like example@email.com</div>) }
         <label><a href="" id={styles.use}>Use phone number instead.</a></label></div>
         <div className ={styles.buttons}>
 
