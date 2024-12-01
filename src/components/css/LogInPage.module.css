@@ -15,7 +15,8 @@
     align-items: center;
     position: relative;
     width: 740px;
-    height: 855px;
+
+    max-height: 900px;
     margin-top: 30px;
 
 
@@ -79,8 +80,10 @@
 
 .divider {
     width: 550px;
-    border: 0.5px solid;
+    border: 0px solid;
     margin-top: 40px;
+    height: 0.5px;
+    background-color: #292929;
 }
 
 #google {
@@ -426,7 +429,6 @@
 
         margin-right: 88vw;
     }
-
 
 
 

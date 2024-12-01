@@ -63,6 +63,17 @@ console.log(isEmailValid);
     <div id={styles.container}>
         <img src={logo} className={styles.logo}></img>  
         <h1 className={styles.logintext}>Log in to Spotify</h1>
+        {(!isEmailValid && formData.email || formData.password.length<10) &&  <div className={styles.notvalid} style={{backgroundColor:"#e9142a",textAlign:"left",width:650,marginBottom:20}}>
+          <h1 style={{fontSize:14,marginLeft:60,fontWeight:100}}>Incorrect username or password</h1>
+
+        </div>
+
+
+        }
+
+
+
+
         <div className={styles.buttonscontainer}>
         <button className={styles.buttons} ><img className ={styles.img1} id={styles.google} src={google}/>Continue with Google</button>
         <button className={styles.buttons}><img className ={styles.img1} id={styles.facebook}src={fb}/>Continue with Facebook</button>
@@ -81,7 +92,7 @@ console.log(isEmailValid);
           <div id={styles.inputdiv}>
             <label>Password</label>
             <div id={styles.passbox}>
-            <input  type={isPasswordVisible ? "text" : "password"} value={formData.password}
+            <input placeholder="Password" type={isPasswordVisible ? "text" : "password"} value={formData.password}
         onChange={(e) => handleFormDataChange('password', e.target.value)} ></input>
               <div onClick={togglePasswordVisibility}>
               {isPasswordVisible ? <Eyeopen id={styles.eyevisible}/> : <Eyeclosed id={styles.eyedisable} />}
