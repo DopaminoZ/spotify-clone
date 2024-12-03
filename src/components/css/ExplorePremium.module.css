@@ -83,6 +83,9 @@
   text-decoration: underline;
 }
 .paymentmethodbtn {
+  all: unset;
+  background-color: #EFEFEF;
+  border-radius: 4px;
   width: 50px;
   height: 30px;
 }
@@ -129,4 +132,132 @@
   margin-top: 50px;
   font-size: 30px;
   font-weight: 700;
+}
+.card {
+  width: 310px;
+  height: 415px;
+  background-color: #242424;
+  padding: 20px 15px;
+}
+
+.cardlogo {
+  width: 25px;
+  height: 25px;
+  margin-top: 12.5px;
+}
+.cardhead {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.topdiv p {
+  justify-self: left;
+}
+
+.cardlist ul li {
+  justify-self: left;
+  text-align: left;
+  margin-bottom: 0.5px;
+  margin-left: -20px;
+}
+.plannamemini {
+  font-size: 32px;
+  font-weight: 700;
+  color: #cff56a;
+}
+.plannameindividual {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffd2d7;
+}
+
+.plannamestudent {
+  font-size: 32px;
+  font-weight: 700;
+  color: #c4b1d4;
+}
+.plannameduo {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffc862;
+}
+.plannamefamily {
+  font-size: 32px;
+  font-weight: 700;
+  color: #a5bbd1;
+}
+.title {
+  font-weight: 700;
+}
+
+.cardbtn1 {
+  all: unset;
+  width: 95%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #cff56a;
+  color: black;
+  font-weight: 700;
+}
+.cardbtn2 {
+  all: unset;
+  width: 95%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ffd2d7;
+  color: black;
+  font-weight: 700;
+}
+.cardbtn3 {
+  all: unset;
+  width: 95%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #c4b1d4;
+  color: black;
+  font-weight: 700;
+}
+
+.cardbtn4 {
+  all: unset;
+  width: 95%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ffc862;
+  color: black;
+  font-weight: 700;
+}
+.cardbtn5 {
+  all: unset;
+  width: 95%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #a5bbd1;
+  color: black;
+  font-weight: 700;
+}
+hr {
+  border: 1.1px solid #3a3a3a;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1100px;
+  gap: 32px;
+  justify-self: center;
+  margin: 50px 0;
+}
+.terms {
+  font-size: x-small;
+  color: #999999;
+}
+.terms span {
+  color: #999999;
+  text-decoration: underline;
+}
+.terms span:hover {
+  cursor: pointer;
 }
