@@ -191,6 +191,48 @@ const Premuim = () => {
           </div>
         </div>
       </div>
+      <div>
+        <div className={styles.benefits}>
+          <p>What you'll get</p>
+          <div className={styles.benefitstop}>
+            <p className={styles.midtitle}>Spotify's Free plan</p>
+            <div className={styles.cardhead}>
+              <img src={logo} alt="Spotify Logo" className={styles.cardlogo} />
+              <p className={styles.title}>Premium</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.benefits}>
+          <p>Ad-free music listening</p>
+          <p>---</p>
+          <img src={check} alt="" className={styles.benefitsicon} />
+        </div>
+        <div className={styles.benefits}>
+          <p>Download songs</p>
+          <p>---</p>
+          <img src={check} alt="" className={styles.benefitsicon} />
+        </div>
+        <div className={styles.benefits}>
+          <p>Play songs in any order</p>
+          <p>---</p>
+          <img src={check} alt="" className={styles.benefitsicon} />
+        </div>
+        <div className={styles.benefits}>
+          <p>High quality audio</p>
+          <p>---</p>
+          <img src={check} alt="" className={styles.benefitsicon} />
+        </div>
+        <div className={styles.benefits}>
+          <p>Listen with friends in real time</p>
+          <p>---</p>
+          <img src={check} alt="" className={styles.benefitsicon} />
+        </div>
+        <div className={styles.benefits}>
+          <p>Organize listening queue</p>
+          <p>---</p>
+          <img src={check} alt="" className={styles.benefitsicon} />
+        </div>
+      </div>
       <div className={styles.footer}>
         <FooterContent />
       </div>

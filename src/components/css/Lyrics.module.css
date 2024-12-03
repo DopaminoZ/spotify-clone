@@ -1,0 +1,17 @@
+.lyric {
+  font-size: 45px;
+  justify-self: left;
+  color: black;
+    font-weight: 700;
+
+}
+.lyric:hover{
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#lyricsdiv{
+    background-color: #E62430;
+    padding: 20px 60px;
+    border-radius: 20px;
+}

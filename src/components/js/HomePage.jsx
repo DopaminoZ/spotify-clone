@@ -13,7 +13,11 @@ import Lyrics from "./Lyrics";
 import Player from "./Player";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { useState } from "react";
-
+let lyrics = new Array(
+  "All the lights in Miami begin to gleam",
+  "Ruby,blue, and green, neon too",
+  "Everything looks better from above ,my king"
+);
 function HomePage() {
   const [firstDivSize, setFirstDivSize] = useState(75.5);
   const [showSecondDiv, setShowSecondDiv] = useState(false);
@@ -40,22 +44,22 @@ function HomePage() {
         <div classname={styles.mainpage}>
           <Switch>
             <Route path="/browse">
-              <BrowseComponent widthz={`${firstDivSize}vw`}/>
+              <BrowseComponent widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/download">
               <InstallApp widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/artist">
-              <Artists widthz={`${firstDivSize}vw`}/>
+              <Artists widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/playlist">
               <Playlist widthz={`${firstDivSize}vw`} />
             </Route>
-            <Route path="/ExplorePremium">
-              <Premium widthz={`${firstDivSize}vw`}/>
+            <Route path="/explorepremium">
+              <Premium widthz={`${firstDivSize}vw`} />
             </Route>
-            <Route path="/Lyrics">
-              <Lyrics widthz={`${firstDivSize}vw`} />
+            <Route path="/lyrics">
+              <Lyrics widthz={`${firstDivSize}vw`} lyricss={lyrics} />
             </Route>
             <Route path="/">
               <MainpageComponent widthz={`${firstDivSize}vw`} />

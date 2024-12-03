@@ -91,7 +91,7 @@ const Player = ({ Showdiv }) => {
           <button className={styles.nowplaying} onClick={() => Showdiv()}>
             <img src={nowplaying} alt="" className={styles.nowplayingimg} />
           </button>
-          <Link to={lyricsstate ? "/Lyrics" : "/"}>
+          <Link to={lyricsstate ? "/lyrics" : "/"}>
             <button className={styles.lyrics} onClick={() => handleLyrics()}>
               <img src={mic} alt="" className={styles.micimg} />
             </button>

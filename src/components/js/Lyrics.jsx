@@ -1,7 +1,13 @@
-const Lyrics = () => {
+import styles from "../css/Lyrics.module.css";
+
+const Lyrics = ({ lyricss }) => {
   return (
-    <div>
-      <p>gajskdhgkjshdgk</p>
+    <div id={styles.lyricsdiv}>
+      {lyricss.map((text, index) => (
+        <p key={index} className={styles.lyric}>
+          {text}
+        </p>
+      ))}
     </div>
   );
 };
