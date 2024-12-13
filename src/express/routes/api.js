@@ -51,10 +51,23 @@ router.post('/express/check-email', async (req, res) => {
     }
   });
 // POST route for user signup
-router.post('/express/signup', function (req, res, next){
-    Account. create(req.body).then(function(account){
-        res.send(account);
-    }).catch(next);
+router.post('/express/signup', async function (req, res, next) {
+    try {
+        // Hash the password asynchronously
+        const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 is the salt rounds
+
+        // Replace the plain password with the hashed one
+        req.body.password = hashedPassword;
+
+        // Create a new account in the database
+        const account = await Account.create(req.body);
+
+        // Send the account details in the response
+        res.status(201).send(account);
+    } catch (error) {
+        // Pass the error to the next middleware (usually an error handler)
+        next(error);
+    }
 });
 
 module.exports = router;
