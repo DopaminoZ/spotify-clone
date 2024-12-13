@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 function SignUp2( { formData, onFormDataChange, history } ) {
   const goNext = () => {
-    if(formData.name && formData.dob.year && formData.dob.month && formData.dob.day && formData.gender && isValidDay(formData.dob.day, formData.dob.month) && isValidGender(formData.gender)){
+    if(formData.username && formData.dob.year && formData.dob.month && formData.dob.day && formData.gender && isValidDay(formData.dob.day, formData.dob.month) && isValidGender(formData.gender)){
       history.push('/signup/step=3');
     }
   };
@@ -61,8 +61,8 @@ function SignUp2( { formData, onFormDataChange, history } ) {
             <label>Name</label>
             <p style={{margin:0, alignSelf:"flex-start", color: "#b3b3b3", fontSize: 14, paddingTop: 5, paddingBottom: 5}}>This name will appear on your profile</p>
             <div id={styles.passbox}>
-            <input type="text" value={formData.name}
-        onChange={(e) => onFormDataChange('name', e.target.value)}></input>
+            <input type="text" value={formData.username}
+        onChange={(e) => onFormDataChange('username', e.target.value)}></input>
             </div>
         </div>
         <div id={styles.datediv}>

@@ -2,14 +2,21 @@ import React, { useEffect, useState } from 'react'
 import styles from '../css/SignUpStep3.module.css'
 import logo from '../../assets/images/spotify-white-icon.png'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
-function SignUp2( { formData, onFormDataChange, history } ) {
+function SignUp2( { formData, onFormDataChange, handleSubmit, history } ) {
   const navtoLogin = (e) => {
     e.preventDefault();
     window.alert('Account created! Log in now.');
     setTimeout(() => {
       history.push('/login');
     }, 500);
+  };
+  const handleSignUp = async (e) => {
+
+    // Call handleSubmit, which should send the request to the backend
+    await handleSubmit(e);
+    navtoLogin(e);
   };
   return (
     <div className={styles.container}>
@@ -33,8 +40,8 @@ function SignUp2( { formData, onFormDataChange, history } ) {
             </div>
         </div>
         <div className={styles.checkbox}>
-          <input type="checkbox" className='chk' checked={ formData.terms === true }
-              onChange={(e) => onFormDataChange('terms', e.target.checked)}/>
+          <input type="checkbox" className='chk' checked={ formData.newsletter === true }
+              onChange={(e) => onFormDataChange('newsletter', e.target.checked)}/>
           <p>Please send me news and offers from Spotify</p>
         </div>
         <div className={styles.checkbox}>
@@ -44,7 +51,7 @@ function SignUp2( { formData, onFormDataChange, history } ) {
         </div>
         <p className={styles.lasttexts}>By clicking on ‘Sign up’, you agree to Spotify’s <p className={styles.links}>Terms and Conditions of Use.</p></p>
         <p className={styles.lasttexts}>To learn more about how Spotify collects, uses, shares and protects your personal data, please see <p className={styles.links}>Spotify’s Privacy Policy.</p></p>
-        <div className={styles.socials}><button type="submit" onClick={navtoLogin} id={styles.next}>Sign Up</button></div> 
+        <div className={styles.socials}><button type="submit" onClick={(e) => handleSignUp(e)} id={styles.next}>Sign Up</button></div> 
         <label id={styles.disclaimer}>This site is a clone and isn't meant to break any kind of copyright or laws.<br/>But only to showcase a project.</label>
     </div>
   )

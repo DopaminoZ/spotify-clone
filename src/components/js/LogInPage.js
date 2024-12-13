@@ -7,6 +7,7 @@ import logo from '../../assets/images/spotify-white-icon.png'
 import { Link } from 'react-router-dom';
 import {ReactComponent as Eyeclosed} from '../../assets/images/eyeclosed.svg'
 import {ReactComponent as Eyeopen} from '../../assets/images/eyeopen.svg'
+import axios from 'axios'
 
 
 function LogInPage() {
@@ -23,26 +24,31 @@ function LogInPage() {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  const [isEmailValid,setEmailValid] = useState(false);
-
-  const checkEmailValid =()=>{
-     if(emailRegex.test(formData.email)){
-
-      setEmailValid(true)
-     }
-     else{
-      setEmailValid(false)
-     }
-
-  }
+  const [isEmailValid, setEmailValid] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const checkEmailValid = async () => {
+    if (formData.email && emailRegex.test(formData.email)) {
+      try {
+        const response = await axios.post('http://localhost:4000/api/express/check-email', { email: formData.email });
+        setEmailValid(false)
+        setEmailError('No account exists with this email...')
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          setEmailError('Invalid password.');
+          setEmailValid(true);
+        }
+      }
+    } else {
+      setEmailError('Incorrect email or password.');
+      setEmailValid(false);
+    }
+  };
 
   const handleFormDataChange = (name, value) => {
-    
       setFormData({
         ...formData,
         [name]: value,
       });
-    
     console.log(formData);
   };
   useEffect(()=>{
@@ -52,13 +58,6 @@ console.log(isEmailValid);
 
   },[formData])
 
-
-  
-
-
-
-  
-
   return (
     <div id={styles.background}>
     <div id={styles.container}>
@@ -66,7 +65,7 @@ console.log(isEmailValid);
         <h1 className={styles.logintext}>Log in to Spotify</h1>
         {(!isEmailValid && formData.email || formData.password.length<10) &&  <div className={styles.notvalid} style={{backgroundColor:"#e9142a",textAlign:"left",width:650,marginBottom:20}}>
           
-          <h1 style={{fontSize:14,marginLeft:60,fontWeight:100}}> {ex} Incorrect username or password</h1>
+          <h1 style={{fontSize:14,marginLeft:60,fontWeight:100}}> {ex} {emailError}</h1>
 
         </div>
 
@@ -103,7 +102,7 @@ console.log(isEmailValid);
         </div>
         
         </div>
-          <buttons className={styles.login}>Log In</buttons>
+          <button className={styles.login}>Log In</button>
 
           <a href="/"className={styles.forget}>Forgot your password?</a>
         <div className={styles.signup}>
