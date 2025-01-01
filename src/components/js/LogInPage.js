@@ -4,7 +4,7 @@ import google from '../../assets/images/Google_Icons-09-512.png';
 import fb from '../../assets/images/facebook.png';
 import apple from '../../assets/images/applelogo.png';
 import logo from '../../assets/images/spotify-white-icon.png'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {ReactComponent as Eyeclosed} from '../../assets/images/eyeclosed.svg'
 import {ReactComponent as Eyeopen} from '../../assets/images/eyeopen.svg'
 import axios from 'axios'
@@ -17,8 +17,8 @@ function LogInPage() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-  
   });
+  const history = useHistory()
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
@@ -43,6 +43,23 @@ function LogInPage() {
       setEmailValid(false);
     }
   };
+  const checkPasswordValid = async () => {
+    if(emailError == "Invalid password." && formData.password.length>=10){
+      try{
+        const response = await axios.post('http://localhost:4000/api/express/check-password', {email: formData.email, password: formData.password});
+        setEmailValid(true)
+        console.log("login successful")
+        sessionStorage.setItem('userEmail', formData.email)
+        history.push('/')
+      }
+      catch(error){
+        if(error.response && error.response.status === 401){
+          setEmailError('Incorrect password. Try again...')
+          setEmailValid(false)
+        }
+      }
+    }
+  }
 
   const handleFormDataChange = (name, value) => {
       setFormData({
@@ -102,7 +119,7 @@ console.log(isEmailValid);
         </div>
         
         </div>
-          <button className={styles.login}>Log In</button>
+          <button onClick={checkPasswordValid}className={styles.login}>Log In</button>
 
           <a href="/"className={styles.forget}>Forgot your password?</a>
         <div className={styles.signup}>

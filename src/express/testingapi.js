@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors'); 
 const app = express();
+const cookiemonster = require('cookie-parser')
 
 app.use(cors({
     origin: 'http://localhost:3000', // Allow requests from your frontend domain
@@ -15,6 +16,7 @@ mongoose.connect('mongodb+srv://alibagoury:alielbagoury@socialmedia.rhtgxdv.mong
 mongoose.Promise = global.Promise;
   
 app.use(bodyParser.json())
+app.use(cookiemonster())
 app.use('/api',routes)
 
 app.use(function(err,req,res,next){

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');  // Import bcrypt
 const router = express.Router();
 const Song = require('../models/song.js');
 const Account = require('../models/account.js');
+const cookiemonster = require('cookie-parser')
 
 // Get all ninjas (example route)
 router.get('/ninjas', function(req, res, next) {
@@ -69,5 +70,22 @@ router.post('/express/signup', async function (req, res, next) {
         next(error);
     }
 });
+router.post('/express/check-password', async function(req,res,next){
+    try{
+        const {email,password} = req.body
+        const user = await Account.findOne({email}).select('+password')
+        const passMatch = await bcrypt.compare(password, user.password)
+        if(passMatch){
+            res.cookie('userEmail', email, { httpOnly: true, secure: false })
+            res.status(200).json({message: "Successfully logged in"})
+        }
+        else{
+            res.status(401).json({error: "Incorrect password"})
+        }
+    }
+    catch(error){
+        next(error);
+    }
+})
 
 module.exports = router;
