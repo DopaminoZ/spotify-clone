@@ -102,6 +102,7 @@
   height: 32px;
   font-weight: 700;
   margin-top: 10px;
+  cursor:pointer;
 }
 .install {
   background-color: black;
@@ -112,6 +113,7 @@
   height: 32px;
   margin-top: 10px;
   font-weight: 700;
+  cursor:pointer;
 }
 .login {
   background-color: white;
