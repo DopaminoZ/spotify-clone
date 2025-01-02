@@ -145,6 +145,11 @@ async function getAccessToken() {
     throw error;
   }
 }
+// Fetch a new token immediately when the server starts
+getAccessToken();
+
+// Schedule token refresh every hour (3600 seconds)
+setInterval(getAccessToken, 3600 * 1000);
 
 // Endpoint to fetch the token
 router.get('/token', async (req, res) => {

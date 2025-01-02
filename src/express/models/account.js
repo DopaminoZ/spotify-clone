@@ -39,10 +39,6 @@ const AccountSchema = new Schema({
     playlists: [playlistSchema],
     recentlyPlayed: [songSchema],
     favoriteGenres: [String],
-    tokens: {
-      accessToken: {type: String},
-      refreshToken: {type:String},
-    },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 })
