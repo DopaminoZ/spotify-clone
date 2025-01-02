@@ -50,7 +50,6 @@ function LogInPage() {
         setEmailValid(true)
         console.log("login successful")
         sessionStorage.setItem('userEmail', formData.email)
-        console.log()
         history.push('/')
       }
       catch(error){

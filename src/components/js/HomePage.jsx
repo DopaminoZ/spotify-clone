@@ -19,10 +19,11 @@ let lyrics = new Array(
   "Everything looks better from above ,my king"
 );
 const currentSignedInUser = sessionStorage.getItem('userEmail');
+
 function HomePage() {
   const [firstDivSize, setFirstDivSize] = useState(75.5);
   const [showSecondDiv, setShowSecondDiv] = useState(false);
-
+  
   const handleResizeAndShow = () => {
     if (firstDivSize == 75.5) {
       setFirstDivSize(53.2);

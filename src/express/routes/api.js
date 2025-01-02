@@ -5,7 +5,8 @@ const router = express.Router();
 const Song = require('../models/song.js');
 const Account = require('../models/account.js');
 const cookiemonster = require('cookie-parser')
-
+let cachedAccessToken = null;
+let tokenExpiryTime = null;
 // Get all ninjas (example route)
 router.get('/ninjas', function(req, res, next) {
     res.send({type: 'GET'});
@@ -78,9 +79,6 @@ router.post('/express/check-password', async function(req,res,next){
         const passMatch = await bcrypt.compare(password, user.password)
         if(passMatch){
             res.cookie('userEmail', email, { httpOnly: true, secure: false })
-            if (!user.tokens.accessToken || !user.tokens.refreshToken) {
-                return res.redirect('/api/auth/spotify');
-            }
             res.status(200).json({message: "Successfully logged in"})
         }
         else{
@@ -91,67 +89,70 @@ router.post('/express/check-password', async function(req,res,next){
         next(error);
     }
 })
-
-router.get('/auth/spotify', (req, res) => {
-    const clientId = 'fd064ea82b074a8393511294642b3de6'
-    const redirectUri = 'http://localhost:4000/api/callback'
-    const scope = 'user-library-read playlist-read-private playlist-read-collaborative'; // Required permissions
-    const responseType = 'code'; // We want the authorization code to exchange for tokens
-    
-    // Spotify authorization URL
-    const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&scope=${scope}`;
-    
-    res.redirect(authUrl);
-  });
   
-router.get('/callback', async (req, res) => {
-    const { code } = req.query; // Get the authorization code from the query params
+  router.get('/spotify/public-playlists', async (req, res) => {
+    const accessToken = cachedAccessToken; // Pass the access token from the client
   
-    // Spotify credentials and token URL
-    const clientId = 'fd064ea82b074a8393511294642b3de6'
-    const clientSecret = '3c78ec2ac8e742358e550079c471332c'
-    const redirectUri = 'http://localhost:4000/api/callback'
-    
-    // Request to exchange the authorization code for access and refresh tokens
-    const tokenUrl = 'https://accounts.spotify.com/api/token';
-    const tokenData = new URLSearchParams();
-    tokenData.append('grant_type', 'authorization_code');
-    tokenData.append('code', code);
-    tokenData.append('redirect_uri', redirectUri);
-    
-    // Basic auth header (Base64-encoded clientId:clientSecret)
-    const authHeader = 'Basic ' + Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
-    
     try {
-      const response = await fetch(tokenUrl, {
-          method: 'POST',
-          headers: {
-            'Authorization': authHeader,
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: tokenData,
-        });
-        
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('Spotify API Error:', errorText);
-          return res.status(500).send('Spotify authentication failed.');
-        }
-        
+      const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Spotify API Error:', errorText);
+        return res.status(500).send('Failed to fetch data from Spotify.');
+      }
+  
       const data = await response.json();
-      const { access_token, refresh_token } = data;
-      
-      // Store the tokens in your database, associated with the logged-in user's email (from session)
-      const userEmail = req.session.userEmail;
-      await Account.updateOne(
-        { email: userEmail },
-        { $set: { 'tokens.accessToken': access_token, 'tokens.refreshToken': refresh_token } }
-      );
-      res.send('Spotify authentication successful! You can now access Spotify data.' + access_token + " " + refresh_token);
+      res.send(data);
     } catch (error) {
-      console.error('Error during Spotify token exchange:', error);
-      res.status(500).send('Spotify authentication failed.');
+      console.error('Error fetching Spotify data:', error);
+      res.status(500).send('Failed to fetch data from Spotify.');
     }
   });
-  
+
+async function getAccessToken() {
+  if (cachedAccessToken && tokenExpiryTime > Date.now()) {
+    return cachedAccessToken;
+  }
+
+  const clientId = 'fd064ea82b074a8393511294642b3de6'; // Replace with your client ID
+  const clientSecret = '3c78ec2ac8e742358e550079c471332c'; // Replace with your client secret
+  const tokenUrl = 'https://accounts.spotify.com/api/token';
+
+  const authHeader = 'Basic ' + Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+
+  try {
+    const response = await fetch(tokenUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': authHeader,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'grant_type=client_credentials',
+    });
+
+    const data = await response.json();
+    cachedAccessToken = data.access_token;
+    tokenExpiryTime = Date.now() + data.expires_in * 1000; // Convert to milliseconds
+    return cachedAccessToken;
+  } catch (error) {
+    console.error('Error requesting new access token:', error);
+    throw error;
+  }
+}
+
+// Endpoint to fetch the token
+router.get('/token', async (req, res) => {
+  try {
+    const accessToken = await getAccessToken();
+    res.json({ accessToken });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch access token' });
+  }
+});
 module.exports = router;
