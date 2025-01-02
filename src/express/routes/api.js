@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bcrypt = require('bcryptjs');  // Import bcrypt
 const router = express.Router();
@@ -77,6 +78,9 @@ router.post('/express/check-password', async function(req,res,next){
         const passMatch = await bcrypt.compare(password, user.password)
         if(passMatch){
             res.cookie('userEmail', email, { httpOnly: true, secure: false })
+            if (!user.tokens.accessToken || !user.tokens.refreshToken) {
+                return res.redirect('/api/auth/spotify');
+            }
             res.status(200).json({message: "Successfully logged in"})
         }
         else{
@@ -88,4 +92,61 @@ router.post('/express/check-password', async function(req,res,next){
     }
 })
 
+router.get('/auth/spotify', (req, res) => {
+    const clientId = 'fd064ea82b074a8393511294642b3de6'
+    const redirectUri = 'http://localhost:4000/api/callback'
+    const scope = 'user-library-read playlist-read-private playlist-read-collaborative'; // Required permissions
+    const responseType = 'code'; // We want the authorization code to exchange for tokens
+    
+    // Spotify authorization URL
+    const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&scope=${scope}`;
+    
+    res.redirect(authUrl);
+  });
+  
+router.get('/callback', async (req, res) => {
+    const { code } = req.query; // Get the authorization code from the query params
+  
+    // Spotify credentials and token URL
+    const clientId = process.env.CLIENT_ID;
+    const clientSecret = process.env.CLIENT_SECRET;
+    const redirectUri = process.env.REDIRECT_URI;
+    
+    // Request to exchange the authorization code for access and refresh tokens
+    const tokenUrl = 'https://accounts.spotify.com/api/token';
+    const tokenData = new URLSearchParams();
+    tokenData.append('grant_type', 'authorization_code');
+    tokenData.append('code', code);
+    tokenData.append('redirect_uri', redirectUri);
+    
+    // Basic auth header (Base64-encoded clientId:clientSecret)
+    const authHeader = 'Basic ' + Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+    
+    try {
+      const response = await fetch(tokenUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': authHeader,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: tokenData,
+      });
+      
+      const data = await response.json();
+      const { access_token, refresh_token } = data;
+  
+      // Store the tokens in your database, associated with the logged-in user's email (from session)
+      const userEmail = req.session.email;
+      await Account.updateOne(
+        { email: userEmail },
+        { $set: { 'tokens.accessToken': access_token, 'tokens.refreshToken': refresh_token } }
+      );
+  
+      res.send('Spotify authentication successful! You can now access Spotify data.');
+    } catch (error) {
+      console.error('Error during Spotify token exchange:', error);
+      res.status(500).send('Spotify authentication failed.');
+    }
+  });
+  
 module.exports = router;
