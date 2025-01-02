@@ -108,9 +108,9 @@ router.get('/callback', async (req, res) => {
     const { code } = req.query; // Get the authorization code from the query params
   
     // Spotify credentials and token URL
-    const clientId = process.env.CLIENT_ID;
-    const clientSecret = process.env.CLIENT_SECRET;
-    const redirectUri = process.env.REDIRECT_URI;
+    const clientId = 'fd064ea82b074a8393511294642b3de6'
+    const clientSecret = '3c78ec2ac8e742358e550079c471332c'
+    const redirectUri = 'http://localhost:4000/api/callback'
     
     // Request to exchange the authorization code for access and refresh tokens
     const tokenUrl = 'https://accounts.spotify.com/api/token';
@@ -124,25 +124,30 @@ router.get('/callback', async (req, res) => {
     
     try {
       const response = await fetch(tokenUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': authHeader,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: tokenData,
-      });
-      
+          method: 'POST',
+          headers: {
+            'Authorization': authHeader,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: tokenData,
+        });
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Spotify API Error:', errorText);
+          return res.status(500).send('Spotify authentication failed.');
+        }
+        
       const data = await response.json();
       const { access_token, refresh_token } = data;
-  
+      
       // Store the tokens in your database, associated with the logged-in user's email (from session)
-      const userEmail = req.session.email;
+      const userEmail = req.session.userEmail;
       await Account.updateOne(
         { email: userEmail },
         { $set: { 'tokens.accessToken': access_token, 'tokens.refreshToken': refresh_token } }
       );
-  
-      res.send('Spotify authentication successful! You can now access Spotify data.');
+      res.send('Spotify authentication successful! You can now access Spotify data.' + access_token + " " + refresh_token);
     } catch (error) {
       console.error('Error during Spotify token exchange:', error);
       res.status(500).send('Spotify authentication failed.');

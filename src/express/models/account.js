@@ -35,13 +35,13 @@ const AccountSchema = new Schema({
       lat: { type: Number },
       lon: { type: Number }
     },
-    profilePicture: String,
+    profilePicture: {type:String},
     playlists: [playlistSchema],
     recentlyPlayed: [songSchema],
     favoriteGenres: [String],
     tokens: {
-      accessToken: String,
-      refreshToken: String,
+      accessToken: {type: String},
+      refreshToken: {type:String},
     },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

@@ -209,7 +209,7 @@
   height: 23.25px;
 }
 #usermode {
-  display: none;
+  display: show;
 }
 #guestmode {
   display: show;

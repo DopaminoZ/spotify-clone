@@ -10,6 +10,7 @@ import browseactive from "../../assets/images/browse-active.png";
 import {Link,Route, Switch} from 'react-router-dom'
 
 function Header_HomePage() {
+  const currentSignedInUser = sessionStorage.getItem('userEmail');
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -17,7 +18,6 @@ function Header_HomePage() {
         <div className={styles.logodiv}><img src={logo} alt="spotify logo" className={styles.spotifylogo} /></div>
         </Link>
         <div className={styles.headersearch}>
-          
               <Switch>
                 <Route exact path="/">
                   <button className={styles.homebtn}>
@@ -59,6 +59,7 @@ function Header_HomePage() {
           </div>
         </div>
         {/* El kalam da s7 bs hn5ly el default en el user guest mesh logged in */}
+        { currentSignedInUser != undefined &&
         <div className={styles.explorediv} id={styles.usermode}>
           <button className={styles.explore}>Explore Premuim</button>
           <button className={styles.install}>
@@ -72,7 +73,8 @@ function Header_HomePage() {
               <img src={home} className={styles.homeimg} />
             </div>
           </button>
-        </div>
+        </div>}
+        { currentSignedInUser == undefined &&
         <div className={styles.explorediv} id={styles.guestmode}>
           <Link to="/signup">
           <button className={styles.signup}>Sign up</button>
@@ -80,7 +82,7 @@ function Header_HomePage() {
           <Link to="/login">
           <button className={styles.login}>Log in</button>
           </Link>
-        </div>
+        </div>}
       </div>
     </div>
   );
