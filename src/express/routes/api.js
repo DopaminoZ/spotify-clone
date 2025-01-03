@@ -90,11 +90,35 @@ router.post('/express/check-password', async function(req,res,next){
     }
 })
   
-  router.get('/spotify/public-playlists', async (req, res) => {
+  router.get('/spotify/browse-categories', async (req, res) => {
     const accessToken = cachedAccessToken; // Pass the access token from the client
   
     try {
-      const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists', {
+      const response = await fetch('https://api.spotify.com/v1/browse/categories?offset=0&limit=50&locale=en', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Spotify API Error:', errorText);
+        return res.status(500).send('Failed to fetch data from Spotify.');
+      }
+  
+      const data = await response.json();
+      res.send(data);
+    } catch (error) {
+      console.error('Error fetching Spotify data:', error);
+      res.status(500).send('Failed to fetch data from Spotify.');
+    }
+  });
+  router.post('/spotify/categories', async (req, res) => {
+    const accessToken = cachedAccessToken; // Pass the access token from the client
+    let categoryID = req.body.catID
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/browse/categories/${categoryID}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
