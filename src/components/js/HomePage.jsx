@@ -55,7 +55,7 @@ function HomePage() {
             <Route path="/artist">
               <Artists widthz={`${firstDivSize}vw`} />
             </Route>
-            <Route path="/playlist">
+            <Route path="/playlist/:playlistID">
               <Playlist widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/explorepremium">

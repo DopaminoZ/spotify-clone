@@ -31,8 +31,14 @@
     font-size: 96px;
     margin-top: -14px;
     font-weight: 800;
+    white-space: nowrap;
+    overflow:hidden;        /* Prevent text from wrapping to the next line */
+    text-overflow: ellipsis;    /* Display an ellipsis ("...") for overflow */
 }
 #playlistdesc{
+    white-space: nowrap;
+    overflow:hidden;        /* Prevent text from wrapping to the next line */
+    text-overflow: ellipsis;    /* Display an ellipsis ("...") for overflow */
     font-size: 14px;
     color:white;
     font-weight:400;

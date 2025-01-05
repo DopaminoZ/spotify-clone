@@ -2,6 +2,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');  // Import bcrypt
 const router = express.Router();
+const axios = require('axios')
 const Song = require('../models/song.js');
 const Account = require('../models/account.js');
 const cookiemonster = require('cookie-parser')
@@ -114,7 +115,7 @@ router.post('/express/check-password', async function(req,res,next){
       res.status(500).send('Failed to fetch data from Spotify.');
     }
   });
-  router.post('/spotify/categories', async (req, res) => {
+  router.get('/spotify/categories', async (req, res) => {
     const accessToken = cachedAccessToken; // Pass the access token from the client
     let categoryID = req.body.catID
     try {
@@ -136,6 +137,54 @@ router.post('/express/check-password', async function(req,res,next){
     } catch (error) {
       console.error('Error fetching Spotify data:', error);
       res.status(500).send('Failed to fetch data from Spotify.');
+    }
+  });
+  router.get('/spotify/playlist/:playlistID', async (req, res) => {
+    const accessToken = cachedAccessToken; // Pass the access token from the client
+    const playlistID = req.params.playlistID; // Get the playlist ID from the URL parameter
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistID}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Spotify API Error:', errorText);
+        return res.status(500).send('Failed to fetch data from Spotify.');
+      }
+  
+      const data = await response.json();
+      res.send(data);
+    } catch (error) {
+      console.error('Error fetching Spotify data:', error);
+      res.status(500).send('Failed to fetch data from Spotify.');
+    }
+  });
+  router.get('/spotify/public_playlists', async (req, res) => {
+    try {
+      const accessToken = await getAccessToken();
+  
+      // Search for public playlists (e.g., by a keyword like "workout")
+      const searchQuery = 'public'; // Replace with your desired search term
+      const response = await axios.get('https://api.spotify.com/v1/search', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        params: {
+          q: searchQuery,
+          type: 'playlist',
+          limit: 10, // Number of playlists to retrieve
+        },
+      });
+  
+      // Return the public playlists
+      res.json(response.data.playlists.items);
+    } catch (error) {
+      console.error('Error fetching public playlists:', error);
+      res.status(500).send('Failed to fetch public playlists');
     }
   });
 
