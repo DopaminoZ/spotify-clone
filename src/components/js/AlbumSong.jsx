@@ -1,10 +1,11 @@
 import React from "react";
-import styles from "../css/PlaylistSong.module.css";
+import styles from "../css/AlbumSong.module.css";
 import hanz from "../../assets/images/elbasha.png";
 
-function PlaylistSong({
+function AlbumSong({
   song,
   wid,
+  image,
   index,
   searchSong,
   setCurrentSong,
@@ -13,19 +14,6 @@ function PlaylistSong({
   setQuery,
 }) {
   console.log(song);
-
-  function daysAgo(dateString) {
-    const givenDate = new Date(dateString); // Parse the given date
-    const currentDate = new Date(); // Get the current date
-
-    // Calculate the difference in milliseconds
-    const differenceInMs = currentDate - givenDate;
-
-    // Convert the difference to days (1 day = 24 * 60 * 60 * 1000 milliseconds)
-    const differenceInDays = Math.floor(differenceInMs / (24 * 60 * 60 * 1000));
-
-    return differenceInDays; // Return the number of days
-  }
 
   function msToTime(msString) {
     const ms = parseInt(msString, 10); // Parse the string into an integer
@@ -47,10 +35,6 @@ function PlaylistSong({
     }
   }
 
-  const songImageUrl =
-    song.track.album.images && song.track.album.images[0]
-      ? song.track.album.images[0].url
-      : hanz;
   return (
     <div id={styles.container}>
       <p id={styles.hash}>{index}</p>
@@ -60,7 +44,7 @@ function PlaylistSong({
         viewBox="0 0 384 512"
         onClick={(e) => {
           e.stopPropagation(); // Prevents the event from propagating
-          setQuery(song.track.name + " " + song.track.artists[0].name);
+          setQuery(song.name + " " + song.artists[0].name);
           searchSong();
         }}
       >
@@ -70,13 +54,13 @@ function PlaylistSong({
         />
       </svg>
       <div id={styles.titlepack}>
-        <img src={songImageUrl} alt="Album Cover" />
+        <img src={image} alt="Album Cover" />
         <div id={styles.data}>
           <p id={styles.title} className={styles.hover}>
-            {song.track.name}
+            {song.name}
           </p>
           <p id={styles.artist} className={styles.hover}>
-            {song.track.artists.map((artist) => artist.name).join(", ")}
+            {song.artists.map((artist) => artist.name).join(", ")}
           </p>
         </div>
       </div>
@@ -85,11 +69,12 @@ function PlaylistSong({
         style={{ marginLeft: wid === "53.2vw" ? 170 : 366 }}
         className={styles.hover}
       >
-        {song.track.album.name}
+        {song.name}
       </p>
-      <p id={styles.date} style={{ marginLeft: wid === "53.2vw" ? 143 : 277 }}>
-        {daysAgo(song.added_at)} days ago
-      </p>
+      <p
+        id={styles.date}
+        style={{ marginLeft: wid === "53.2vw" ? 143 : 277 }}
+      ></p>
       <div
         id={styles.durationdiv}
         style={{ marginLeft: wid === "53.2vw" ? 145 : 237 }}
@@ -102,7 +87,7 @@ function PlaylistSong({
             />
           </svg>
         </div>
-        <p id={styles.duration}>{msToTime(song.track.duration_ms)}</p>
+        <p id={styles.duration}>{msToTime(song.duration_ms)}</p>
         <svg
           id={styles.more}
           xmlns="http://www.w3.org/2000/svg"
@@ -118,4 +103,4 @@ function PlaylistSong({
   );
 }
 
-export default PlaylistSong;
+export default AlbumSong;

@@ -175,6 +175,33 @@ router.get("/spotify/playlist/:playlistID", async (req, res) => {
     res.status(500).send("Failed to fetch data from Spotify.");
   }
 });
+router.get("/spotify/albums/:albumID", async (req, res) => {
+  const accessToken = cachedAccessToken; // Pass the access token from the client
+  const albumID = req.params.albumID; // Get the playlist ID from the URL parameter
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/albums/${albumID}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Spotify API Error:", errorText);
+      return res.status(500).send("Failed to fetch data from Spotify.");
+    }
+
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching Spotify data:", error);
+    res.status(500).send("Failed to fetch data from Spotify.");
+  }
+});
 router.get("/spotify/public_playlists", async (req, res) => {
   try {
     const accessToken = await getAccessToken();
@@ -188,7 +215,7 @@ router.get("/spotify/public_playlists", async (req, res) => {
       params: {
         q: searchQuery,
         type: "playlist",
-        limit: 10, // Number of playlists to retrieve
+        limit: 17, // Number of playlists to retrieve
       },
     });
 
@@ -212,30 +239,114 @@ router.get("/search", async (req, res) => {
     res.status(500).send("Error fetching songs.");
   }
 });
-  router.get('/spotify/artist/:artistID', async (req, res) => {
-    const accessToken = cachedAccessToken; // Pass the access token from the client
-    const artistID = req.params.artistID; // Get the playlist ID from the URL parameter
-    try {
-      const response = await fetch(`https://api.spotify.com/v1/artists/${artistID}`, {
-        method: 'GET',
+router.get("/spotify/artist/:artistID", async (req, res) => {
+  const accessToken = cachedAccessToken; // Pass the access token from the client
+  const artistID = req.params.artistID; // Get the playlist ID from the URL parameter
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/artists/${artistID}`,
+      {
+        method: "GET",
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
-      });
-  
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Spotify API Error:', errorText);
-        return res.status(500).send('Failed to fetch data from Spotify.');
       }
-  
-      const data = await response.json();
-      res.send(data);
-    } catch (error) {
-      console.error('Error fetching Spotify data:', error);
-      res.status(500).send('Failed to fetch data from Spotify.');
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Spotify API Error:", errorText);
+      return res.status(500).send("Failed to fetch data from Spotify.");
     }
-  });
+
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching Spotify data:", error);
+    res.status(500).send("Failed to fetch data from Spotify.");
+  }
+});
+router.get("/spotify/artist/:artistID/top", async (req, res) => {
+  const accessToken = cachedAccessToken; // Pass the access token from the client
+  const artistID = req.params.artistID; // Get the playlist ID from the URL parameter
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/artists/${artistID}/top-tracks`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Spotify API Error:", errorText);
+      return res.status(500).send("Failed to fetch data from Spotify.");
+    }
+
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching Spotify data:", error);
+    res.status(500).send("Failed to fetch data from Spotify.");
+  }
+});
+router.get("/spotify/artist/:artistID/related-artists", async (req, res) => {
+  const accessToken = cachedAccessToken; // Pass the access token from the client
+  const artistID = req.params.artistID; // Get the playlist ID from the URL parameter
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/artists/${artistID}/related-artists`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Spotify API Error:", errorText);
+      return res.status(500).send("Failed to fetch data from Spotify.");
+    }
+
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching Spotify data:", error);
+    res.status(500).send("Failed to fetch data from Spotify.");
+  }
+});
+router.get("/spotify/artist/:artistID/albums", async (req, res) => {
+  const accessToken = cachedAccessToken; // Pass the access token from the client
+  const artistID = req.params.artistID; // Get the playlist ID from the URL parameter
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/artists/${artistID}/albums`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Spotify API Error:", errorText);
+      return res.status(500).send("Failed to fetch data from Spotify.");
+    }
+
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching Spotify data:", error);
+    res.status(500).send("Failed to fetch data from Spotify.");
+  }
+});
 async function getAccessToken() {
   if (cachedAccessToken && tokenExpiryTime > Date.now()) {
     return cachedAccessToken;

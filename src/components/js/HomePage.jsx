@@ -6,6 +6,7 @@ import BrowseComponent from "./BrowseComponent";
 import MainpageComponent from "./MainpageComponent";
 import InstallApp from "./InstallApp";
 import Playlist from "./Playlist";
+import Album from "./Album";
 import Artists from "./Artists";
 import Premium from "./ExplorePremium";
 import Nowplaying from "./NowPlaying";
@@ -62,7 +63,7 @@ function HomePage() {
     console.log(showSecondDiv);
     console.log(currentSignedInUser);
     console.log(query);
-  }, [firstDivSize, showSecondDiv,query]);
+  }, [firstDivSize, showSecondDiv, query]);
 
   return (
     <div id={styles.mainpage}>
@@ -70,9 +71,8 @@ function HomePage() {
         query={query}
         setQuery={setQuery}
         searchSong={searchSong}
-        setSongs = {setSongs}
-        setCurrentSong = {setCurrentSong}
-
+        setSongs={setSongs}
+        setCurrentSong={setCurrentSong}
       />
       <div id={styles.midsection}>
         <LeftSideNav />
@@ -85,10 +85,34 @@ function HomePage() {
               <InstallApp widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/artist/:artistID">
-              <Artists widthz={`${firstDivSize}vw`} />
+              <Artists
+                widthz={`${firstDivSize}vw`}
+                searchSong={searchSong}
+                setCurrentSong={setCurrentSong}
+                setSongs={setSongs}
+                query={query}
+                setQuery={setQuery}
+              />
             </Route>
             <Route path="/playlist/:playlistID">
-              <Playlist widthz={`${firstDivSize}vw`} searchSong={searchSong} setCurrentSong={setCurrentSong} setSongs={setSongs} query={query} setQuery={setQuery}/>
+              <Playlist
+                widthz={`${firstDivSize}vw`}
+                searchSong={searchSong}
+                setCurrentSong={setCurrentSong}
+                setSongs={setSongs}
+                query={query}
+                setQuery={setQuery}
+              />
+            </Route>
+            <Route path="/album/:albumID">
+              <Album
+                widthz={`${firstDivSize}vw`}
+                searchSong={searchSong}
+                setCurrentSong={setCurrentSong}
+                setSongs={setSongs}
+                query={query}
+                setQuery={setQuery}
+              />
             </Route>
             <Route path="/explorepremium">
               <Premium widthz={`${firstDivSize}vw`} />
@@ -108,10 +132,10 @@ function HomePage() {
         <Player
           query={query}
           searchSong={searchSong}
-          songs = {songs}
-          currentSong = {currentSong}
-          setCurrentSong = {setCurrentSong}
-          setSongs = {setSongs}
+          songs={songs}
+          currentSong={currentSong}
+          setCurrentSong={setCurrentSong}
+          setSongs={setSongs}
           var1={firstDivSize}
           vars={showSecondDiv}
           Showdiv={handleResizeAndShow}
