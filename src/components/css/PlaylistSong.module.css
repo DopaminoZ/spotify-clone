@@ -91,9 +91,10 @@
   flex-direction: column;
 }
 #artist {
-  margin-top: 25px;
+  display: flex;
+  margin-top: 35px;
   margin-left: 17px;
-  max-width: 500px;
+  max-width: 450px;
   font-size: 14px;
   color: #b3b3b3;
   white-space: nowrap;
