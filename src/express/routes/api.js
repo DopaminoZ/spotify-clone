@@ -176,7 +176,7 @@ router.post('/express/check-password', async function(req,res,next){
         params: {
           q: searchQuery,
           type: 'playlist',
-          limit: 10, // Number of playlists to retrieve
+          limit: 17, // Number of playlists to retrieve
         },
       });
   

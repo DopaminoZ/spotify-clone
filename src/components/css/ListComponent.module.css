@@ -5,13 +5,15 @@
     gap:0px;
     position: relative;
     margin-top:35px;
+    
 }
 #innercontainer{
     display: flex;
     flex-direction: row;
-    width:100%;
+    width:43%;
     gap:8px;
     margin-left: -10px;
+    overflow-x: scroll;
 }
 #uppercontainer{
     display: flex;

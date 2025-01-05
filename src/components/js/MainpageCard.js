@@ -37,7 +37,7 @@ function MainpageCard({card, width}) {
   },[width]);
   return (
     <div id={styles.container} style={{width: `${currentWidth}px`,height: `${currentHeight}px`}}>
-        <img id={styles.image} style={{width: `${currentimgWidth}px`}} src={card.image}></img><div id={styles.titlediv}><h1 id={styles.title}>{card.artist}</h1></div>
+        <img id={styles.image} style={{width: `${currentimgWidth}px`}} /*src={card.image}*/></img><div id={styles.titlediv}><h1 id={styles.title}>x</h1></div>
     </div>
   )
 }
