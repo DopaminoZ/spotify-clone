@@ -62,7 +62,7 @@ function HomePage() {
     console.log(showSecondDiv);
     console.log(currentSignedInUser);
     console.log(query);
-  }, [firstDivSize, showSecondDiv]);
+  }, [firstDivSize, showSecondDiv,query]);
 
   return (
     <div id={styles.mainpage}>
@@ -88,7 +88,7 @@ function HomePage() {
               <Artists widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/playlist/:playlistID">
-              <Playlist widthz={`${firstDivSize}vw`} />
+              <Playlist widthz={`${firstDivSize}vw`} searchSong={searchSong} setCurrentSong={setCurrentSong} setSongs={setSongs} query={query} setQuery={setQuery}/>
             </Route>
             <Route path="/explorepremium">
               <Premium widthz={`${firstDivSize}vw`} />
