@@ -212,7 +212,30 @@ router.get("/search", async (req, res) => {
     res.status(500).send("Error fetching songs.");
   }
 });
-
+  router.get('/spotify/artist/:artistID', async (req, res) => {
+    const accessToken = cachedAccessToken; // Pass the access token from the client
+    const artistID = req.params.artistID; // Get the playlist ID from the URL parameter
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/artists/${artistID}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Spotify API Error:', errorText);
+        return res.status(500).send('Failed to fetch data from Spotify.');
+      }
+  
+      const data = await response.json();
+      res.send(data);
+    } catch (error) {
+      console.error('Error fetching Spotify data:', error);
+      res.status(500).send('Failed to fetch data from Spotify.');
+    }
+  });
 async function getAccessToken() {
   if (cachedAccessToken && tokenExpiryTime > Date.now()) {
     return cachedAccessToken;

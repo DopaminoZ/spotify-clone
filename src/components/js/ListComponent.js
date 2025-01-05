@@ -12,7 +12,7 @@ function ListComponent({ list, widt }) {
         <h1 id={styles.madefor}>x</h1>
         <button id={styles.showall}>Show all</button>
       </div>
-      <div id={styles.innercontainer} style={{ gap: widt === '53.2vw' ? 0 : 8, maxWidth:  list.length * 250 + 'px' }}>
+      <div id={styles.innercontainer} style={{ gap: widt === '53.2vw' ? 0 : 8}}>
         {list.map((playlist) => (
           <ListCard  playlist={playlist} wid={widt}/>
         ))}
