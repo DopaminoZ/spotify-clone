@@ -88,15 +88,11 @@ function Album({
                 <p
                   id={styles.album}
                   style={{ marginLeft: widthz == "53.2vw" ? 345 : 540 }}
-                >
-                  Album
-                </p>
+                ></p>
                 <p
                   id={styles.date}
                   style={{ marginLeft: widthz == "53.2vw" ? 210 : 344 }}
-                >
-                  Date added
-                </p>
+                ></p>
                 <img
                   style={{ marginLeft: widthz == "53.2vw" ? 190 : 280 }}
                   src={clock}

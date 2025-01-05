@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../css/PlaylistSong.module.css";
 import hanz from "../../assets/images/elbasha.png";
 
@@ -83,9 +84,13 @@ function PlaylistSong({
         }}>
             {song.track.name} 
           </p>
-          <p id={styles.artist} className={styles.hover}>
-            {song.track.artists.map((artist) => artist.name).join(", ")}
-          </p>
+          <div id={styles.artist} className={styles.hover}>
+            {song.track.artists.map((artist, index) => (
+              <Link to={`/artist/${artist.id}`}>
+                <p key={index}>{artist.name}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       <p
@@ -93,7 +98,9 @@ function PlaylistSong({
         style={{ marginLeft: wid === "53.2vw" ? 170 : 366 }}
         className={styles.hover}
       >
-        {song.track.album.name}
+        <Link to={`/album/${song.track.album.id}`}>
+          {song.track.album.name}
+        </Link>
       </p>
       <p id={styles.date} style={{ marginLeft: wid === "53.2vw" ? 143 : 277 }}>
         {daysAgo(song.added_at)} days ago
