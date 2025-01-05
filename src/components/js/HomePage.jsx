@@ -12,7 +12,7 @@ import Premium from "./ExplorePremium";
 import Nowplaying from "./NowPlaying";
 import Lyrics from "./Lyrics";
 import Player from "./Player";
-import Profile from './profile';
+import Profile from "./Profile";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
@@ -139,17 +139,17 @@ function HomePage() {
       </div>
 
       <div id={styles.footer}>
-      <Player
-  query={query}
-  searchSong={searchSong}
-  songs={songs}
-  currentSong={currentSong || {}} // Fallback to an empty object if null
-  setCurrentSong={setCurrentSong}
-  setSongs={setSongs}
-  var1={firstDivSize}
-  vars={showSecondDiv}
-  Showdiv={handleResizeAndShow}
-/>
+        <Player
+          query={query}
+          searchSong={searchSong}
+          songs={songs}
+          currentSong={currentSong || {}} // Fallback to an empty object if null
+          setCurrentSong={setCurrentSong}
+          setSongs={setSongs}
+          var1={firstDivSize}
+          vars={showSecondDiv}
+          Showdiv={handleResizeAndShow}
+        />
       </div>
     </div>
   );

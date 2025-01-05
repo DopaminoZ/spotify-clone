@@ -61,11 +61,13 @@ function AlbumSong({
             {song.name}
           </p>
           <div id={styles.artist} className={styles.hover}>
-            {song.artists.map((artist, index) => (
-              <Link to={`/artist/${artist.id}`}>
-                <p key={index}>{artist.name}</p>
-              </Link>
-            ))}
+            {song.artists
+              .map((artist, index) => (
+                <Link to={`/artist/${artist.id}`} key={index}>
+                  {artist.name}
+                </Link>
+              ))
+              .reduce((prev, curr) => [prev, " , ", curr])}
           </div>
         </div>
       </div>
