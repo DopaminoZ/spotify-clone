@@ -71,25 +71,35 @@ function PlaylistSong({
         />
       </svg>
       <div id={styles.titlepack}>
-        <img src={songImageUrl} alt="Album Cover" onClick={(e) => {
-          e.stopPropagation(); // Prevents the event from propagating
-          setQuery(song.track.name + " " + song.track.artists[0].name);
-          searchSong();
-        }}/>
+        <img
+          src={songImageUrl}
+          alt="Album Cover"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevents the event from propagating
+            setQuery(song.track.name + " " + song.track.artists[0].name);
+            searchSong();
+          }}
+        />
         <div id={styles.data}>
-          <p id={styles.title} className={styles.hover} onClick={(e) => {
-          e.stopPropagation(); // Prevents the event from propagating
-          setQuery(song.track.name + " " + song.track.artists[0].name);
-          searchSong();
-        }}>
-            {song.track.name} 
+          <p
+            id={styles.title}
+            className={styles.hover}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevents the event from propagating
+              setQuery(song.track.name + " " + song.track.artists[0].name);
+              searchSong();
+            }}
+          >
+            {song.track.name}
           </p>
           <div id={styles.artist} className={styles.hover}>
-            {song.track.artists.map((artist, index) => (
-              <Link to={`/artist/${artist.id}`}>
-                <p key={index}>{artist.name}</p>
-              </Link>
-            ))}
+            {song.track.artists
+              .map((artist, index) => (
+                <Link to={`/artist/${artist.id}`} key={index}>
+                  {artist.name}
+                </Link>
+              ))
+              .reduce((prev, curr) => [prev, " , ", curr])}
           </div>
         </div>
       </div>
