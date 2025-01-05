@@ -70,10 +70,18 @@ function PlaylistSong({
         />
       </svg>
       <div id={styles.titlepack}>
-        <img src={songImageUrl} alt="Album Cover" />
+        <img src={songImageUrl} alt="Album Cover" onClick={(e) => {
+          e.stopPropagation(); // Prevents the event from propagating
+          setQuery(song.track.name + " " + song.track.artists[0].name);
+          searchSong();
+        }}/>
         <div id={styles.data}>
-          <p id={styles.title} className={styles.hover}>
-            {song.track.name}
+          <p id={styles.title} className={styles.hover} onClick={(e) => {
+          e.stopPropagation(); // Prevents the event from propagating
+          setQuery(song.track.name + " " + song.track.artists[0].name);
+          searchSong();
+        }}>
+            {song.track.name} 
           </p>
           <p id={styles.artist} className={styles.hover}>
             {song.track.artists.map((artist) => artist.name).join(", ")}

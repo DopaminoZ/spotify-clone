@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../css/HomePage.module.css";
 import Header_HomePage from "./Header_HomePage";
 import LeftSideNav from "./LeftSideNav";
@@ -13,9 +13,9 @@ import Nowplaying from "./NowPlaying";
 import Lyrics from "./Lyrics";
 import Player from "./Player";
 import Profile from './profile';
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
+
 let lyrics = new Array(
   "All the lights in Miami begin to gleam",
   "Ruby,blue, and green, neon too",
@@ -26,12 +26,12 @@ const currentSignedInUser = sessionStorage.getItem("userEmail");
 function HomePage() {
   const [firstDivSize, setFirstDivSize] = useState(75.5);
   const [showSecondDiv, setShowSecondDiv] = useState(false);
-
   const [query, setQuery] = useState("");
   const [songs, setSongs] = useState([]);
-  const [currentSong, setCurrentSong] = useState(null); // Currently selected song
+  const [currentSong, setCurrentSong] = useState(null);
+
   const handleResizeAndShow = () => {
-    if (firstDivSize == 75.5) {
+    if (firstDivSize === 75.5) {
       setFirstDivSize(53.2);
       setShowSecondDiv(true);
     } else {
@@ -40,18 +40,20 @@ function HomePage() {
     }
   };
 
-  // Fetches song details from the API
   const searchSong = async () => {
-    console.log(query);
+    console.log("Searching for:", query);
     if (!query) return;
     try {
       const response = await axios.get(
         `http://localhost:4000/api/search?q=${query}`
       );
-      console.log("API Response:", response.data); // Debug API response
+      console.log("API Response:", response.data);
       if (response.data.data.length > 0) {
-        setSongs(response.data.data);
-        setCurrentSong(response.data.data[0]); // Set the first song
+        const newSongs = response.data.data;
+        const newCurrentSong = newSongs[0];
+        console.log("Setting New Current Song:", newCurrentSong);
+        setSongs(newSongs);
+        setCurrentSong(newCurrentSong);
       } else {
         console.warn("No songs found for the search term.");
       }
@@ -61,11 +63,14 @@ function HomePage() {
   };
 
   useEffect(() => {
-    console.log(firstDivSize);
-    console.log(showSecondDiv);
-    console.log(currentSignedInUser);
-    console.log(query);
-  }, [firstDivSize, showSecondDiv, query]);
+    if (query) {
+      searchSong();
+    }
+  }, [query]);
+
+  useEffect(() => {
+    console.log("Current Song Updated:", currentSong);
+  }, [currentSong]);
 
   return (
     <div id={styles.mainpage}>
@@ -78,7 +83,7 @@ function HomePage() {
       />
       <div id={styles.midsection}>
         <LeftSideNav />
-        <div classname={styles.mainpage}>
+        <div className={styles.mainpage}>
           <Switch>
             <Route path="/browse">
               <BrowseComponent widthz={`${firstDivSize}vw`} />
@@ -134,17 +139,17 @@ function HomePage() {
       </div>
 
       <div id={styles.footer}>
-        <Player
-          query={query}
-          searchSong={searchSong}
-          songs={songs}
-          currentSong={currentSong}
-          setCurrentSong={setCurrentSong}
-          setSongs={setSongs}
-          var1={firstDivSize}
-          vars={showSecondDiv}
-          Showdiv={handleResizeAndShow}
-        />
+      <Player
+  query={query}
+  searchSong={searchSong}
+  songs={songs}
+  currentSong={currentSong || {}} // Fallback to an empty object if null
+  setCurrentSong={setCurrentSong}
+  setSongs={setSongs}
+  var1={firstDivSize}
+  vars={showSecondDiv}
+  Showdiv={handleResizeAndShow}
+/>
       </div>
     </div>
   );

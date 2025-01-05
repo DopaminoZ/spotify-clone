@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "../css/Player.module.css";
 import add from "../../assets/images/add.png";
-import cover from "../../assets/images/lana.jpeg";
 import play from "../../assets/images/play.png";
+import pause from "../../assets/images/pause.png";
 import nextsong from "../../assets/images/next_song.png";
 import prevsong from "../../assets/images/prev_song.png";
 import shuffle from "../../assets/images/shuffle.png";
@@ -15,7 +15,6 @@ import device from "../../assets/images/device.png";
 import volume from "../../assets/images/volume-high.png";
 import miniplayer from "../../assets/images/miniplayer.png";
 import fullscreen from "../../assets/images/expand.png";
-import axios from "axios";
 
 const Player = ({
   query,
@@ -27,19 +26,17 @@ const Player = ({
   Showdiv,
 }) => {
   const [durationstart, setDurationstart] = useState(0);
-  const [durationend, setDurationend] = useState(180); //3mins
-  const [searchTerm, setSearchTerm] = useState("");
-
+  const [durationend, setDurationend] = useState(180); // 3 minutes
   const [isPlaying, setIsPlaying] = useState(false); // Playback state
   const [lyricsstate, setlyricsstate] = useState(true);
+  const [volumeLevel, setVolumeLevel] = useState(100); // Volume state (0-100)
   const audioRef = useRef(null); // Reference to the audio element
 
+  // Parse time to MM:SS format
   const parseTime = (x) => {
     const minutes = Math.floor(x / 60);
-    const seconds = x % 60;
-    return `${minutes < 10 ? "0" : ""}${minutes}:${
-      seconds < 10 ? "0" : ""
-    }${seconds}`;
+    const seconds = Math.floor(x % 60);
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   };
 
   // Toggle lyrics state
@@ -53,18 +50,11 @@ const Player = ({
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current.play().catch((error) => {
+        console.error("Error playing audio:", error);
+      });
     }
     setIsPlaying(!isPlaying);
-  };
-
-  // Handle song selection
-  const handleSongSelect = (song) => {
-    setCurrentSong(song);
-    setIsPlaying(false); // Reset play state
-    if (audioRef.current) {
-      audioRef.current.load(); // Reload the audio element
-    }
   };
 
   // Handle playback position change
@@ -88,9 +78,34 @@ const Player = ({
     }
   };
 
+  // Handle volume change
+  const handleVolumeChange = (e) => {
+    const volumeValue = Number(e.target.value);
+    setVolumeLevel(volumeValue); // Update volume state
+    if (audioRef.current) {
+      audioRef.current.volume = volumeValue / 100; // Set audio volume (0-1)
+    }
+  };
+
+  // Reset audio when currentSong changes
   useEffect(() => {
-    searchSong();
-  }, [searchTerm]);
+    if (audioRef.current && currentSong?.preview) {
+      console.log("Loading new song:", currentSong.title);
+      audioRef.current.pause();
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch((error) => {
+          console.error("Error playing audio:", error);
+        });
+      }
+    } else {
+      console.log("No valid song to load.");
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = ""; // Clear the audio source
+      }
+    }
+  }, [currentSong]);
 
   return (
     <div>
@@ -123,7 +138,11 @@ const Player = ({
               <img src={prevsong} alt="Previous" className={styles.previmg} />
             </button>
             <button className={styles.pause} onClick={handlePlayPause}>
-              <img src={play} alt="Play" className={styles.playbutton} />
+              <img
+                src={isPlaying ? pause : play} // Toggle between play and pause images
+                alt={isPlaying ? "Pause" : "Play"}
+                className={styles.playbutton}
+              />
             </button>
             <button className={styles.next}>
               <img src={nextsong} alt="Next" className={styles.nextimg} />
@@ -178,9 +197,11 @@ const Player = ({
               type="range"
               min="0"
               max="100"
+              value={volumeLevel} // Bind to volume state
               aria-label="Volume Control"
               className={styles.volume}
               step="1"
+              onChange={handleVolumeChange} // Handle volume change
             />
           </div>
           <button className={styles.miniplayer}>
@@ -207,6 +228,7 @@ const Player = ({
           src={currentSong.preview}
           onLoadedMetadata={onAudioLoadedMetadata}
           onTimeUpdate={onTimeUpdate}
+          onEnded={() => setIsPlaying(false)} // Stop playback when the song ends
         />
       )}
     </div>
