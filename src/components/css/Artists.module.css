@@ -4,8 +4,8 @@
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 1460px;
-    height: 785px;
+    height: 808px;
+    width: 75.5vw;
     margin: 0 10px;
     align-items: flex-start;
     padding-right: 0px;
@@ -28,7 +28,7 @@
     align-self: flex-start;
     width: 1550px;
     height: 800px;
-    background-image: url('../../assets/images/muhab.jpg');
+    
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0, 10;

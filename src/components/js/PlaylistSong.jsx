@@ -60,7 +60,7 @@ function PlaylistSong({
         viewBox="0 0 384 512"
         onClick={(e) => {
           e.stopPropagation(); // Prevents the event from propagating
-          setQuery(song.track.name);
+          setQuery(song.track.name + " " + song.track.artists[0].name );
           searchSong();
         }}
       >

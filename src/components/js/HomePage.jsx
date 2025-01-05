@@ -84,7 +84,7 @@ function HomePage() {
             <Route path="/download">
               <InstallApp widthz={`${firstDivSize}vw`} />
             </Route>
-            <Route path="/artist">
+            <Route path="/artist/:artistID">
               <Artists widthz={`${firstDivSize}vw`} />
             </Route>
             <Route path="/playlist/:playlistID">
