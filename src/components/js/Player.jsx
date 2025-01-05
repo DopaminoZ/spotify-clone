@@ -29,7 +29,7 @@ const Player = ({
   const [durationend, setDurationend] = useState(180); // 3 minutes
   const [isPlaying, setIsPlaying] = useState(false); // Playback state
   const [lyricsstate, setlyricsstate] = useState(true);
-  const [volumeLevel, setVolumeLevel] = useState(100); // Volume state (0-100)
+  const [volumeLevel, setVolumeLevel] = useState(10); // Volume state (0-100), initialized to 10
   const audioRef = useRef(null); // Reference to the audio element
 
   // Parse time to MM:SS format
@@ -86,6 +86,13 @@ const Player = ({
       audioRef.current.volume = volumeValue / 100; // Set audio volume (0-1)
     }
   };
+
+  // Set initial volume when the audio element is ready
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volumeLevel / 100; // Set initial volume to 10%
+    }
+  }, [audioRef.current]); // Run when audioRef.current changes
 
   // Reset audio when currentSong changes
   useEffect(() => {
