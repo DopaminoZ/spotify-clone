@@ -47,8 +47,8 @@
   border: 0px;
   outline: none;
   width: 375px;
-  caret-color: transparent;
-  color:#b3b3b3;
+  caret-color: white;
+  color: #b3b3b3;
   font-size: 14.5px;
 }
 .search::placeholder {
@@ -102,7 +102,7 @@
   height: 32px;
   font-weight: 700;
   margin-top: 10px;
-  cursor:pointer;
+  cursor: pointer;
 }
 .install {
   background-color: black;
@@ -113,7 +113,7 @@
   height: 32px;
   margin-top: 10px;
   font-weight: 700;
-  cursor:pointer;
+  cursor: pointer;
 }
 .login {
   background-color: white;
@@ -136,16 +136,16 @@
   font-weight: 700;
   margin-top: 0px;
   font-size: 15px;
-  border:none;
+  border: none;
 }
-.login:hover{
+.login:hover {
   background-color: #f0f0f0;
   font-weight: 900;
   padding: 0;
 }
-.signup:hover{
-    color: white;
-    font-weight: 900;
+.signup:hover {
+  color: white;
+  font-weight: 900;
 }
 .installimg {
   width: 15px;

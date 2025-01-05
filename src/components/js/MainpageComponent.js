@@ -8,10 +8,13 @@ import { BrowserRouter as Router,Route,Link,Switch } from 'react-router-dom'
 
 function MainpageComponent({widthz}) {
 
-  const { error, data:lists,isPending } = useFetch("http://localhost:8000/list");
+  const { error, data:lists,isPending } = useFetch("http://localhost:4000/api/spotify/public_playlists");
   const { errormain, data:maincards,isPendingmain} = useFetch("http://localhost:8000/mainCards")
   const [displayList, setList] = useState([]);
+  const [listsfiltered, setListFilt] = useState(lists);
   const isActive = (path) => window.location.pathname === path;
+
+  console.log(lists)
 
   function getSongs(){
       setList(maincards.filter((card) => card.type =="song"))
@@ -33,7 +36,11 @@ function MainpageComponent({widthz}) {
     // console.log("Display list updated:", displayList);
   }, [displayList]);
   
-  
+  useEffect(() => {
+    if (lists) {
+      setListFilt(lists.filter(item => item !== null));
+    }
+  }, [lists]);
 
   return (
     <div id={containerstyle.container} className={styles.gradient} style={{width: widthz}}>
@@ -58,9 +65,9 @@ function MainpageComponent({widthz}) {
         <div id={styles.listsdiv}>
           {error && <div style={{color: "red",fontSize:30,marginTop:50}}>{error}</div>}
           {isPending && <div><p style={{color: "white",fontSize:50}}> Loading...</p></div> }
-          {lists && lists.map((list) => (
-             <ListComponent key={list.id} list={list} widt={widthz}/>
-          ))}
+          {listsfiltered && 
+             <ListComponent  list={listsfiltered} widt={widthz}/>
+          }
         </div>
     </div>
   )
