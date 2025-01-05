@@ -16,8 +16,8 @@
   gap: 15px;
   padding: 5px;
 }
-.artistname{
-  margin-top: -10px
+.artistname {
+  margin-top: -10px;
 }
 .coverphoto {
   width: 61px;
@@ -47,6 +47,7 @@
   border-radius: 16px;
   margin-top: 25px;
   border: #b3b3b3 1px solid;
+  cursor: pointer;
 }
 .addbtnphoto {
   height: 10px;

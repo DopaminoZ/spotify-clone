@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../css/AlbumSong.module.css";
 import hanz from "../../assets/images/elbasha.png";
 
@@ -59,18 +60,20 @@ function AlbumSong({
           <p id={styles.title} className={styles.hover}>
             {song.name}
           </p>
-          <p id={styles.artist} className={styles.hover}>
-            {song.artists.map((artist) => artist.name).join(", ")}
-          </p>
+          <div id={styles.artist} className={styles.hover}>
+            {song.artists.map((artist, index) => (
+              <Link to={`/artist/${artist.id}`}>
+                <p key={index}>{artist.name}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       <p
         id={styles.album}
         style={{ marginLeft: wid === "53.2vw" ? 170 : 366 }}
         className={styles.hover}
-      >
-        {song.name}
-      </p>
+      ></p>
       <p
         id={styles.date}
         style={{ marginLeft: wid === "53.2vw" ? 143 : 277 }}
