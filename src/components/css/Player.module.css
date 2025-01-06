@@ -19,6 +19,10 @@
 }
 .artistname {
   margin-top: -10px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis ("...") for overflow */
 }
 .coverphoto {
   width: 61px;
@@ -31,7 +35,11 @@
   margin-top: 0px;
   justify-items: left;
   font-size: small;
+  max-width: 400px;
   justify-content: space-around;
+  white-space: nowrap;
+  overflow: hidden; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis ("...") for overflow */
 }
 #trackname {
   font-weight: bolder;

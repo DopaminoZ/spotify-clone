@@ -1,31 +1,28 @@
-import React, {useState,useEffect} from 'react'
-import styles from "../css/MainpageCard.module.css"
-import testimg from "../../assets/images/likedsongs.png"
-function MainpageCard({card, width}) {
-  const [currentWidth,setCurrentWidth] = useState(350);
-  const [currentHeight,setCurrentHeight] = useState(65);
-  const [currentimgWidth,setCurrentimgWidth] = useState(65);
+import React, { useState, useEffect } from "react";
+import styles from "../css/MainpageCard.module.css";
+import testimg from "../../assets/images/likedsongs.png";
+function MainpageCard({ card, width }) {
+  const [currentWidth, setCurrentWidth] = useState(350);
+  const [currentHeight, setCurrentHeight] = useState(65);
+  const [currentimgWidth, setCurrentimgWidth] = useState(65);
   const checkimgWidth = () => {
-    if(width == '53.2vw'){
+    if (width == "53.2vw") {
       setCurrentimgWidth(44);
-    }
-    else{
+    } else {
       setCurrentimgWidth(65);
     }
   };
   const checkWidth = () => {
-    if(width == '53.2vw'){
+    if (width == "53.2vw") {
       setCurrentWidth(244);
-    }
-    else{
+    } else {
       setCurrentWidth(350);
     }
   };
   const checkHeight = () => {
-    if(width == '53.2vw'){
+    if (width == "53.2vw") {
       setCurrentHeight(49);
-    }
-    else{
+    } else {
       setCurrentHeight(65);
     }
   };
@@ -34,12 +31,22 @@ function MainpageCard({card, width}) {
     checkHeight();
     checkimgWidth();
     console.log(width);
-  },[width]);
+  }, [width]);
   return (
-    <div id={styles.container} style={{width: `${currentWidth}px`,height: `${currentHeight}px`}}>
-        <img id={styles.image} style={{width: `${currentimgWidth}px`}} src={card.image}></img><div id={styles.titlediv}><h1 id={styles.title}>{card.artist}</h1></div>
+    <div
+      id={styles.container}
+      style={{ width: `${currentWidth}px`, height: `${currentHeight}px` }}
+    >
+      <img
+        id={styles.image}
+        style={{ width: `${currentimgWidth}px` }}
+        src={card.imageUrl}
+      ></img>
+      <div id={styles.titlediv}>
+        <h1 id={styles.title}>{card.title}</h1>
+      </div>
     </div>
-  )
+  );
 }
 
-export default MainpageCard
+export default MainpageCard;

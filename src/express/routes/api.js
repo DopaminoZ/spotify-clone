@@ -782,10 +782,10 @@ router.put("/artist/:email", async (req, res) => {
 router.put("/follow-artist/:email", async (req, res) => {
   try {
     const { email } = req.params;
-    const { spotifyId, username, email: artistEmail } = req.body;
+    const { spotifyId, title, imageUrl } = req.body;
 
     // Validate required fields
-    if (!spotifyId || !username) {
+    if (!spotifyId || !title || !imageUrl) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
@@ -796,22 +796,22 @@ router.put("/follow-artist/:email", async (req, res) => {
       return res.status(404).json({ message: "Account not found" });
     }
 
-    // Check if the artist is already in the "followers" array
-    const isArtistFollowed = account.followers.some(
-      (follower) => follower.spotifyId === spotifyId
+    // Check if the artist is already in the "followedartists" array
+    const isArtistFollowed = account.followedartists.some(
+      (artist) => artist.spotifyId === spotifyId
     );
 
     if (isArtistFollowed) {
-      // Remove the artist from the "followers" array
-      account.followers = account.followers.filter(
-        (follower) => follower.spotifyId !== spotifyId
+      // Remove the artist from the "followedartists" array
+      account.followedartists = account.followedartists.filter(
+        (artist) => artist.spotifyId !== spotifyId
       );
     } else {
-      // Add the artist to the "followers" array
-      account.followers.push({
+      // Add the artist to the "followedartists" array
+      account.followedartists.push({
         spotifyId,
-        username,
-        email: artistEmail,
+        title,
+        imageUrl,
       });
     }
 
@@ -820,10 +820,33 @@ router.put("/follow-artist/:email", async (req, res) => {
 
     res.status(200).json({
       message: "Followed artists updated",
-      followers: account.followers,
+      followedartists: account.followedartists,
     });
   } catch (error) {
     console.error("Error updating followed artists:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
+router.get("/get-followed-artists/:email", async (req, res) => {
+  try {
+    // Get the user's email from the route parameter
+    const { email } = req.params;
+
+    // Find the account by email
+    const account = await Account.findOne({ email });
+
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Return the followed artists
+    res.status(200).json({
+      message: "Followed artists retrieved successfully",
+      followedartists: account.followedartists,
+    });
+  } catch (error) {
+    console.error("Error retrieving followed artists:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });

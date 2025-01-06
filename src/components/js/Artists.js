@@ -50,7 +50,7 @@ function Artists({
       const songz = {
         spotifyId: data.id,
         title: data.name,
-        imageUrl: data.images[0].url || "default_image_url",
+        imageUrl: image || "default_image_url",
       };
 
       console.log("Saving song data:", songz);
@@ -63,7 +63,7 @@ function Artists({
 
       // Send the request to the server
       const response = await fetch(
-        `http://localhost:4000/api/playlist/${userEmail}`,
+        `http://localhost:4000/api/follow-artist/${userEmail}`,
         {
           method: "PUT",
           headers: {
@@ -114,7 +114,9 @@ function Artists({
           <button class={styles.btn1}>
             <img id={styles.btn} src={play}></img>
           </button>
-          <button className={styles.follow}>Follow</button>
+          <button className={styles.follow} onClick={saveToDatabase}>
+            Follow
+          </button>
           <button className={styles.dotbtn}>
             {" "}
             <img class={styles.dot} src={dots}></img>
