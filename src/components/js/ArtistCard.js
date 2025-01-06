@@ -4,6 +4,7 @@ import photo from "../../assets/images/channels4_profile.jpg";
 import play from "../../assets/images/play.png";
 const ArtistCard = ({
   index,
+  widthz,
   song,
   searchSong,
   setCurrentSong,
@@ -44,7 +45,14 @@ const ArtistCard = ({
       <img src={song.album.images[0].url} id={styles.pic}></img>
       <h1 className={styles.name}>{song.name}</h1>
       <h1 className={styles.lnum}></h1>
-      <h1 className={styles.time}>{msToTime(song.duration_ms)}</h1>
+      <h1
+        className={styles.time}
+        style={{
+          marginLeft: widthz == "53.2vw" ? 900 : 1300,
+        }}
+      >
+        {msToTime(song.duration_ms)}
+      </h1>
     </div>
   );
 };

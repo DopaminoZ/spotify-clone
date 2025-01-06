@@ -272,7 +272,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-color: green;
-  scrollbar-width: thick;
+  scrollbar-width: thin;
   scrollbar-color: black transparent;
 }
 

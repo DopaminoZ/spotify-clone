@@ -393,4 +393,110 @@ router.get("/token", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch access token" });
   }
 });
+router.get("/search-spotify", async (req, res) => {
+  const query = req.query.q;
+  if (!query) {
+    return res.status(400).json({ error: "Query parameter 'q' is required." });
+  }
+
+  // Replace with your Spotify API token
+
+  try {
+    const accessToken = await getAccessToken();
+    const response = await axios.get(`https://api.spotify.com/v1/search`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        q: query,
+        type: "track,artist,album,playlist", // Search for tracks, artists, albums, and playlists
+        limit: 10, // Limit the number of results
+      },
+    });
+
+    // Log the full Spotify API response for debugging
+    console.log("Spotify API Response:", response.data);
+
+    // Extract and format the results
+    const results = [];
+
+    // Add tracks
+    if (response.data.tracks?.items) {
+      response.data.tracks.items.forEach((item) => {
+        if (item && item.id) {
+          results.push({
+            id: item.id,
+            name: item.name,
+            type: "track",
+            artist: item.artists?.map((artist) => artist.name).join(", "),
+            album: item.album?.name,
+            link: item.external_urls?.spotify,
+            preview: item.preview_url,
+            cover: item.album?.images?.[0]?.url, // Use the first image in the album's images array
+          });
+        }
+      });
+    }
+
+    // Add artists
+    if (response.data.artists?.items) {
+      response.data.artists.items.forEach((item) => {
+        if (item && item.id) {
+          results.push({
+            id: item.id,
+            name: item.name,
+            type: "artist",
+            link: item.external_urls?.spotify,
+            cover: item.images?.[0]?.url, // Use the first image in the artist's images array
+          });
+        }
+      });
+    }
+
+    // Add albums
+    if (response.data.albums?.items) {
+      response.data.albums.items.forEach((item) => {
+        if (item && item.id) {
+          results.push({
+            id: item.id,
+            name: item.name,
+            type: "album",
+            artist: item.artists?.map((artist) => artist.name).join(", "),
+            link: item.external_urls?.spotify,
+            cover: item.images?.[0]?.url, // Use the first image in the album's images array
+          });
+        }
+      });
+    }
+
+    // Add playlists
+    if (response.data.playlists?.items) {
+      response.data.playlists.items.forEach((item) => {
+        if (item && item.id) {
+          results.push({
+            id: item.id,
+            name: item.name,
+            type: "playlist",
+            link: item.external_urls?.spotify,
+            cover: item.images?.[0]?.url, // Use the first image in the playlist's images array
+          });
+        }
+      });
+    }
+
+    res.json(results);
+  } catch (error) {
+    console.error(
+      "Error fetching data from Spotify:",
+      error.response?.data || error.message
+    );
+    res
+      .status(500)
+      .json({
+        error: "Error fetching search results.",
+        details: error.response?.data || error.message,
+      });
+  }
+});
+
 module.exports = router;

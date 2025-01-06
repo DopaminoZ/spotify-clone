@@ -48,7 +48,7 @@ function Artists({
     <div id={styles.container} className={styles.art} style={{ width: widthz }}>
       <div
         className={styles.profile}
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(${image})`, width: widthz }}
       >
         <div className={styles.verify}>
           <img id={styles.icon} src={badge}></img>
@@ -81,6 +81,7 @@ function Artists({
             return (
               <Card
                 key={index}
+                widthz={widthz}
                 song={song}
                 index={index}
                 searchSong={searchSong}
@@ -106,7 +107,10 @@ function Artists({
           </button>
         </div>
 
-        <div className={styles.epcards}>
+        <div
+          className={styles.epcards}
+          style={{ width: widthz == "53.2vw" ? 69 + "%" : 97 + "%" }}
+        >
           {albums &&
             albums.items.map((album, index) => {
               return (
@@ -119,7 +123,10 @@ function Artists({
         </div>
 
         <h2 className={styles.head}>Featuring {data?.name}</h2>
-        <div className={styles.epcards}>
+        <div
+          className={styles.epcards}
+          style={{ width: widthz == "53.2vw" ? 69 + "%" : 97 + "%" }}
+        >
           <Card2 />
           <Card2 />
           <Card2 />
@@ -132,7 +139,10 @@ function Artists({
         <h2 id={styles.fans} className={styles.head}>
           Fans also like
         </h2>
-        <div className={styles.epcards}>
+        <div
+          className={styles.epcards}
+          style={{ width: widthz == "53.2vw" ? 69 + "%" : 97 + "%" }}
+        >
           <Circlecard />
           <Circlecard />
           <Circlecard />
@@ -146,7 +156,10 @@ function Artists({
         <h2 className={styles.head} id={styles.appear}>
           Appears on
         </h2>
-        <div className={styles.epcards}>
+        <div
+          className={styles.epcards}
+          style={{ width: widthz == "53.2vw" ? 69 + "%" : 97 + "%" }}
+        >
           <Card2 />
           <Card2 />
           <Card2 />
@@ -160,7 +173,10 @@ function Artists({
         <h2 className={styles.head} id={styles.appear}>
           Artist Playlist
         </h2>
-        <div className={styles.epcards}>
+        <div
+          className={styles.epcards}
+          style={{ width: widthz == "53.2vw" ? 69 + "%" : 97 + "%" }}
+        >
           <Card2 />
           <Card2 />
           <Card2 />
@@ -174,7 +190,10 @@ function Artists({
         <h2 className={styles.head} id={styles.appear}>
           Discoverd On
         </h2>
-        <div className={styles.epcards}>
+        <div
+          className={styles.epcards}
+          style={{ width: widthz == "53.2vw" ? 69 + "%" : 97 + "%" }}
+        >
           <Card2 />
           <Card2 />
           <Card2 />

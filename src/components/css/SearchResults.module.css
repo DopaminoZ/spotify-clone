@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  width: 95%;
+  height: 80px;
+  padding-left: 5px;
+  margin: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.container:hover {
+  background-color: #414040;
+}
+.image {
+  margin-top: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+}
+.details {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.title {
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0;
+  max-width: 260px;
+  margin-top: 10px;
+  overflow: hidden;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis ("...") for overflow */
+}
+.type {
+  color: #b2b2b2;
+  font-size: 14px;
+}
