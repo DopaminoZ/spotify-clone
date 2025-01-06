@@ -123,10 +123,15 @@ function Header_HomePage({
         {/* El kalam da s7 bs hn5ly el default en el user guest mesh logged in */}
         {currentSignedInUser != undefined && (
           <div className={styles.explorediv} id={styles.usermode}>
-            <button className={styles.explore}>Explore Premuim</button>
-            <button className={styles.install}>
-              <img src={download} className={styles.downloadicon} /> Install App
-            </button>
+            <Link to="/ExplorePremium">
+              <button className={styles.explore}>Explore Premuim</button>
+            </Link>
+            <Link to="/download">
+              <button className={styles.install}>
+                <img src={download} className={styles.downloadicon} /> Install
+                App
+              </button>
+            </Link>
             <div
               className={styles.notifications}
               onClick={(e) => {
