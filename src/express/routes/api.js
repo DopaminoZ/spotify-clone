@@ -558,7 +558,7 @@ router.post("/recommend-songs", async (req, res) => {
     // Fetch account data for the provided user IDs
     const accounts = await Account.find({ _id: { $in: userIds } });
 
-    // Extract all liked songs from the users' playlists
+    // Extract all liked songs, preferred genres, and followed artists
     const allLikedSongs = accounts.flatMap((account) => {
       const likedSongsPlaylist = account.playlists.find(
         (playlist) => playlist.spotifyId === "liked-songs-playlist"
@@ -566,22 +566,48 @@ router.post("/recommend-songs", async (req, res) => {
       return likedSongsPlaylist?.songs || [];
     });
 
-    // If no liked songs are found, return an empty array
-    if (allLikedSongs.length === 0) {
-      return res.json({ spotifyIds: [] });
+    const allPreferredGenres = accounts.flatMap((account) => account.preferredGenres || []);
+    const allFollowedArtists = accounts.flatMap((account) => account.followedArtists || []);
+
+    // If no data is found, return a message
+    if (allLikedSongs.length === 0 && allPreferredGenres.length === 0 && allFollowedArtists.length === 0) {
+      return res.json({ message: "No data found for the provided users." });
     }
 
-    // Extract Spotify IDs from the liked songs
-    const spotifyIds = allLikedSongs.map((song) => song.spotifyId);
+    // Construct prompt for Gemini
+    let prompt =
+      "Act as a carpool AI song chooser. Here’s the data for the carpool group:\n";
+    accounts.forEach((account, index) => {
+      const likedSongsPlaylist = account.playlists.find(
+        (playlist) => playlist.spotifyId === "liked-songs-playlist"
+      );
+      const likedSongs = likedSongsPlaylist?.songs || [];
+      const preferredGenres = account.preferredGenres || [];
+      const followedArtists = account.followedArtists || [];
 
-    // Send the Spotify IDs back to the client
-    res.json({ spotifyIds });
+      prompt += `- User ${index + 1}: Likes the following songs: ${likedSongs.map((song) => song.title).join(", ") || "no songs"}. `;
+      prompt += `Preferred genres: ${preferredGenres.join(", ") || "none"}. `;
+      prompt += `Followed artists: ${followedArtists.join(", ") || "none"}.\n`;
+    });
+    prompt +=
+      "Suggest a **large and creative playlist** for a long car ride. Focus on the users' preferred genres and followed artists, but don’t get their liked songs. Include a mix of popular hits, hidden gems, and songs that fit the vibe of a fun hangout. Return at least 10-15 songs in the following format:\n\n" +
+      "1. **Title** by Artist\n" +
+      "2. **Title** by Artist\n" +
+      "3. **Title** by Artist\n\n" +
+      "Add a friendly introduction and conclusion to make it feel like a chatbot response.";
+
+    // Call Gemini API
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const recommendations = response.text();
+
+    // Send the recommendations back to the client as plain text
+    res.json({ recommendations });
   } catch (error) {
     console.error("Error generating recommendations:", error);
     res.status(500).json({ error: "Failed to generate recommendations" });
   }
 });
-
 // Read likedSongs by email
 router.get("/liked-songs/:email", async (req, res) => {
   try {

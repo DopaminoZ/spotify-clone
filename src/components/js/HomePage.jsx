@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../css/HomePage.module.css";
+import styles from "../css/HomePage.module.css"; // Import the CSS module
 import Header_HomePage from "./Header_HomePage";
 import LeftSideNav from "./LeftSideNav";
 import BrowseComponent from "./BrowseComponent";
@@ -15,6 +15,7 @@ import Player from "./Player";
 import Profile from "./Profile";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
+import Chatbot from "./Chatbot";
 
 let lyrics = new Array(
   "All the lights in Miami begin to gleam",
@@ -29,6 +30,7 @@ function HomePage() {
   const [query, setQuery] = useState("");
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const handleResizeAndShow = () => {
     if (firstDivSize === 75.5) {
@@ -143,7 +145,7 @@ function HomePage() {
           query={query}
           searchSong={searchSong}
           songs={songs}
-          currentSong={currentSong || {}} // Fallback to an empty object if null
+          currentSong={currentSong || {}}
           setCurrentSong={setCurrentSong}
           setSongs={setSongs}
           var1={firstDivSize}
@@ -151,6 +153,21 @@ function HomePage() {
           Showdiv={handleResizeAndShow}
         />
       </div>
+
+      {/* Chatbot Window */}
+      {isChatbotOpen && (
+        <div className={styles.chatbotWindow}>
+          <Chatbot />
+        </div>
+      )}
+
+      {/* Chatbot Toggle Button */}
+      <button
+        className={styles.chatbotbtn}
+        onClick={() => setIsChatbotOpen(!isChatbotOpen)}
+      >
+        {isChatbotOpen ? "✕" : "💬"}
+      </button>
     </div>
   );
 }
