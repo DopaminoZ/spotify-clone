@@ -228,7 +228,7 @@
 }
 
 .forget:hover {
-  color: #1ed760;
+  color: #a0f5f5;
 }
 
 .signup {
@@ -261,7 +261,7 @@
 }
 
 .sign:hover {
-  color: #1ed760;
+  color: #a0f5f5;
 }
 
 .inputs {
@@ -430,7 +430,7 @@
 
   .login {
     width: 94vw;
-    background-color: #1ed760;
+    background-color: #a0f5f5;
     height: 50px;
     cursor: pointer;
     border-radius: 170px;
