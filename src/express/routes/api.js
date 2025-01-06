@@ -552,13 +552,43 @@ const genAI = new GoogleGenerativeAI(Gemini_key);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 router.post("/recommend-songs", async (req, res) => {
-  const { userIds } = req.body;
+  const { userRequest } = req.body; // User's input (e.g., "Recommend songs for Attia and Dopsawy")
 
   try {
-    // Fetch account data for the provided user IDs
-    const accounts = await Account.find({ _id: { $in: userIds } });
+    // Step 1: Extract user names using Gemini
+    const extractNamesPrompt = `From the following sentence, extract ONLY the names of people: "${userRequest}". Return ONLY the names as a comma-separated list. Do NOT include any additional text, explanations, or apologies. If no names are found, return an empty string.`;
+    const extractNamesResult = await model.generateContent(extractNamesPrompt);
+    const extractNamesResponse = await extractNamesResult.response;
+    let names = extractNamesResponse.text().split(",").map((name) => name.trim());
 
-    // Extract all liked songs, preferred genres, and followed artists
+    console.log("Extracted Names (Gemini):", names); // Debugging
+
+    // Fallback: If Gemini fails to extract names, use a simple regex to find names
+    if (names.length === 0 || names[0] === "") {
+      console.log("Gemini failed to extract names. Falling back to regex.");
+      const nameRegex = /(?:for|to|by)\s+([A-Za-z]+(?:\s+[A-Za-z]+)*)/gi;
+      const matches = userRequest.match(nameRegex);
+      if (matches) {
+        names = matches.map((match) => match.replace(/(?:for|to|by)\s+/i, "").trim());
+      }
+    }
+
+    console.log("Final Extracted Names:", names); // Debugging
+
+    if (names.length === 0 || names[0] === "") {
+      return res.json({ recommendations: "No names were found in the request. Please specify names like 'Recommend songs for Attia and Dopsawy'." });
+    }
+
+    // Step 2: Fetch user data from the database
+    const accounts = await Account.find({ username: { $in: names } });
+
+    console.log("Fetched Accounts:", accounts); // Debugging
+
+    if (accounts.length === 0) {
+      return res.json({ recommendations: "No users found with the provided names." });
+    }
+
+    // Step 3: Extract all liked songs, preferred genres, and followed artists
     const allLikedSongs = accounts.flatMap((account) => {
       const likedSongsPlaylist = account.playlists.find(
         (playlist) => playlist.spotifyId === "liked-songs-playlist"
@@ -569,12 +599,11 @@ router.post("/recommend-songs", async (req, res) => {
     const allPreferredGenres = accounts.flatMap((account) => account.preferredGenres || []);
     const allFollowedArtists = accounts.flatMap((account) => account.followedArtists || []);
 
-    // If no data is found, return a message
-    if (allLikedSongs.length === 0 && allPreferredGenres.length === 0 && allFollowedArtists.length === 0) {
-      return res.json({ message: "No data found for the provided users." });
-    }
+    console.log("All Liked Songs:", allLikedSongs); // Debugging
+    console.log("All Preferred Genres:", allPreferredGenres); // Debugging
+    console.log("All Followed Artists:", allFollowedArtists); // Debugging
 
-    // Construct prompt for Gemini
+    // Step 4: Construct prompt for Gemini
     let prompt =
       "Act as a carpool AI song chooser. Here’s the data for the carpool group:\n";
     accounts.forEach((account, index) => {
@@ -585,10 +614,16 @@ router.post("/recommend-songs", async (req, res) => {
       const preferredGenres = account.preferredGenres || [];
       const followedArtists = account.followedArtists || [];
 
-      prompt += `- User ${index + 1}: Likes the following songs: ${likedSongs.map((song) => song.title).join(", ") || "no songs"}. `;
+      prompt += `- User ${index + 1} (${account.username}): Likes the following songs: ${likedSongs.map((song) => song.title).join(", ") || "no songs"}. `;
       prompt += `Preferred genres: ${preferredGenres.join(", ") || "none"}. `;
       prompt += `Followed artists: ${followedArtists.join(", ") || "none"}.\n`;
     });
+
+    // Add the user's request to the prompt
+    if (userRequest) {
+      prompt += `\nThe user has requested: "${userRequest}".\n`;
+    }
+
     prompt +=
       "Suggest a **large and creative playlist** for a long car ride. Focus on the users' preferred genres and followed artists, but don’t get their liked songs. Include a mix of popular hits, hidden gems, and songs that fit the vibe of a fun hangout. Return at least 10-15 songs in the following format:\n\n" +
       "1. **Title** by Artist\n" +

@@ -10,20 +10,23 @@ const Chatbot = () => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
+    // Add the user's message to the chat
     setMessages((prev) => [...prev, { text: input, sender: "user" }]);
     setInput("");
     setIsLoading(true);
 
     try {
+      // Send the user's input as `userRequest` to the backend
       const response = await axios.post(
         "http://localhost:4000/api/recommend-songs",
         {
-          userIds: ["677b5e1941de19b3ae6e89cb", "677b5dfe254e104368e7e2da"],
+          userRequest: input, // Send the user's input as the prompt
         }
       );
 
       console.log("Backend Response:", response.data); // Debugging
 
+      // Add the bot's response to the chat
       setMessages((prev) => [
         ...prev,
         { text: response.data.recommendations, sender: "bot" },
