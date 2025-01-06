@@ -5,6 +5,7 @@ const axios = require("axios");
 const Song = require("../models/song.js");
 const Account = require("../models/account.js");
 const cookiemonster = require("cookie-parser");
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 let cachedAccessToken = null;
 let tokenExpiryTime = null;
 // Get all ninjas (example route)
@@ -496,6 +497,37 @@ router.get("/search-spotify", async (req, res) => {
         error: "Error fetching search results.",
         details: error.response?.data || error.message,
       });
+  }
+});
+
+const Gemini_key = 'AIzaSyDmDc4bprhF6IXWZZHG59V4w87V6iS8NJo';
+const genAI = new GoogleGenerativeAI(Gemini_key);
+const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+
+router.post('/recommend-songs', async (req, res) => {
+  const { userIds } = req.body;
+
+  try {
+    // Fetch account data for the provided user IDs
+    const accounts = await Account.find({ _id: { $in: userIds } });
+
+    // Construct prompt for Gemini
+    let prompt = "Act as a carpool AI song chooser. Here’s the data for the carpool group:\n";
+    accounts.forEach((account, index) => {
+      prompt += `- User ${index + 1}: Likes ${account.preferredGenres.join(', ')}, follows ${account.followedArtists.join(', ')}, has a playlist with ${account.playlists[0]?.songs.join(', ') || 'no songs'}.\n`;
+    });
+    prompt += "Suggest a song or playlist that everyone might enjoy.";
+
+    // Call Gemini API
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const recommendations = response.text();
+
+    // Send the recommendations back to the client
+    res.json({ recommendations });
+  } catch (error) {
+    console.error("Error generating recommendations:", error);
+    res.status(500).json({ error: "Failed to generate recommendations" });
   }
 });
 
