@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../css/SignUp.module.css";
-import logo from "../../assets/images/spotify-white-icon.png";
+import logo from "../../assets/images/tarablogo.png";
 import google from "../../assets/images/Google_Icons-09-512.png";
 import fb from "../../assets/images/facebook.png";
 import apple from "../../assets/images/applelogo.png";

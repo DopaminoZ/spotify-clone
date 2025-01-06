@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import styles from "../css/Header_HomePage.module.css";
-import logo from "../../assets/images/spotify-white-icon.png";
+import logo from "../../assets/images/tarablogo.png";
 import home from "../../assets/images/building.png";
 import homeactive from "../../assets/images/home-active.png";
 import search from "../../assets/images/search.png";

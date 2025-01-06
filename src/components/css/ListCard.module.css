@@ -1,46 +1,46 @@
-#image{
-    width: 215px;
-    height:215px;
-    border-radius: 10px;
+#image {
+  width: 215px;
+  height: 215px;
+  border-radius: 10px;
 }
-#description{
-    color:white;
-    font-weight: 400;
-    font-size: 16px;
-    overflow:none;
-    
+#description {
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  overflow: none;
 }
-#container{
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    padding: 10px;
-    align-items: flex-start;
+#container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px;
+  align-items: flex-start;
 }
 
-#container:hover{
-    background-color: rgba(255,255,255,0.1);
+#container:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
-#playbutton, #playbutton img{
-    display: none;
-    width: 0px;
-    height: 0px;
-    border: 0px;
+#playbutton,
+#playbutton img {
+  display: none;
+  width: 0px;
+  height: 0px;
+  border: 0px;
 }
-#container:hover #playbutton{
-    display:block;
-    width: 55px;
-    height: 55px;
-    background-color: #1ed760;
-    position: absolute;
-    margin-top: 150px;
-    margin-left: 150px;
-    border-radius: 40px;
-    cursor: pointer;
+#container:hover #playbutton {
+  display: block;
+  width: 55px;
+  height: 55px;
+  background-color: #3fcfd6;
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 150px;
+  border-radius: 40px;
+  cursor: pointer;
 }
-#playbutton img{
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin-left:7px;
+#playbutton img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-left: 7px;
 }

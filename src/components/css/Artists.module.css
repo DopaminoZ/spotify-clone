@@ -103,12 +103,12 @@
   border: 0px;
   margin-left: 25px;
   margin-top: 20px;
-  background-color: #1ed760;
+  background-color: #3fcfd6;
   cursor: pointer;
 }
 
 .btn1:hover {
-  background-color: #3be477;
+  background-color: #a0f5f5;
 }
 
 #btn {
@@ -271,7 +271,6 @@
   max-width: auto;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-color: green;
   scrollbar-width: thin;
   scrollbar-color: black transparent;
 }
