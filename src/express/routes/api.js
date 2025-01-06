@@ -558,21 +558,24 @@ router.post("/recommend-songs", async (req, res) => {
     // Fetch account data for the provided user IDs
     const accounts = await Account.find({ _id: { $in: userIds } });
 
-    // Construct prompt for Gemini
-    let prompt =
-      "Act as a carpool AI song chooser. Here’s the data for the carpool group:\n";
-    accounts.forEach((account, index) => {
-      prompt += `- User ${index + 1}: Likes ${account.preferredGenres.join(", ")}, follows ${account.followedArtists.join(", ")}, has a playlist with ${account.playlists[0]?.songs.join(", ") || "no songs"}.\n`;
+    // Extract all liked songs from the users' playlists
+    const allLikedSongs = accounts.flatMap((account) => {
+      const likedSongsPlaylist = account.playlists.find(
+        (playlist) => playlist.spotifyId === "liked-songs-playlist"
+      );
+      return likedSongsPlaylist?.songs || [];
     });
-    prompt += "Suggest a song or playlist that everyone might enjoy.";
 
-    // Call Gemini API
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const recommendations = response.text();
+    // If no liked songs are found, return an empty array
+    if (allLikedSongs.length === 0) {
+      return res.json({ spotifyIds: [] });
+    }
 
-    // Send the recommendations back to the client
-    res.json({ recommendations });
+    // Extract Spotify IDs from the liked songs
+    const spotifyIds = allLikedSongs.map((song) => song.spotifyId);
+
+    // Send the Spotify IDs back to the client
+    res.json({ spotifyIds });
   } catch (error) {
     console.error("Error generating recommendations:", error);
     res.status(500).json({ error: "Failed to generate recommendations" });
