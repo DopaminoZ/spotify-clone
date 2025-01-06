@@ -12,7 +12,6 @@ const ArtistCard = ({
   query,
   setQuery,
 }) => {
-  console.log(song);
   const saveToDatabase = async () => {
     try {
       // Prepare the song data
