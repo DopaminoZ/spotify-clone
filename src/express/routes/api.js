@@ -730,7 +730,7 @@ router.put("/album/:email", async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
-router.put("/artist/:email", async (req, res) => {
+router.put("/playlist/:email", async (req, res) => {
   try {
     const { email } = req.params;
     const { spotifyId, title, imageUrl } = req.body;
@@ -827,8 +827,28 @@ router.put("/follow-artist/:email", async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
-
 router.get("/get-followed-artists/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    // Find the account by email
+    const account = await Account.findOne({ email });
+
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Return the list of followed artists
+    res.status(200).json({
+      message: "Followed artists retrieved successfully",
+      followedartists: account.followedartists,
+    });
+  } catch (error) {
+    console.error("Error retrieving followed artists:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+router.get("/get-combined-data/:email", async (req, res) => {
   try {
     // Get the user's email from the route parameter
     const { email } = req.params;
@@ -840,15 +860,65 @@ router.get("/get-followed-artists/:email", async (req, res) => {
       return res.status(404).json({ message: "Account not found" });
     }
 
-    // Return the followed artists
+    // Extract albums, artists, and playlists from the account
+    const { albums, followedartists: artists, playlists } = account;
+
+    // Log raw data for debugging
+    console.log("Raw Albums:", albums);
+    console.log("Raw Artists:", artists);
+    console.log("Raw Playlists:", playlists);
+
+    // Helper function to clean up Mongoose documents
+    const cleanItem = (item, type) => {
+      if (!item || !item.spotifyId || !item.imageUrl || !item.title) {
+        console.warn(`Skipping invalid item of type ${type}:`, item);
+        return null;
+      }
+
+      const cleanedItem = {
+        spotifyId: item.spotifyId,
+        imageUrl: item.imageUrl,
+        title: item.title,
+        type,
+      };
+
+      // Include songs if the item is a playlist
+      if (type === "playlist" && item.songs && Array.isArray(item.songs)) {
+        cleanedItem.songs = item.songs.map((song) => ({
+          spotifyId: song.spotifyId,
+          title: song.title,
+          artist: song.artist,
+          duration: song.duration,
+          imageUrl: song.imageUrl,
+        }));
+      }
+
+      return cleanedItem;
+    };
+
+    // Add a `type` field to each item and combine the arrays
+    const limit = 30; // Optional: Limit to 7 items
+    const combinedData = [
+      ...(albums || []).map((item) => cleanItem(item, "album")).filter(Boolean),
+      ...(artists || [])
+        .map((item) => cleanItem(item, "artist"))
+        .filter(Boolean),
+      ...(playlists || [])
+        .map((item) => cleanItem(item, "playlist"))
+        .filter(Boolean),
+    ].slice(0, limit);
+
+    // Log combined data for debugging
+    console.log("Combined Data:", combinedData);
+
+    // Return the combined data
     res.status(200).json({
-      message: "Followed artists retrieved successfully",
-      followedartists: account.followedartists,
+      message: "Combined data retrieved successfully",
+      combinedData,
     });
   } catch (error) {
-    console.error("Error retrieving followed artists:", error);
+    console.error("Error retrieving combined data:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
-
 module.exports = router;

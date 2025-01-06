@@ -6,22 +6,29 @@
   height: 60px;
   padding: 8px 15px;
 }
-.playlistname{
-    font-size: large;
-    font-weight: 700;
-    margin-bottom: -10px;
-    color: whitesmoke;
+.coverphoto {
+  width: 60px;
+  border-radius: 10px;
 }
-.playlistowner{
-    color:#b3b3b3
+.playlistname {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: -10px;
+  color: whitesmoke;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis ("...") for overflow */
+}
+.playlistowner {
+  color: #b3b3b3;
 }
 .listcomponenttext p {
   justify-self: left;
-  
 }
-.listcomponenttext{
-    margin-left: 20px;
-    margin-top: -10px;
+.listcomponenttext {
+  margin-left: 20px;
+  margin-top: -10px;
 }
 .listcomponent:hover {
   background-color: #2c2c2c;

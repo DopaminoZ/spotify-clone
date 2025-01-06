@@ -101,6 +101,7 @@ function Playlist({
         spotifyId: data.id,
         title: data.name,
         imageUrl: data.images[0].url || "default_image_url",
+        songs: [],
       };
 
       console.log("Saving song data:", songz);
