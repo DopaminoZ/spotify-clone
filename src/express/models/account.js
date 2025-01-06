@@ -12,13 +12,20 @@ const songSchema = new mongoose.Schema({
 
 const playlistSchema = new mongoose.Schema({
   spotifyId: String,
-  songs: [songSchema],
   imageUrl: String,
+  title: String,
 });
 
 const albumSchema = new mongoose.Schema({
   spotifyId: String,
   imageUrl: String,
+  title: String,
+});
+
+const artistSchema = new mongoose.Schema({
+  spotifyId: String,
+  imageUrl: String,
+  title: String,
 });
 
 const AccountSchema = new Schema({
@@ -38,7 +45,7 @@ const AccountSchema = new Schema({
   profilePicture: { type: String },
   playlists: [playlistSchema],
   albums: [albumSchema],
-  recentlyPlayed: [songSchema],
+  followedartists: [artistSchema],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

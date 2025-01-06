@@ -685,4 +685,94 @@ router.put("/liked-songs/:email", async (req, res) => {
   }
 });
 
+router.put("/album/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { spotifyId, title, imageUrl } = req.body;
+
+    // Find the account by email
+    const account = await Account.findOne({ email });
+
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Check if the album is already in the "albums" array
+    const isAlbumFollowed = account.albums.some(
+      (album) => album.spotifyId === spotifyId
+    );
+
+    if (isAlbumFollowed) {
+      // Remove the album from the "albums" array
+      account.albums = account.albums.filter(
+        (album) => album.spotifyId !== spotifyId
+      );
+    } else {
+      // Add the album to the "albums" array
+      account.albums.push({
+        spotifyId,
+        title,
+        imageUrl,
+      });
+    }
+
+    // Save the updated account
+    await account.save();
+
+    res.status(200).json({
+      message: "Albums updated",
+      albums: account.albums,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+router.put("/playlist/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { spotifyId, title, imageUrl } = req.body;
+
+    // Validate required fields
+    if (!spotifyId || !title || !imageUrl) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    // Find the account by email
+    const account = await Account.findOne({ email });
+
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Check if the playlist is already in the "playlists" array
+    const isPlaylistFollowed = account.playlists.some(
+      (playlist) => playlist.spotifyId === spotifyId
+    );
+
+    if (isPlaylistFollowed) {
+      // Remove the playlist from the "playlists" array
+      account.playlists = account.playlists.filter(
+        (playlist) => playlist.spotifyId !== spotifyId
+      );
+    } else {
+      // Add the playlist to the "playlists" array
+      account.playlists.push({
+        spotifyId,
+        title,
+        imageUrl,
+      });
+    }
+
+    // Save the updated account
+    await account.save();
+
+    res.status(200).json({
+      message: "Playlists updated",
+      playlists: account.playlists,
+    });
+  } catch (error) {
+    console.error("Error updating playlists:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 module.exports = router;
