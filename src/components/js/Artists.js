@@ -44,6 +44,54 @@ function Artists({
   }, [data, songs, albums, rel]);
 
   const image = data?.images[0].url;
+  const saveToDatabase = async () => {
+    try {
+      // Prepare the song data
+      const songz = {
+        spotifyId: data.id,
+        title: data.name,
+        imageUrl: data.images[0].url || "default_image_url",
+      };
+
+      console.log("Saving song data:", songz);
+
+      // Get the user's email from session storage
+      const userEmail = sessionStorage.getItem("userEmail");
+      if (!userEmail) {
+        throw new Error("User email not found.");
+      }
+
+      // Send the request to the server
+      const response = await fetch(
+        `http://localhost:4000/api/playlist/${userEmail}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(songz),
+        }
+      );
+
+      // Handle the response
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          `Failed to save song: ${errorData.message || response.statusText}`
+        );
+      }
+
+      const result = await response.json();
+      console.log("Song saved to database:", result);
+
+      // Provide feedback to the user
+
+      return result;
+    } catch (error) {
+      console.error("Error saving song to database:", error);
+    }
+  };
+
   return (
     <div id={styles.container} className={styles.art} style={{ width: widthz }}>
       <div

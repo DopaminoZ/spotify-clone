@@ -12,6 +12,7 @@ const songSchema = new mongoose.Schema({
 
 const playlistSchema = new mongoose.Schema({
   spotifyId: String,
+  songs: [songSchema],
   imageUrl: String,
   title: String,
 });

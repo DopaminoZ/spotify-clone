@@ -730,7 +730,7 @@ router.put("/album/:email", async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
-router.put("/playlist/:email", async (req, res) => {
+router.put("/artist/:email", async (req, res) => {
   try {
     const { email } = req.params;
     const { spotifyId, title, imageUrl } = req.body;
@@ -778,4 +778,54 @@ router.put("/playlist/:email", async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
+router.put("/follow-artist/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { spotifyId, username, email: artistEmail } = req.body;
+
+    // Validate required fields
+    if (!spotifyId || !username) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    // Find the account by email
+    const account = await Account.findOne({ email });
+
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Check if the artist is already in the "followers" array
+    const isArtistFollowed = account.followers.some(
+      (follower) => follower.spotifyId === spotifyId
+    );
+
+    if (isArtistFollowed) {
+      // Remove the artist from the "followers" array
+      account.followers = account.followers.filter(
+        (follower) => follower.spotifyId !== spotifyId
+      );
+    } else {
+      // Add the artist to the "followers" array
+      account.followers.push({
+        spotifyId,
+        username,
+        email: artistEmail,
+      });
+    }
+
+    // Save the updated account
+    await account.save();
+
+    res.status(200).json({
+      message: "Followed artists updated",
+      followers: account.followers,
+    });
+  } catch (error) {
+    console.error("Error updating followed artists:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
 module.exports = router;
