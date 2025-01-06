@@ -15,6 +15,55 @@ function AlbumSong({
   setQuery,
 }) {
   console.log(song);
+  const saveToDatabase = async () => {
+    try {
+      // Prepare the song data
+      const songz = {
+        spotifyId: song.id,
+        title: song.name,
+        artist: song.artists[0]?.name || "Unknown Artist",
+        duration: song.duration_ms,
+        imageUrl: image || "default_image_url",
+      };
+
+      console.log("Saving song data:", songz);
+
+      // Get the user's email from session storage
+      const userEmail = sessionStorage.getItem("userEmail");
+      if (!userEmail) {
+        throw new Error("User email not found.");
+      }
+
+      // Send the request to the server
+      const response = await fetch(
+        `http://localhost:4000/api/liked-songs/${userEmail}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(songz),
+        }
+      );
+
+      // Handle the response
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          `Failed to save song: ${errorData.message || response.statusText}`
+        );
+      }
+
+      const result = await response.json();
+      console.log("Song saved to database:", result);
+
+      // Provide feedback to the user
+
+      return result;
+    } catch (error) {
+      console.error("Error saving song to database:", error);
+    }
+  };
 
   function msToTime(msString) {
     const ms = parseInt(msString, 10); // Parse the string into an integer
@@ -84,7 +133,7 @@ function AlbumSong({
         id={styles.durationdiv}
         style={{ marginLeft: wid === "53.2vw" ? 145 : 237 }}
       >
-        <div id={styles.addbutton}>
+        <div id={styles.addbutton} onClick={saveToDatabase}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               fill="#b3b3b3"

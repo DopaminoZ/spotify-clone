@@ -43,7 +43,75 @@ const Player = ({
   const handleLyrics = () => {
     setlyricsstate(!lyricsstate);
   };
+  const addToLibrary = async () => {
+    const songName = currentSong.title; // Get the song name from the current song
+    try {
+      // Fetch song metadata from the /search-spotify endpoint
+      const response = await fetch(
+        `http://localhost:4000/api/search-spotify-song?q=${encodeURIComponent(songName)}`
+      );
 
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch song metadata: ${response.statusText}`
+        );
+      }
+
+      const songMetadata = await response.json(); // Parse the JSON response
+      console.log("Song Metadata:", songMetadata); // Log the metadata for debugging
+
+      return songMetadata; // Return the song metadata
+    } catch (error) {
+      console.error("Error fetching song metadata:", error);
+      throw error; // Re-throw the error for handling in the calling function
+    }
+  };
+  const saveToDatabase = async () => {
+    try {
+      // Step 1: Fetch the song metadata
+      const songData = await addToLibrary();
+
+      // Extract the required fields for songSchema
+      const song = {
+        spotifyId: songData.id, // Assuming songData.id is the Spotify ID
+        title: songData.name, // Assuming songData.title is the song title
+        artist: songData.artists[0], // Assuming songData.artist is the artist name
+        duration: songData.duration_ms, // Assuming songData.duration is the song duration in milliseconds
+        imageUrl: songData.images[0].url, // Assuming songData.imageUrl is the URL of the song's image
+      };
+
+      // Step 2: Get the user's email (replace with your logic to get the email)
+      const userEmail = sessionStorage.getItem("userEmail"); // Example: Get email from session storage
+
+      if (!userEmail) {
+        throw new Error("User email not found.");
+      }
+
+      // Step 3: Call the /liked-songs/:email endpoint to save the song
+      const response = await fetch(
+        `http://localhost:4000/api/liked-songs/${userEmail}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(song), // Send the song data in the request body
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to save song: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log("Song saved to database:", result);
+
+      return result;
+    } catch (error) {
+      console.error("Error saving song to database:", error);
+      throw error;
+    }
+  };
   // Play or Pause the current song
   const handlePlayPause = () => {
     if (!audioRef.current) return;
@@ -96,6 +164,7 @@ const Player = ({
 
   // Reset audio when currentSong changes
   useEffect(() => {
+    console.log(currentSong + "fsagasgasg");
     if (audioRef.current && currentSong?.preview) {
       console.log("Loading new song:", currentSong.title);
       audioRef.current.pause();
@@ -130,7 +199,8 @@ const Player = ({
               {currentSong?.artist?.name || "Unknown Artist"}
             </p>
           </div>
-          <button className={styles.addbtn}>
+
+          <button className={styles.addbtn} onClick={saveToDatabase}>
             <img src={add} alt="Add to liked" className={styles.addbtnphoto} />
           </button>
         </div>

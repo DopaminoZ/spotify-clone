@@ -5,7 +5,7 @@ const axios = require("axios");
 const Song = require("../models/song.js");
 const Account = require("../models/account.js");
 const cookiemonster = require("cookie-parser");
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 let cachedAccessToken = null;
 let tokenExpiryTime = null;
 // Get all ninjas (example route)
@@ -491,20 +491,67 @@ router.get("/search-spotify", async (req, res) => {
       "Error fetching data from Spotify:",
       error.response?.data || error.message
     );
-    res
-      .status(500)
-      .json({
-        error: "Error fetching search results.",
-        details: error.response?.data || error.message,
-      });
+    res.status(500).json({
+      error: "Error fetching search results.",
+      details: error.response?.data || error.message,
+    });
   }
 });
+router.get("/search-spotify-song", async (req, res) => {
+  const query = req.query.q; // Get the search query from the request
 
-const Gemini_key = 'AIzaSyDmDc4bprhF6IXWZZHG59V4w87V6iS8NJo';
+  if (!query) {
+    return res.status(400).json({ error: "Query parameter 'q' is required." });
+  }
+
+  try {
+    // Step 1: Get the Spotify API access token
+    const accessToken = await getAccessToken();
+
+    // Step 2: Search for tracks using the Spotify API
+    const response = await axios.get(`https://api.spotify.com/v1/search`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        q: query, // The search query (e.g., song name)
+        type: "track", // Search for tracks
+        limit: 1, // Limit the number of results
+      },
+    });
+
+    // Step 3: Extract relevant track information
+    const tracks = response.data.tracks.items;
+
+    if (tracks.length === 0) {
+      return res.status(404).json({ message: "No tracks found." });
+    }
+
+    const track = tracks[0]; // Get the first track from the results
+
+    const trackInfo = {
+      id: track.id, // Spotify track ID
+      name: track.name, // Track name
+      artists: track.artists.map((artist) => artist.name), // List of artist names
+      album: track.album.name, // Album name
+      duration_ms: track.duration_ms, // Track duration in milliseconds
+      preview_url: track.preview_url, // URL for a 30-second preview of the track
+      external_urls: track.external_urls.spotify, // URL to the track on Spotify
+      images: track.album.images, // Album artwork images
+    };
+
+    // Step 4: Return the track information
+    res.status(200).json(trackInfo);
+  } catch (error) {
+    console.error("Error searching Spotify:", error);
+    res.status(500).json({ error: "Failed to search Spotify." });
+  }
+});
+const Gemini_key = "AIzaSyDmDc4bprhF6IXWZZHG59V4w87V6iS8NJo";
 const genAI = new GoogleGenerativeAI(Gemini_key);
-const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-router.post('/recommend-songs', async (req, res) => {
+router.post("/recommend-songs", async (req, res) => {
   const { userIds } = req.body;
 
   try {
@@ -512,9 +559,10 @@ router.post('/recommend-songs', async (req, res) => {
     const accounts = await Account.find({ _id: { $in: userIds } });
 
     // Construct prompt for Gemini
-    let prompt = "Act as a carpool AI song chooser. Here’s the data for the carpool group:\n";
+    let prompt =
+      "Act as a carpool AI song chooser. Here’s the data for the carpool group:\n";
     accounts.forEach((account, index) => {
-      prompt += `- User ${index + 1}: Likes ${account.preferredGenres.join(', ')}, follows ${account.followedArtists.join(', ')}, has a playlist with ${account.playlists[0]?.songs.join(', ') || 'no songs'}.\n`;
+      prompt += `- User ${index + 1}: Likes ${account.preferredGenres.join(", ")}, follows ${account.followedArtists.join(", ")}, has a playlist with ${account.playlists[0]?.songs.join(", ") || "no songs"}.\n`;
     });
     prompt += "Suggest a song or playlist that everyone might enjoy.";
 
@@ -528,6 +576,112 @@ router.post('/recommend-songs', async (req, res) => {
   } catch (error) {
     console.error("Error generating recommendations:", error);
     res.status(500).json({ error: "Failed to generate recommendations" });
+  }
+});
+
+// Read likedSongs by email
+router.get("/liked-songs/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    // Find the user by email
+    const user = await Account.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the user has a playlists array
+    if (!user.playlists || !Array.isArray(user.playlists)) {
+      return res.status(200).json({
+        likedSongsPlaylist: {
+          spotifyId: "liked-songs-playlist",
+          songs: [],
+          message: "No playlists found for this user.",
+        },
+      });
+    }
+
+    // Find the "Liked Songs" playlist
+    const likedSongsPlaylist = user.playlists.find(
+      (playlist) => playlist.spotifyId === "liked-songs-playlist"
+    );
+
+    // If the "Liked Songs" playlist doesn't exist, return a default structure
+    if (!likedSongsPlaylist) {
+      return res.status(200).json({
+        likedSongsPlaylist: {
+          spotifyId: "liked-songs-playlist",
+          songs: [],
+          message: "Liked Songs playlist not found.",
+        },
+      });
+    }
+
+    // Return the "Liked Songs" playlist
+    res.status(200).json({ likedSongsPlaylist });
+  } catch (error) {
+    console.error("Error fetching liked songs:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
+router.put("/liked-songs/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { spotifyId, title, artist, duration, imageUrl } = req.body;
+
+    // Find the account by email
+    const account = await Account.findOne({ email });
+
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Find or create the "Liked Songs" playlist
+    let likedSongsPlaylist = account.playlists.find(
+      (playlist) => playlist.spotifyId === "liked-songs-playlist"
+    );
+
+    if (!likedSongsPlaylist) {
+      // Create the "Liked Songs" playlist if it doesn't exist
+      likedSongsPlaylist = {
+        spotifyId: "liked-songs-playlist", // Unique ID for the liked songs playlist
+        songs: [],
+        imageUrl: "https://example.com/liked-songs-image.jpg", // Default image for liked songs
+      };
+      account.playlists.push(likedSongsPlaylist);
+    }
+
+    // Check if the song is already in the "Liked Songs" playlist
+    const isSongLiked = likedSongsPlaylist.songs.some(
+      (song) => song.spotifyId === spotifyId
+    );
+
+    if (isSongLiked) {
+      // Remove the song from the "Liked Songs" playlist
+      likedSongsPlaylist.songs = likedSongsPlaylist.songs.filter(
+        (song) => song.spotifyId !== spotifyId
+      );
+    } else {
+      // Add the song to the "Liked Songs" playlist
+      likedSongsPlaylist.songs.push({
+        spotifyId,
+        title,
+        artist,
+        duration,
+        imageUrl,
+      });
+    }
+
+    // Save the updated account
+    await account.save();
+
+    res
+      .status(200)
+      .json({ message: "Liked songs updated", likedSongs: likedSongsPlaylist });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 });
 

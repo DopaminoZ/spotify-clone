@@ -19,6 +19,9 @@
   opacity: 1;
   width: auto;
 }
+.container:hover .addbutton {
+  opacity: 1;
+}
 .container:hover .num {
   opacity: 0;
   width: 0;
@@ -92,10 +95,38 @@
     "Helvetica Neue",
     sans-serif;
   font-size: 15px;
-  position: absolute;
 }
 .play {
   opacity: 0;
   width: 0;
   position: relative;
+}
+.cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100px;
+  position: absolute;
+}
+#addbutton {
+  border: 1px solid #b3b3b3;
+  border-radius: 50px;
+  display: flex;
+  width: 15px;
+  height: 15px;
+  justify-items: center;
+  cursor: pointer;
+  opacity: 1;
+  margin-top: 12px;
+  display: flex;
+}
+#addbutton svg {
+  width: 10px;
+  margin-left: 2.1px;
+}
+#addbutton:hover {
+  border: 2px solid white;
+}
+#addbutton:hover path {
+  fill: white;
 }
