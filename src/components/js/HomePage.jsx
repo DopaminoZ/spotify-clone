@@ -12,7 +12,7 @@ import Premium from "./ExplorePremium";
 import Nowplaying from "./NowPlaying";
 import Lyrics from "./Lyrics";
 import Player from "./Player";
-import Profile from "./Profile";
+import Profile from "./profile";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import Chatbot from "./Chatbot";

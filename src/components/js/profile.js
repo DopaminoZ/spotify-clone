@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../css/Profile.module.css";
+import styles from "../css/profile.module.css";
 import badge from "../../assets/images/badge.webp";
 import play from "../../assets/images/play.png";
 import dots from "../../assets/images/dots.webp";
